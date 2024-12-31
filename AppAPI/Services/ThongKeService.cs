@@ -64,14 +64,14 @@ namespace AppAPI.Services
                                                             SoLuong = g.Sum(x => x.SoLuong),
                                                         }).OrderByDescending(x => x.SoLuong).Take(10).ToList();
                 ChiTietSanPham chiTietSanPham;
-                MauSac mauSac;
-                KichCo kichCo;
+                PhongCach mauSac;
+                DungTich kichCo;
                 SanPham sanPham;
                 foreach (var item in thongKeCot)
                 {
                     chiTietSanPham = context.ChiTietSanPhams.First(x => x.ID == new Guid(item.TenSP));
-                    mauSac = context.MauSacs.First(x => x.ID == chiTietSanPham.IDMauSac);
-                    kichCo = context.KichCos.First(x => x.ID == chiTietSanPham.IDKichCo);
+                    mauSac = context.PhongCachs.First(x => x.ID == chiTietSanPham.IDPhongCach);
+                    kichCo = context.DungTichs.First(x => x.ID == chiTietSanPham.IDDungTich);
                     sanPham = context.SanPhams.First(x => x.ID == chiTietSanPham.IDSanPham);
                     item.TenSP = sanPham.Ten + "_" + mauSac.Ten + "_" + kichCo.Ten;
                 }
@@ -116,14 +116,14 @@ namespace AppAPI.Services
                                                            DoanhThu = g.Sum(x => x.SoLuong * x.DonGia),
                                                        }).OrderByDescending(x => x.SoLuong).Take(10).ToList();
                 ChiTietSanPham chiTietSanPham;
-                MauSac mauSac;
-                KichCo kichCo;
+                PhongCach mauSac;
+                DungTich kichCo;
                 SanPham sanPham;
                 foreach (var item in thongKeSanPham)
                 {
                     chiTietSanPham = context.ChiTietSanPhams.First(x => x.ID == new Guid(item.TenSP));
-                    mauSac = context.MauSacs.First(x => x.ID == chiTietSanPham.IDMauSac);
-                    kichCo = context.KichCos.First(x => x.ID == chiTietSanPham.IDKichCo);
+                    mauSac = context.PhongCachs.First(x => x.ID == chiTietSanPham.IDPhongCach);
+                    kichCo = context.DungTichs.First(x => x.ID == chiTietSanPham.IDDungTich);
                     sanPham = context.SanPhams.First(x => x.ID == chiTietSanPham.IDSanPham);
                     item.TenSP = sanPham.Ten + "_" + mauSac.Ten + "_" + kichCo.Ten;
                 }

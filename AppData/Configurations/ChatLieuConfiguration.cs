@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppData.Configurations
 {
-    internal class ChatLieuConfiguration : IEntityTypeConfiguration<ChatLieu>
+    internal class ChatLieuConfiguration : IEntityTypeConfiguration<NhomHuong>
     {
-        public void Configure(EntityTypeBuilder<ChatLieu> builder)
+        public void Configure(EntityTypeBuilder<NhomHuong> builder)
         {
-            builder.ToTable("ChatLieu");
+            builder.ToTable("NhomHuong");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ten).HasColumnType("nvarchar(20)");
             builder.Property(x => x.TrangThai).HasColumnType("int");

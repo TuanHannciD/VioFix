@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppData.Configurations
 {
-    internal class MauSacConfiguration : IEntityTypeConfiguration<MauSac>
+    internal class MauSacConfiguration : IEntityTypeConfiguration<PhongCach>
     {
-        public void Configure(EntityTypeBuilder<MauSac> builder)
+        public void Configure(EntityTypeBuilder<PhongCach> builder)
         {
-            builder.ToTable("MauSac");
+            builder.ToTable("PhongCach");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ten).HasColumnType("nvarchar(10)").IsRequired();
             builder.Property(x => x.Ma).HasColumnType("varchar(10)");

@@ -59,9 +59,9 @@ namespace AppAPI.Services
                                join hd in _context.HoaDons on cthd.IDHoaDon equals hd.ID
                                //join lstd in _context.LichSuTichDiems on hd.ID equals lstd.IDHoaDon
                                // kh in _context.KhachHangs on lstd.IDKhachHang equals kh.IDKhachHang
-                               join cl in _context.ChatLieus on sp.IDChatLieu equals cl.ID
-                               join ms in _context.MauSacs on ctsp.IDMauSac equals ms.ID
-                               join kc in _context.KichCos on ctsp.IDKichCo equals kc.ID
+                               join cl in _context.NhomHuongs on sp.IDNhomHuong equals cl.ID
+                               join ms in _context.PhongCachs on ctsp.IDPhongCach equals ms.ID
+                               join kc in _context.DungTichs on ctsp.IDDungTich equals kc.ID
                                select new DanhGiaViewModel()
                                {
                                    ID = dg.ID,

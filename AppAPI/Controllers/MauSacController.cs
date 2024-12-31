@@ -9,41 +9,41 @@ namespace AppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MauSacController : ControllerBase
+    public class PhongCachController : ControllerBase
     {
         private readonly IQlThuocTinhService service;
         private readonly AssignmentDBContext _dbContext;
-        public MauSacController()
+        public PhongCachController()
         {
             service = new QlThuocTinhService();
             _dbContext = new AssignmentDBContext();
         }
-        #region MauSac
-        [HttpGet("GetAllMauSac")]
-        public async Task<IActionResult> GetAllMauSac()
+        #region PhongCach
+        [HttpGet("GetAllPhongCach")]
+        public async Task<IActionResult> GetAllPhongCach()
         {
-            var tr = await service.GetAllMauSac();
+            var tr = await service.GetAllPhongCach();
             return Ok(tr);
         }
-        [Route("TimKiemMauSac")]
+        [Route("TimKiemPhongCach")]
         [HttpGet]
-        public List<MauSac> GetAllMauSac(string? name)
+        public List<PhongCach> GetAllPhongCach(string? name)
         {
-            return _dbContext.MauSacs.Where(v => v.Ten.Contains(name) || v.Ma.Contains(name)).ToList();
+            return _dbContext.PhongCachs.Where(v => v.Ten.Contains(name) || v.Ma.Contains(name)).ToList();
         }
-        [Route("GetMauSacById")]
+        [Route("GetPhongCachById")]
         [HttpGet]
-        public async Task<IActionResult> GetMauSacById(Guid id)
+        public async Task<IActionResult> GetPhongCachById(Guid id)
         {
-            var cl = await service.GetMauSacById(id);
+            var cl = await service.GetPhongCachById(id);
             if (cl == null) return BadRequest();
             return Ok(cl);
         }
-        [HttpPost("ThemMauSac")]
+        [HttpPost("ThemPhongCach")]
         public async Task<IActionResult> Add(string ten, string ma, int trangthai)
         {
 
-            var tr = await service.AddMauSac(ten, ma, trangthai);
+            var tr = await service.AddPhongCach(ten, ma, trangthai);
             if (tr == null)
             {
                 return BadRequest();
@@ -55,7 +55,7 @@ namespace AppAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, string ten, string ma, int trangthai)
         {
-            var bv = await service.UpdateMauSac(id, ten, ma, trangthai);
+            var bv = await service.UpdatePhongCach(id, ten, ma, trangthai);
             if (bv == null)
             {
                 return BadRequest();
@@ -65,9 +65,9 @@ namespace AppAPI.Controllers
 
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMauSac(Guid id)
+        public async Task<IActionResult> DeletePhongCach(Guid id)
         {
-            var loaiSP = await service.DeleteMauSac(id);
+            var loaiSP = await service.DeletePhongCach(id);
             return Ok(loaiSP);
         }
         #endregion

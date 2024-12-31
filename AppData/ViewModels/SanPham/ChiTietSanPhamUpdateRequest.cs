@@ -14,6 +14,6 @@ namespace AppData.ViewModels.SanPham
         public List<ChiTietSanPhamRequest> ChiTietSanPhams { get; set; }
         public string? TrangThai {  get; set; }
         public int? Location { get; set; }
-        public List<MauSac>? MauSacs { get; set; }
+        public List<PhongCach>? PhongCachs { get; set; }
     }
 }

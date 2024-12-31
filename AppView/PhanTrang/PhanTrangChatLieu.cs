@@ -4,7 +4,7 @@ namespace AppView.PhanTrang
 {
     public class PhanTrangChatLieu
     {
-        public IEnumerable<ChatLieu> listNv { get; set; } = new List<ChatLieu>();
+        public IEnumerable<NhomHuong> listNv { get; set; } = new List<NhomHuong>();
         public PagingInfo PagingInfo { get; set; } = new PagingInfo();
     }
 }

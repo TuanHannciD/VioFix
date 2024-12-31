@@ -1243,7 +1243,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.21"
         },
         "runtime": {
-          "AppData.dll": {}
+          "AppData.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

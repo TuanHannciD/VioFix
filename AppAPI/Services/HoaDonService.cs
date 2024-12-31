@@ -174,7 +174,7 @@ namespace AppAPI.Services
                                 repsCTSanPham.Update(CTsanPham);
                             }
                             //Tâm
-                            donMua.GioHangs.Add(new GioHangRequest() { Anh = context.Anhs.First(y => y.IDSanPham == CTsanPham.IDSanPham && y.IDMauSac == CTsanPham.IDMauSac).DuongDan, SoLuong = x.SoLuong, DonGia = x.DonGia, Ten = context.SanPhams.First(y => y.ID == CTsanPham.IDSanPham).Ten, KichCo = context.KichCos.First(y => y.ID == CTsanPham.IDKichCo).Ten, MauSac = context.MauSacs.First(y => y.ID == CTsanPham.IDMauSac).Ten });
+                            donMua.GioHangs.Add(new GioHangRequest() { Anh = context.Anhs.First(y => y.IDSanPham == CTsanPham.IDSanPham && y.IDPhongCach == CTsanPham.IDPhongCach).DuongDan, SoLuong = x.SoLuong, DonGia = x.DonGia, Ten = context.SanPhams.First(y => y.ID == CTsanPham.IDSanPham).Ten, KichCo = context.DungTichs.First(y => y.ID == CTsanPham.IDDungTich).Ten, MauSac = context.PhongCachs.First(y => y.ID == CTsanPham.IDPhongCach).Ten });
                         }
                         //tích điểm, dùng điểm
                         if (hoaDon.IDNguoiDung != null)
@@ -421,8 +421,8 @@ namespace AppAPI.Services
             {
                 var lsthdct = (from cthd in context.ChiTietHoaDons
                                join ctsp in context.ChiTietSanPhams on cthd.IDCTSP equals ctsp.ID
-                               join ms in context.MauSacs on ctsp.IDMauSac equals ms.ID
-                               join kc in context.KichCos on ctsp.IDKichCo equals kc.ID
+                               join ms in context.PhongCachs on ctsp.IDPhongCach equals ms.ID
+                               join kc in context.DungTichs on ctsp.IDDungTich equals kc.ID
                                join sp in context.SanPhams on ctsp.IDSanPham equals sp.ID
                                join km in context.KhuyenMais on ctsp.IDKhuyenMai equals km.ID into kmGroup
                                from km in kmGroup.DefaultIfEmpty()
@@ -506,8 +506,8 @@ namespace AppAPI.Services
         {
             List<HoaDonChiTietViewModel> lsthdct = (from cthd in context.ChiTietHoaDons
                                                     join ctsp in context.ChiTietSanPhams on cthd.IDCTSP equals ctsp.ID
-                                                    join ms in context.MauSacs on ctsp.IDMauSac equals ms.ID
-                                                    join kc in context.KichCos on ctsp.IDKichCo equals kc.ID
+                                                    join ms in context.PhongCachs on ctsp.IDPhongCach equals ms.ID
+                                                    join kc in context.DungTichs on ctsp.IDDungTich equals kc.ID
                                                     join sp in context.SanPhams on ctsp.IDSanPham equals sp.ID
                                                     join km in context.KhuyenMais.Where(c => c.NgayKetThuc > DateTime.Now && c.TrangThai != 2) on ctsp.IDKhuyenMai equals km.ID
                                                     into kmGroup

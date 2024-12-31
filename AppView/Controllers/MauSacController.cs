@@ -32,7 +32,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/MauSac/GetAllMauSac";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<MauSac>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<PhongCach>>(apiData);
                 return View(new PhanTrangMauSac
                 {
                     listNv = users
@@ -60,7 +60,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/MauSac/TimKiemMauSac?name={Ten}";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<MauSac>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<PhongCach>>(apiData);
                 if (users.Count == 0)
                 {
                     ViewData["SearchError"] = "Không tìm thấy kết quả phù hợp";
@@ -87,7 +87,7 @@ namespace AppView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(MauSac ms)
+        public async Task<IActionResult> Create(PhongCach ms)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace AppView.Controllers
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
 
-            var user = JsonConvert.DeserializeObject<MauSac>(apiData);
+            var user = JsonConvert.DeserializeObject<PhongCach>(apiData);
             return View(user);
         }
         [HttpGet]
@@ -138,7 +138,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/MauSac/GetMauSacById?id={id}";
                 var response = _httpClient.GetAsync(apiUrl).Result;
                 var apiData = response.Content.ReadAsStringAsync().Result;
-                var user = JsonConvert.DeserializeObject<MauSac>(apiData);
+                var user = JsonConvert.DeserializeObject<PhongCach>(apiData);
                 return View(user);
             }
             catch
@@ -148,7 +148,7 @@ namespace AppView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, MauSac ms)
+        public async Task<IActionResult> Edit(Guid id, PhongCach ms)
         {
 
             try
@@ -189,11 +189,11 @@ namespace AppView.Controllers
         {
             try
             {
-                var timkiem = dBContext.MauSacs.FirstOrDefault(x => x.ID == id);
+                var timkiem = dBContext.PhongCachs.FirstOrDefault(x => x.ID == id);
                 if (timkiem != null)
                 {
                     timkiem.TrangThai = timkiem.TrangThai == 0 ? 1 : 0;
-                    dBContext.MauSacs.Update(timkiem);
+                    dBContext.PhongCachs.Update(timkiem);
                     dBContext.SaveChanges();
                     return RedirectToAction("Show");
                 }

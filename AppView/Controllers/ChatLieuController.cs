@@ -31,7 +31,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/ChatLieu/GetAllChatLieu";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<ChatLieu>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<NhomHuong>>(apiData);
                 return View(new PhanTrangChatLieu
                 {
                     listNv = users
@@ -60,7 +60,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/ChatLieu/TimKiemChatLieu?name={Ten}";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<ChatLieu>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<NhomHuong>>(apiData);
                 if (users.Count == 0)
                 {
                     ViewData["SearchError"] = "Không tìm thấy kết quả phù hợp";
@@ -87,7 +87,7 @@ namespace AppView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ChatLieu mauSac)
+        public async Task<IActionResult> Create(NhomHuong mauSac)
         {
 
             try
@@ -120,7 +120,7 @@ namespace AppView.Controllers
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
 
-            var user = JsonConvert.DeserializeObject<ChatLieu>(apiData);
+            var user = JsonConvert.DeserializeObject<NhomHuong>(apiData);
             return View(user);
         }
         [HttpGet]
@@ -129,11 +129,11 @@ namespace AppView.Controllers
             string apiUrl = $"https://localhost:7095/api/ChatLieu/GetChatLieuById?id={id}";
             var response = _httpClient.GetAsync(apiUrl).Result;
             var apiData = response.Content.ReadAsStringAsync().Result;
-            var user = JsonConvert.DeserializeObject<ChatLieu>(apiData);
+            var user = JsonConvert.DeserializeObject<NhomHuong>(apiData);
             return View(user);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Guid id, ChatLieu nv)
+        public async Task<IActionResult> Edit(Guid id, NhomHuong nv)
         {
             try
             {
@@ -170,11 +170,11 @@ namespace AppView.Controllers
         {
             try
             {
-                var timkiem = dBContext.ChatLieus.FirstOrDefault(x => x.ID == id);
+                var timkiem = dBContext.NhomHuongs.FirstOrDefault(x => x.ID == id);
                 if (timkiem != null)
                 {
                     timkiem.TrangThai = timkiem.TrangThai == 0 ? 1 : 0;
-                    dBContext.ChatLieus.Update(timkiem);
+                    dBContext.NhomHuongs.Update(timkiem);
                     dBContext.SaveChanges();
                     return RedirectToAction("Show");
                 }

@@ -13,9 +13,9 @@ namespace AppData.Models
         }
         public DbSet<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public DbSet<ChiTietSanPham> ChiTietSanPhams { get; set; }
-        public DbSet<MauSac> MauSacs { get; set; }
-        public DbSet<KichCo> KichCos { get; set; }
-        public DbSet<ChatLieu> ChatLieus { get; set; }
+        public DbSet<PhongCach> PhongCachs { get; set; }
+        public DbSet<DungTich> DungTichs { get; set; }
+        public DbSet<NhomHuong> NhomHuongs { get; set; }
         public DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public DbSet<GioHang> GioHangs { get; set; }
         public DbSet<HoaDon> HoaDons { get; set; }
@@ -32,7 +32,7 @@ namespace AppData.Models
         public DbSet<Anh> Anhs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=ENVY;Initial Catalog=AppBanQuanAoThoiTrangNam;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-76EVH99;Initial Catalog=VioPerfumeFix;Integrated Security=True;Trust Server Certificate=True");
         }
         //THUYNHU\SQLEXPRESS
         //DESKTOP-UOIH77U\SQLEXPRESS

@@ -19,31 +19,31 @@ namespace AppAPI.Controllers
             _dbContext = new AssignmentDBContext();
         }
         #region KichCo
-        [HttpGet("GetAllChatLieu")]
+        [HttpGet("GetAllNhomHuong")]
         public async Task<IActionResult> GetAllChatLieu()
         {
-            var cl = await service.GetAllChatLieu();
+            var cl = await service.GetAllNhomHuong();
             return Ok(cl);
         }
-        [Route("TimKiemChatLieu")]
+        [Route("TimKiemNhomHuong")]
         [HttpGet]
-        public List<ChatLieu> GetAllChatLieu(string? name)
+        public List<NhomHuong> GetAllChatLieu(string? name)
         {
-            return _dbContext.ChatLieus.Where(v => v.Ten.Contains(name)).ToList();
+            return _dbContext.NhomHuongs.Where(v => v.Ten.Contains(name)).ToList();
         }
-        [Route("GetChatLieuById")]
+        [Route("GetNhomHuongById")]
         [HttpGet]
         public async Task<IActionResult> GetChatLieuById(Guid id)
         {
-            var cl = await service.GetChatLieuById(id);
+            var cl = await service.GetNhomHuongById(id);
             if (cl == null) return BadRequest();
             return Ok(cl);
         }
-        [HttpPost("ThemChatLieu")]
+        [HttpPost("ThemNhomHuong")]
         public async Task<IActionResult> Add(string ten, int trangthai)
         {
 
-            var nv = await service.AddChatLieu(ten, trangthai);
+            var nv = await service.AddNhomHuong(ten, trangthai);
             if (nv == null)
             {
                 return BadRequest();
@@ -55,7 +55,7 @@ namespace AppAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, string ten, int trangthai)
         {
-            var bv = await service.UpdateChatLieu(id, ten, trangthai);
+            var bv = await service.UpdateNhomHuong(id, ten, trangthai);
             if (bv == null)
             {
                 return BadRequest(); // Trả về BadRequest nếu tên trùng
@@ -65,9 +65,9 @@ namespace AppAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChatLieu(Guid id)
+        public async Task<IActionResult> DeleteNhomHuong(Guid id)
         {
-            var loaiSP = await service.DeleteChatLieu(id);
+            var loaiSP = await service.DeleteNhomHuong(id);
             return Ok(loaiSP);
         }
         #endregion

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppView\\AppView.csproj": {}
+    "C:\\Users\\TUNA\\Desktop\\VioFix\\AppView\\AppView.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\AppData.csproj": {
+    "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\AppData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\AppData.csproj",
+        "projectUniqueName": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\AppData.csproj",
         "projectName": "AppData",
-        "projectPath": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\AppData.csproj",
-        "packagesPath": "C:\\Users\\nhannhan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\obj\\",
+        "projectPath": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\AppData.csproj",
+        "packagesPath": "C:\\Users\\TUNA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nhannhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TUNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -76,21 +81,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppView\\AppView.csproj": {
+    "C:\\Users\\TUNA\\Desktop\\VioFix\\AppView\\AppView.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppView\\AppView.csproj",
+        "projectUniqueName": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppView\\AppView.csproj",
         "projectName": "AppView",
-        "projectPath": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppView\\AppView.csproj",
-        "packagesPath": "C:\\Users\\nhannhan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppView\\obj\\",
+        "projectPath": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppView\\AppView.csproj",
+        "packagesPath": "C:\\Users\\TUNA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppView\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nhannhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TUNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\AppData.csproj": {
-                "projectPath": "C:\\Users\\nhannhan\\Documents\\Source_Code_Khong_Duoc_Xoa\\Visual\\DuAnTotNghiep\\AppData\\AppData.csproj"
+              "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\AppData.csproj": {
+                "projectPath": "C:\\Users\\TUNA\\Desktop\\VioFix\\AppData\\AppData.csproj"
               }
             }
           }
@@ -119,7 +128,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -189,7 +199,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

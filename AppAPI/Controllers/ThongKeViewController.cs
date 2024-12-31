@@ -24,7 +24,7 @@ namespace AppAPI.Controllers
             var result = _dbContext.ChiTietHoaDons
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
-                .Join(_dbContext.MauSacs, cthd_cts_sp => cthd_cts_sp.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.IDMauSac, ms => ms.ID, (cthd_cts_sp, ms) => new { ChiTietHoaDon_ChiTietSanPham_SanPham = cthd_cts_sp, MauSac = ms })
+                .Join(_dbContext.PhongCachs, cthd_cts_sp => cthd_cts_sp.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.IDPhongCach, ms => ms.ID, (cthd_cts_sp, ms) => new { ChiTietHoaDon_ChiTietSanPham_SanPham = cthd_cts_sp, MauSac = ms })
                 .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd })
                
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.ID)

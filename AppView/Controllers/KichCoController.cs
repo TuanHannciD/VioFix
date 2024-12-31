@@ -28,7 +28,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/KichCo/GetAllKichCo";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<KichCo>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<DungTich>>(apiData);
                 return View(new PhanTrangKichCo
                 {
                     listNv = users
@@ -57,7 +57,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/KichCo/TimKiemKichCo?name={Ten}";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<KichCo>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<DungTich>>(apiData);
                 if (users.Count == 0)
                 {
                     ViewData["SearchError"] = "Không tìm thấy kết quả phù hợp";
@@ -84,7 +84,7 @@ namespace AppView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(KichCo kc)
+        public async Task<IActionResult> Create(DungTich kc)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace AppView.Controllers
             string apiUrl = $"https://localhost:7095/api/KichCo/GetKichCoById?id={id}";
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<KichCo>(apiData);
+            var user = JsonConvert.DeserializeObject<DungTich>(apiData);
             return View(user);
         }
         [HttpGet]
@@ -125,7 +125,7 @@ namespace AppView.Controllers
                 string apiUrl = $"https://localhost:7095/api/KichCo/GetKichCoById?id={id}";
                 var response = _httpClient.GetAsync(apiUrl).Result;
                 var apiData = response.Content.ReadAsStringAsync().Result;
-                var user = JsonConvert.DeserializeObject<KichCo>(apiData);
+                var user = JsonConvert.DeserializeObject<DungTich>(apiData);
                 return View(user);
             }
             catch
@@ -134,7 +134,7 @@ namespace AppView.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Guid id, KichCo nv)
+        public async Task<IActionResult> Edit(Guid id, DungTich nv)
         {
             try
             {
@@ -172,11 +172,11 @@ namespace AppView.Controllers
         {
             try
             {
-                var timkiem = dBContext.KichCos.FirstOrDefault(x => x.ID == id);
+                var timkiem = dBContext.DungTichs.FirstOrDefault(x => x.ID == id);
                 if (timkiem != null)
                 {
                     timkiem.TrangThai = timkiem.TrangThai == 0 ? 1 : 0;
-                    dBContext.KichCos.Update(timkiem);
+                    dBContext.DungTichs.Update(timkiem);
                     dBContext.SaveChanges();
                     return RedirectToAction("Show");
                 }

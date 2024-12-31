@@ -31,7 +31,7 @@
             {
             <option value="">Chọn tên chất liệu</option>
             }
-            @foreach (var loaisp in Dbcontext.ChatLieus.ToList())
+            @foreach (var loaisp in Dbcontext.NhomHuongs.ToList())
             {
                 <option value="@loaisp.ID">@loaisp.Ten</option>
             }
@@ -109,7 +109,7 @@
                 </td>
                 <td>
                     @{
-                        var tencl = Dbcontext.ChatLieus.FirstOrDefault(x => x.ID == item.IDChatLieu);
+                        var tencl = Dbcontext.NhomHuongs.FirstOrDefault(x => x.ID == item.IDChatLieu);
                         if (tencl != null)
                         {
                             <div style="color:black">@tencl.Ten</div>

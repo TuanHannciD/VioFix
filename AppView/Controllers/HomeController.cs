@@ -312,17 +312,17 @@ namespace AppView.Controllers
             HttpResponseMessage responseMauSac = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllMauSac").Result;
             if (responseMauSac.IsSuccessStatusCode)
             {
-                ViewData["listMauSac"] = JsonConvert.DeserializeObject<List<MauSac>>(responseMauSac.Content.ReadAsStringAsync().Result);
+                ViewData["listMauSac"] = JsonConvert.DeserializeObject<List<PhongCach>>(responseMauSac.Content.ReadAsStringAsync().Result);
             }
             HttpResponseMessage responseKichCo = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllKichCo").Result;
             if (responseKichCo.IsSuccessStatusCode)
             {
-                ViewData["listKichCo"] = JsonConvert.DeserializeObject<List<KichCo>>(responseKichCo.Content.ReadAsStringAsync().Result);
+                ViewData["listKichCo"] = JsonConvert.DeserializeObject<List<DungTich>>(responseKichCo.Content.ReadAsStringAsync().Result);
             }
             HttpResponseMessage responseChatLieu = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllChatLieu").Result;
             if (responseChatLieu.IsSuccessStatusCode)
             {
-                ViewData["listChatLieu"] = JsonConvert.DeserializeObject<List<ChatLieu>>(responseChatLieu.Content.ReadAsStringAsync().Result);
+                ViewData["listChatLieu"] = JsonConvert.DeserializeObject<List<NhomHuong>>(responseChatLieu.Content.ReadAsStringAsync().Result);
             }
             return View();
         }

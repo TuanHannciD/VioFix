@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "AppAPI\\AppAPI.csproj",
+        "Action": "Start",
+        "DebugTarget": "AppAPI"
+      },
+      {
+        "Path": "AppView\\AppView.csproj",
+        "Action": "Start",
+        "DebugTarget": "AppView"
+      }
+    ]
+  }
+]

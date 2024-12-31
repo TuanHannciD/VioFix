@@ -38,15 +38,23 @@ namespace AppData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GioHang",
+                name: "KhachHang",
                 columns: table => new
                 {
                     IDKhachHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NgayTao = table.Column<DateTime>(type: "datetime", nullable: false)
+                    Ten = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Password = table.Column<string>(type: "varchar(MAX)", nullable: false),
+                    GioiTinh = table.Column<int>(type: "int", nullable: true),
+                    NgaySinh = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
+                    DiaChi = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    SDT = table.Column<string>(type: "varchar(10)", nullable: true),
+                    DiemTich = table.Column<int>(type: "int", nullable: true),
+                    TrangThai = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GioHang", x => x.IDKhachHang);
+                    table.PrimaryKey("PK_KhachHang", x => x.IDKhachHang);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,27 +168,19 @@ namespace AppData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KhachHang",
+                name: "GioHang",
                 columns: table => new
                 {
                     IDKhachHang = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Ten = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Password = table.Column<string>(type: "varchar(MAX)", nullable: false),
-                    GioiTinh = table.Column<int>(type: "int", nullable: true),
-                    NgaySinh = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
-                    DiaChi = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    SDT = table.Column<string>(type: "varchar(10)", nullable: true),
-                    DiemTich = table.Column<int>(type: "int", nullable: true),
-                    TrangThai = table.Column<int>(type: "int", nullable: true)
+                    NgayTao = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KhachHang", x => x.IDKhachHang);
+                    table.PrimaryKey("PK_GioHang", x => x.IDKhachHang);
                     table.ForeignKey(
-                        name: "FK_KhachHang_GioHang_IDKhachHang",
+                        name: "FK_GioHang_KhachHang_IDKhachHang",
                         column: x => x.IDKhachHang,
-                        principalTable: "GioHang",
+                        principalTable: "KhachHang",
                         principalColumn: "IDKhachHang",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -436,6 +436,11 @@ namespace AppData.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "KhachHang",
+                columns: new[] { "IDKhachHang", "DiaChi", "DiemTich", "Email", "GioiTinh", "NgaySinh", "Password", "SDT", "Ten", "TrangThai" },
+                values: new object[] { new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"), "Thanh Hoa", 1, "doba2311@gmail.com", 0, null, "$2a$10$gvO967pZ88UeyW693ps38.FTkSii9XrNtTI1vLoONujRx.uKjJOEq", "0773332975", "Admin", 0 });
+
+            migrationBuilder.InsertData(
                 table: "QuyDoiDiem",
                 columns: new[] { "ID", "TiLeTichDiem", "TiLeTieuDiem", "TrangThai" },
                 values: new object[] { new Guid("16bd37c4-cef0-4e92-9bb5-511c43d99037"), 0, 0, 1 });
@@ -443,17 +448,21 @@ namespace AppData.Migrations
             migrationBuilder.InsertData(
                 table: "VaiTro",
                 columns: new[] { "ID", "Ten", "TrangThai" },
-                values: new object[] { new Guid("952c1a5d-74ff-4daf-ba88-135c5440809c"), "Nhân viên", 1 });
+                values: new object[,]
+                {
+                    { new Guid("952c1a5d-74ff-4daf-ba88-135c5440809c"), "Nhân viên", 1 },
+                    { new Guid("b4996b2d-a343-434b-bfe9-09f8efbb3852"), "Admin", 1 }
+                });
 
             migrationBuilder.InsertData(
-                table: "VaiTro",
-                columns: new[] { "ID", "Ten", "TrangThai" },
-                values: new object[] { new Guid("b4996b2d-a343-434b-bfe9-09f8efbb3852"), "Admin", 1 });
+                table: "GioHang",
+                columns: new[] { "IDKhachHang", "NgayTao" },
+                values: new object[] { new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"), new DateTime(2024, 12, 31, 12, 5, 27, 811, DateTimeKind.Local).AddTicks(5710) });
 
             migrationBuilder.InsertData(
                 table: "NhanVien",
                 columns: new[] { "ID", "DiaChi", "Email", "IDVaiTro", "PassWord", "SDT", "Ten", "TrangThai" },
-                values: new object[] { new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"), "Ha Noi", "admin@gmail.com", new Guid("b4996b2d-a343-434b-bfe9-09f8efbb3852"), "$10$mUPOSJWQ8ifuA/5/S1040.gAQ2htYE1mhrFuSB/4/2wRnfcxZ42mC", "0985143915", "Admin", 1 });
+                values: new object[] { new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"), "Ha Noi", "doba2311@gmail.com", new Guid("b4996b2d-a343-434b-bfe9-09f8efbb3852"), "$2a$10$gvO967pZ88UeyW693ps38.FTkSii9XrNtTI1vLoONujRx.uKjJOEq", "0773332975", "Admin", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Anh_IDPhongCach",
@@ -566,6 +575,9 @@ namespace AppData.Migrations
                 name: "LichSuTichDiem");
 
             migrationBuilder.DropTable(
+                name: "GioHang");
+
+            migrationBuilder.DropTable(
                 name: "ChiTietSanPham");
 
             migrationBuilder.DropTable(
@@ -575,10 +587,10 @@ namespace AppData.Migrations
                 name: "HoaDon");
 
             migrationBuilder.DropTable(
-                name: "KhachHang");
+                name: "QuyDoiDiem");
 
             migrationBuilder.DropTable(
-                name: "QuyDoiDiem");
+                name: "KhachHang");
 
             migrationBuilder.DropTable(
                 name: "DungTich");
@@ -597,9 +609,6 @@ namespace AppData.Migrations
 
             migrationBuilder.DropTable(
                 name: "Voucher");
-
-            migrationBuilder.DropTable(
-                name: "GioHang");
 
             migrationBuilder.DropTable(
                 name: "LoaiSP");

@@ -21,7 +21,7 @@ namespace AppData.Configurations
             builder.Property(x => x.DiaChi).HasColumnType("nvarchar(20)").IsRequired();
             builder.Property(x => x.TrangThai).HasColumnType("int");
             builder.HasOne(x => x.VaiTro).WithMany(x => x.NhanViens).HasForeignKey(x => x.IDVaiTro);
-            builder.HasData(new NhanVien() { ID = new Guid("2EC27AB7-5F67-4ED5-AE67-52F9C9726EBF"), Ten = "Admin", Email = "admin@gmail.com", SDT = "0985143915", DiaChi = "Ha Noi", TrangThai = 1, IDVaiTro = new Guid("B4996B2D-A343-434B-BFE9-09F8EFBB3852"), PassWord = "$10$mUPOSJWQ8ifuA/5/S1040.gAQ2htYE1mhrFuSB/4/2wRnfcxZ42mC" });
+            builder.HasData(new NhanVien() { ID = new Guid("2EC27AB7-5F67-4ED5-AE67-52F9C9726EBF"), Ten = "Admin", Email = "doba2311@gmail.com", SDT = "0773332975", DiaChi = "Ha Noi", TrangThai = 1, IDVaiTro = new Guid("B4996B2D-A343-434B-BFE9-09F8EFBB3852"), PassWord = "$2a$10$gvO967pZ88UeyW693ps38.FTkSii9XrNtTI1vLoONujRx.uKjJOEq" });
         }
     }
 }

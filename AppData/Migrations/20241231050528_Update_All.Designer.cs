@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppData.Migrations
 {
     [DbContext(typeof(AssignmentDBContext))]
-    [Migration("20241231042730_Update_All")]
+    [Migration("20241231050528_Update_All")]
     partial class Update_All
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,7 +198,6 @@ namespace AppData.Migrations
             modelBuilder.Entity("AppData.Models.GioHang", b =>
                 {
                     b.Property<Guid>("IDKhachHang")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("NgayTao")
@@ -207,6 +206,13 @@ namespace AppData.Migrations
                     b.HasKey("IDKhachHang");
 
                     b.ToTable("GioHang", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IDKhachHang = new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"),
+                            NgayTao = new DateTime(2024, 12, 31, 12, 5, 27, 811, DateTimeKind.Local).AddTicks(5710)
+                        });
                 });
 
             modelBuilder.Entity("AppData.Models.HoaDon", b =>
@@ -276,6 +282,7 @@ namespace AppData.Migrations
             modelBuilder.Entity("AppData.Models.KhachHang", b =>
                 {
                     b.Property<Guid>("IDKhachHang")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DiaChi")
@@ -310,6 +317,20 @@ namespace AppData.Migrations
                     b.HasKey("IDKhachHang");
 
                     b.ToTable("KhachHang", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IDKhachHang = new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"),
+                            DiaChi = "Thanh Hoa",
+                            DiemTich = 1,
+                            Email = "doba2311@gmail.com",
+                            GioiTinh = 0,
+                            Password = "$2a$10$gvO967pZ88UeyW693ps38.FTkSii9XrNtTI1vLoONujRx.uKjJOEq",
+                            SDT = "0773332975",
+                            Ten = "Admin",
+                            TrangThai = 0
+                        });
                 });
 
             modelBuilder.Entity("AppData.Models.KhuyenMai", b =>
@@ -443,10 +464,10 @@ namespace AppData.Migrations
                         {
                             ID = new Guid("2ec27ab7-5f67-4ed5-ae67-52f9c9726ebf"),
                             DiaChi = "Ha Noi",
-                            Email = "admin@gmail.com",
+                            Email = "doba2311@gmail.com",
                             IDVaiTro = new Guid("b4996b2d-a343-434b-bfe9-09f8efbb3852"),
-                            PassWord = "$10$mUPOSJWQ8ifuA/5/S1040.gAQ2htYE1mhrFuSB/4/2wRnfcxZ42mC",
-                            SDT = "0985143915",
+                            PassWord = "$2a$10$gvO967pZ88UeyW693ps38.FTkSii9XrNtTI1vLoONujRx.uKjJOEq",
+                            SDT = "0773332975",
                             Ten = "Admin",
                             TrangThai = 1
                         });
@@ -723,6 +744,17 @@ namespace AppData.Migrations
                     b.Navigation("SanPham");
                 });
 
+            modelBuilder.Entity("AppData.Models.GioHang", b =>
+                {
+                    b.HasOne("AppData.Models.KhachHang", "KhachHang")
+                        .WithOne("GioHang")
+                        .HasForeignKey("AppData.Models.GioHang", "IDKhachHang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("KhachHang");
+                });
+
             modelBuilder.Entity("AppData.Models.HoaDon", b =>
                 {
                     b.HasOne("AppData.Models.NhanVien", "NhanVien")
@@ -736,17 +768,6 @@ namespace AppData.Migrations
                     b.Navigation("NhanVien");
 
                     b.Navigation("Voucher");
-                });
-
-            modelBuilder.Entity("AppData.Models.KhachHang", b =>
-                {
-                    b.HasOne("AppData.Models.GioHang", "GioHang")
-                        .WithOne("KhachHang")
-                        .HasForeignKey("AppData.Models.KhachHang", "IDKhachHang")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GioHang");
                 });
 
             modelBuilder.Entity("AppData.Models.LichSuTichDiem", b =>
@@ -832,8 +853,6 @@ namespace AppData.Migrations
             modelBuilder.Entity("AppData.Models.GioHang", b =>
                 {
                     b.Navigation("ChiTietGioHangs");
-
-                    b.Navigation("KhachHang");
                 });
 
             modelBuilder.Entity("AppData.Models.HoaDon", b =>
@@ -845,6 +864,8 @@ namespace AppData.Migrations
 
             modelBuilder.Entity("AppData.Models.KhachHang", b =>
                 {
+                    b.Navigation("GioHang");
+
                     b.Navigation("LichSuTichDiems");
                 });
 

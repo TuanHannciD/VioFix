@@ -1724,8 +1724,8 @@ namespace AppView.Controllers
                     TempData["HoaDon"] = JsonConvert.SerializeObject(hoaDon);
                     string vnp_Returnurl = "https://localhost:5001/Home/PaymentCallBack"; //URL nhan ket qua tra ve 
                     string vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; //URL thanh toan cua VNPAY 
-                    string vnp_TmnCode = "P4VW9FD1"; //Ma định danh merchant kết nối (Terminal Id)
-                    string vnp_HashSecret = "OPHRXNCKQAUVHIJNWXXTMPPYBVPAXUTF"; //Secret Key
+                    string vnp_TmnCode = "LH2YZXS2"; //Ma định danh merchant kết nối (Terminal Id)
+                    string vnp_HashSecret = "SCGP6NDETZ7GR6XHTJBUO4REDDF0BLNF"; //Secret Key
                     string ipAddr = HttpContext.Connection.RemoteIpAddress?.ToString();
                     //Get payment input
                     OrderInfo order = new OrderInfo();
@@ -1774,7 +1774,7 @@ namespace AppView.Controllers
             {
                 if (Request.Query.Count > 0)
                 {
-                    string vnp_HashSecret = "OPHRXNCKQAUVHIJNWXXTMPPYBVPAXUTF"; //Chuoi bi mat
+                    string vnp_HashSecret = "SCGP6NDETZ7GR6XHTJBUO4REDDF0BLNF"; //Chuoi bi mat
                     var vnpayData = Request.Query;
                     VnPayLibrary vnpay = new VnPayLibrary();
 

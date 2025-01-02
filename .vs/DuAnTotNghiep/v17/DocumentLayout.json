@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|solutionrelative:appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appdata\\models\\assignmentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|solutionrelative:appdata\\models\\assignmentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|solutionrelative:appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appview\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appview\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\huongdeptrai\\desktop\\duantotnghiep\\appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,32 +62,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "AppAPI\\appsettings.json",
-              "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\appsettings.json",
-              "RelativeToolTip": "AppAPI\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAB7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-23T08:30:35.274Z"
+              "DocumentIndex": 3,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\Services\\EmailService.cs",
+              "RelativeToolTip": "AppAPI\\Services\\EmailService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T16:08:02.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CheckOut.cshtml",
+              "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\Views\\Home\\CheckOut.cshtml",
+              "RelativeDocumentMoniker": "AppView\\Views\\Home\\CheckOut.cshtml",
+              "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\Views\\Home\\CheckOut.cshtml",
+              "RelativeToolTip": "AppView\\Views\\Home\\CheckOut.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkAAAByAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-02T16:00:06.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "AppView\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "AppView\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAANYBAAAAAAAAAAAAAPAGAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T13:10:06.14Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "AppAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\appsettings.json*",
+              "RelativeToolTip": "AppAPI\\appsettings.json*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-23T08:30:35.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AppAPI.csproj",
               "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\AppAPI.csproj",
               "RelativeDocumentMoniker": "AppAPI\\AppAPI.csproj",
               "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppAPI\\AppAPI.csproj",
               "RelativeToolTip": "AppAPI\\AppAPI.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-04-22T08:08:29.143Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AppData.csproj",
               "DocumentMoniker": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj",
               "RelativeDocumentMoniker": "AppData\\AppData.csproj",
@@ -94,9 +146,10 @@
               "RelativeDocumentMoniker": "AppData\\Models\\AssignmentDBContext.cs",
               "ToolTip": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\Models\\AssignmentDBContext.cs",
               "RelativeToolTip": "AppData\\Models\\AssignmentDBContext.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAA8wCIAAABPAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAzwCQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T07:24:53.917Z"
+              "WhenOpened": "2024-04-22T07:24:53.917Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -255,7 +255,7 @@
                                 <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
-                                            <input id="sl" style="width: 50px; border: none; text-align: center;" type="number" value="1">
+                                            <input  id="sl" style="width: 50px; border: none; text-align: center;" type="number" value="1">
                                         </div>
                                     </div>
                                 </td>
@@ -607,7 +607,7 @@
         if(mausac.length != 0 && kichco.length!=0){
             if (ctsp.soLuong < soLuong) {
                 toastr.error('Số lượng không đủ vui lòng giảm số lượng', 'Error Alert', { timeOut: 1000 });
-            } else if (soLuong == 0 || isNaN(soLuong) == true) {
+            } else if (soLuong <= 0 || isNaN(soLuong) == true) {
                 toastr.error('Vui lòng chọn lại số lượng', 'Error Alert', { timeOut: 1000 });
             }else{
                 $.ajax({

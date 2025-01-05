@@ -1,0 +1,233 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\TUNA\\New folder\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\tuna\\new folder\\appview\\views\\home\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\views\\home\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\tuna\\new folder\\appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\tuna\\new folder\\appapi\\services\\giohangservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\services\\giohangservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\tuna\\new folder\\appview\\views\\home\\shoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\views\\home\\shoppingcart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\tuna\\new folder\\appapi\\services\\chitiethoadonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\services\\chitiethoadonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|c:\\users\\tuna\\new folder\\appdata\\models\\assignmentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|solutionrelative:appdata\\models\\assignmentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\tuna\\new folder\\appview\\views\\quanlyhoadon\\_quanlyhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\views\\quanlyhoadon\\_quanlyhoadon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|c:\\users\\tuna\\new folder\\appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F9B55134-E679-48FD-8FDF-8F1B2C6FF586}|AppData\\AppData.csproj|solutionrelative:appdata\\appdata.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\tuna\\new folder\\appapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\tuna\\new folder\\appview\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\views\\home\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|c:\\users\\tuna\\new folder\\appview\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73EA9167-E47C-4746-AC59-EB7916C380BD}|AppView\\AppView.csproj|solutionrelative:appview\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|c:\\users\\tuna\\new folder\\appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{81A30792-7B87-4DE2-A50C-D9D30FD1B4AF}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductDetail.cshtml",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\ProductDetail.cshtml",
+              "RelativeDocumentMoniker": "AppView\\Views\\Home\\ProductDetail.cshtml",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\ProductDetail.cshtml",
+              "RelativeToolTip": "AppView\\Views\\Home\\ProductDetail.cshtml",
+              "ViewState": "AgIAAKcBAAAAAAAAAAAAAGQCAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-05T10:07:51.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShoppingCart.cshtml",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\ShoppingCart.cshtml",
+              "RelativeDocumentMoniker": "AppView\\Views\\Home\\ShoppingCart.cshtml",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\ShoppingCart.cshtml",
+              "RelativeToolTip": "AppView\\Views\\Home\\ShoppingCart.cshtml",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAwwJAAAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-05T09:59:58.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GioHangServices.cs",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\GioHangServices.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Services\\GioHangServices.cs",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\GioHangServices.cs",
+              "RelativeToolTip": "AppAPI\\Services\\GioHangServices.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAIAxwEcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T04:14:16.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChiTietHoaDonService.cs",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\ChiTietHoaDonService.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Services\\ChiTietHoaDonService.cs",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\ChiTietHoaDonService.cs",
+              "RelativeToolTip": "AppAPI\\Services\\ChiTietHoaDonService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T16:37:48.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppAPI\\Services\\EmailService.cs",
+              "RelativeToolTip": "AppAPI\\Services\\EmailService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T16:08:02.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CheckOut.cshtml",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\CheckOut.cshtml",
+              "RelativeDocumentMoniker": "AppView\\Views\\Home\\CheckOut.cshtml",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\Home\\CheckOut.cshtml",
+              "RelativeToolTip": "AppView\\Views\\Home\\CheckOut.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkAAAByAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-02T16:00:06.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppView\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "AppView\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppView\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "AppView\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAANYBAAAAAAAAAAAAAPAGAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T13:10:06.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "AppAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppAPI\\appsettings.json",
+              "RelativeToolTip": "AppAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-23T08:30:35.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppAPI\\AppAPI.csproj",
+              "RelativeDocumentMoniker": "AppAPI\\AppAPI.csproj",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppAPI\\AppAPI.csproj",
+              "RelativeToolTip": "AppAPI\\AppAPI.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-22T08:08:29.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AssignmentDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppData\\Models\\AssignmentDBContext.cs",
+              "RelativeDocumentMoniker": "AppData\\Models\\AssignmentDBContext.cs",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppData\\Models\\AssignmentDBContext.cs",
+              "RelativeToolTip": "AppData\\Models\\AssignmentDBContext.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwCIAAACZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T07:24:53.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_QuanLyHoaDon.cshtml",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\QuanLyHoaDon\\_QuanLyHoaDon.cshtml",
+              "RelativeDocumentMoniker": "AppView\\Views\\QuanLyHoaDon\\_QuanLyHoaDon.cshtml",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppView\\Views\\QuanLyHoaDon\\_QuanLyHoaDon.cshtml",
+              "RelativeToolTip": "AppView\\Views\\QuanLyHoaDon\\_QuanLyHoaDon.cshtml",
+              "ViewState": "AQIAAGUBAAAAAAAAAAAnwGsBAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-02T16:38:19.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppData.csproj",
+              "DocumentMoniker": "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj",
+              "RelativeDocumentMoniker": "AppData\\AppData.csproj",
+              "ToolTip": "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj",
+              "RelativeToolTip": "AppData\\AppData.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-22T07:38:57.164Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

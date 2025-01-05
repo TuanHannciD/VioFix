@@ -1,10 +1,10 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "Run",
     "Projects": [
       {
         "Path": "AppAPI\\AppAPI.csproj",
-        "Action": "Start",
+        "Action": "StartWithoutDebugging",
         "DebugTarget": "AppAPI"
       },
       {

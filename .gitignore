@@ -1,1 +1,37 @@
+# Thư mục tạm của Visual Studio
 .vs/
+
+# Thư mục build
+bin/
+obj/
+
+# Thư mục tạm của Rider
+.idea/
+
+# Các tệp tin lock và tệp tin không cần thiết
+*.user
+*.lock
+*.log
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Các tệp bảo mật và thông tin nhạy cảm
+*.pfx
+*.snk
+secrets.json
+
+# Các tệp tự động tạo của môi trường phát triển
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.dgspec.json
+
+# Thư mục tạm của Test
+TestResults/
+
+# Tệp chứa thông tin cấu hình của MSBuild
+*.cache
+*.dll
+*.pdb
+
+# Các tệp liên quan đến ứng dụng xuất bản
+.publish/

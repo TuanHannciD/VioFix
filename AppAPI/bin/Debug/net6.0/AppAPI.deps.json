@@ -2893,7 +2893,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.21"
         },
         "runtime": {
-          "AppData.dll": {}
+          "AppData.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "AppView/1.0.0": {
@@ -2912,7 +2915,10 @@
           "X.PagedList.Mvc.Core": "8.4.7"
         },
         "runtime": {
-          "AppView.dll": {}
+          "AppView.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

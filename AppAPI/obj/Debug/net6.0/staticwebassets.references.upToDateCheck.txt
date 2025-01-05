@@ -1,0 +1,1 @@
+C:\Users\TUNA\New folder\AppView\obj\Debug\net6.0\staticwebassets.build.json

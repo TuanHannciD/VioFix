@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\AppView.csproj": {}
+    "C:\\Users\\TUNA\\New folder\\AppView\\AppView.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj": {
+    "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj",
+        "projectUniqueName": "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj",
         "projectName": "AppData",
-        "projectPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj",
-        "packagesPath": "C:\\Users\\HUONGDEPTRAI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\obj\\",
+        "projectPath": "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj",
+        "packagesPath": "C:\\Users\\TUNA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TUNA\\New folder\\AppData\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HUONGDEPTRAI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TUNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -43,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -80,24 +81,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\AppView.csproj": {
+    "C:\\Users\\TUNA\\New folder\\AppView\\AppView.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\AppView.csproj",
+        "projectUniqueName": "C:\\Users\\TUNA\\New folder\\AppView\\AppView.csproj",
         "projectName": "AppView",
-        "projectPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\AppView.csproj",
-        "packagesPath": "C:\\Users\\HUONGDEPTRAI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppView\\obj\\",
+        "projectPath": "C:\\Users\\TUNA\\New folder\\AppView\\AppView.csproj",
+        "packagesPath": "C:\\Users\\TUNA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TUNA\\New folder\\AppView\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HUONGDEPTRAI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TUNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -112,8 +113,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj": {
-                "projectPath": "C:\\Users\\HUONGDEPTRAI\\Desktop\\DuAnTotNghiep\\AppData\\AppData.csproj"
+              "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj": {
+                "projectPath": "C:\\Users\\TUNA\\New folder\\AppData\\AppData.csproj"
               }
             }
           }
@@ -127,7 +128,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -197,7 +199,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

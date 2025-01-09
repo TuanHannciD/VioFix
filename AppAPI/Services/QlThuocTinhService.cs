@@ -104,12 +104,12 @@ namespace AppAPI.Services
                 {
                     return null;
                 }
-                bool isHasHash = ma.StartsWith("#");
+                
                 MauSac kc = new MauSac()
                 {
                     ID = Guid.NewGuid(),
                     Ten = ten,
-                    Ma = isHasHash ? ma : $"#{Uri.EscapeDataString(ma)}",
+                    Ma = ma,
                     TrangThai = 1
                 };
                 _dbContext.MauSacs.Add(kc);

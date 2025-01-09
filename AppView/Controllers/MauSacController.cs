@@ -92,32 +92,52 @@ namespace AppView.Controllers
             try
             {
                 ms.TrangThai = 1;
-                
+
+                // Kiểm tra tên và mã
                 if (string.IsNullOrEmpty(ms.Ten))
                 {
-                    ViewBag.ErrorMessage = "Vui lòng nhập tên màu sắc!";
+                    ViewBag.ErrorMessage = "Vui lòng nhập tên phân loại!";
+                    return View();
+                }
+
+                if (string.IsNullOrWhiteSpace(ms.Ma))
+                {
+                    ViewBag.ErrorMessage = "Mã không được để trống!";
+                    return View();
+                }
+
+                // Loại bỏ khoảng trắng dư thừa
+                ms.Ma = ms.Ma.Trim();
+
+                // Tạo URL không mã hóa
+                string apiUrl = $"https://localhost:7095/api/MauSac/ThemMauSac?ten={ms.Ten}&ma={ms.Ma}&trangthai={ms.TrangThai}";
+
+                // Gửi request
+                var response = await _httpClient.PostAsync(apiUrl, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Show");
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    ViewBag.ErrorMessage = "Dữ liệu đã có trong danh sách.";
                     return View();
                 }
                 else
                 {
-                    string encodedMauSac = Uri.EscapeDataString(ms.Ma);
-                    string apiUrl = $"https://localhost:7095/api/MauSac/ThemMauSac?ten={ms.Ten}&ma={encodedMauSac}&trangthai={ms.TrangThai}";
-                    ///*var content = new StringContent(JsonConvert.SerializeObject(ms), */Encoding.UTF8, "application/json");
-                    var response = await _httpClient.PostAsync(apiUrl, null);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Show");
-                    }
-                    else if (response.StatusCode == HttpStatusCode.BadRequest)
-                    {
-                        ViewBag.ErrorMessage = "  Dã có trong danh sách";
-                        return View();
-                    }
+                    ViewBag.ErrorMessage = "Đã xảy ra lỗi không xác định. Vui lòng thử lại!";
                     return View();
                 }
             }
-            catch { return Redirect("https://localhost:5001/"); }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return Redirect("https://localhost:5001/");
+            }
         }
+
+
 
 
         [HttpGet]
@@ -157,7 +177,7 @@ namespace AppView.Controllers
 
                 if (string.IsNullOrEmpty(ms.Ten))
                 {
-                    ViewBag.ErrorMessage = "Vui lòng nhập tên màu sắc!";
+                    ViewBag.ErrorMessage = "Vui lòng nhập tên phân loại!";
                     return View();
                 }
                 else

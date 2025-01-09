@@ -32,7 +32,7 @@ namespace AppData.Models
         public DbSet<Anh> Anhs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-B6HG6FC\HUONGKOOL;Initial Catalog=DBVioPerfume;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-76EVH99;Initial Catalog=DBVioPerfume;Integrated Security=True;Trust Server Certificate=True");
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

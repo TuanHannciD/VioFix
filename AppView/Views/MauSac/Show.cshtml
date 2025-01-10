@@ -9,7 +9,7 @@
     string searchData = "";
 }
 <h1>
-    <b>Danh sách màu sắc </b>
+    <b>Danh sách phân loại </b>
 </h1>
 <div class="row" style=" margin: 5px">
     <div class="col-7">
@@ -23,15 +23,16 @@
     </div>
     <div id="searchErrorMessage" class="alert alert-warning" role="alert" style="display: @(ViewData["SearchError"] != null ? "block" : "none") ; margin-top: 10px; margin-left: 11px">@ViewData["SearchError"]</div>
 </div>
+
 <table class="table" style="margin-left: 20px">
     <thead style=" background-color: darkslategray">
         <tr>
             <th style=" background-color: darkslategray;
     color: white;">STT</th>
             <th style=" background-color: darkslategray;
-    color: white;">Tên</th>
+    color: white;">Phong cách</th>
             <th style=" background-color: darkslategray;
-    color: white;">Mã</th>
+    color: white;">Nhóm hương</th>
             <th style=" background-color: darkslategray;
     color: white;">Trạng thái</th>
             <th style=" background-color: darkslategray"></th>
@@ -57,11 +58,11 @@
                     }
                 </td>
                 <td style="text-align:end">
-                    <button type="button" class="btn btn-success" onclick="return confirm('Bạn có muốn đổi trạng thái màu @item.Ten sang trạng thái @(item.TrangThai == 1 ? "Không hoạt động" : "Hoạt động") không?');">
+                    <button type="button" class="btn btn-success" onclick="return confirm('Bạn có muốn đổi trạng thái phân loại @item.Ten sang trạng thái @(item.TrangThai == 1 ? "Không hoạt động" : "Hoạt động") không?');">
                         @Html.ActionLink("Đổi", "Sua", new { id = item.ID }, new { @style = "color:white;" })
                     </button>
                     <button class="btn btn-success " style="text-align:end">
-                        @Html.ActionLink("Sửa", "Edit", new { id= item.ID }, new { @style = "color:white;"})
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @style = "color:white;" })
                     </button>
                 </td>
                 @{
@@ -71,6 +72,7 @@
         }
     </tbody>
 </table>
+
 <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
     <button disabled="@(Model.PagingInfo.CurrentPage == 1)" style="background-color: @(Model.PagingInfo.CurrentPage == 1 ? "#f5f5f5" : "transparent"); border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 0; margin: 0;">
         <a style="text-decoration: none; color: black;" href="@Url.Action("Show", new { ProductPage = 1 })">Đầu</a>

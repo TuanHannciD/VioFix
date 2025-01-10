@@ -16,7 +16,7 @@ namespace AppData.ViewModels.SanPham
         public int sosaoPercent { get; set; }
         public List<GiaTriViewModel> MauSacs { get; set; }
         public List<AnhRequest> Anhs { get; set; }
-
+       // thêm các thuộc tính hiển thị ở đây
         public List<GiaTriViewModel> KichCos { get; set; }
         public List<ChiTietSanPhamViewModel> ChiTietSanPhams { get; set; }
         public string MoTa { get; set; }

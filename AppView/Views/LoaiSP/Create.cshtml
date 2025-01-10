@@ -7,7 +7,7 @@
     var listLoaiSP = ViewData["listLoaiSP"] as List<LoaiSP>;
 }
 
-<h1>Thêm loại sản phẩm</h1>
+<h1>Thêm thương hiệu</h1>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -17,26 +17,26 @@
                 <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
             }
             <div class="form-group">
-                <label class="control-label">Tên Loại SP</label>
+                <label class="control-label">Tên thương hiệu</label>
                 <input asp-for="Ten" class="form-control" class="form-control" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên loại sản phẩm!</div>
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên thương hiệu!</div>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="IDLoaiSPCha" class="control-label"> Tên Loại SP Cha</label>
                 <select class="form-control" asp-for="IDLoaiSPCha" name="IDLoaiSPCha">
                     @if (listLoaiSP != null)
                     {
-                        <option value="null">Chọn loại sản phẩm cha</option>
+                        <option value="null">Chọn thương hiệu cha</option>
                         @foreach (var item in listLoaiSP.Where(p => p.IDLoaiSPCha == null).ToList())
                         {
                             <option value="@item.ID">@item.Ten</option>
                         }
                     }
                 </select>
-            </div>
+            </div> *@
             <input type="hidden" asp-for="TrangThai" value="1" />
             <div class="form-group">
-                <input type="submit" value="Thêm Loại SP" class="btn btn-success" style="margin-top: 10px" />
+                <input type="submit" value="Thêm thương hiệu" class="btn btn-success" style="margin-top: 10px" />
             </div>
         </form>
     </div>

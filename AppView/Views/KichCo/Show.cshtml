@@ -11,7 +11,7 @@
 }
 
 <h1>
-    <b>Danh sách kích cỡ</b>
+    <b>Danh sách dung tích</b>
 </h1>
 <div class="row" style=" margin: 5px">
     <div class="col-7">
@@ -55,7 +55,7 @@
                     }
                 </td>
                 <td style="text-align:end">
-                    <button type="button" class="btn btn-success" onclick="return confirm('Bạn có muốn đổi trạng thái kích cỡ @item.Ten sang trạng thái @(item.TrangThai == 1 ? "Không hoạt động" : "Hoạt động") không?');">
+                    <button type="button" class="btn btn-success" onclick="return confirm('Bạn có muốn đổi trạng thái dung tích @item.Ten sang trạng thái @(item.TrangThai == 1 ? "Không hoạt động" : "Hoạt động") không?');">
                         @Html.ActionLink("Đổi", "Sua", new { id = item.ID }, new { @style = "color:white;" })
                     </button>
                     <button class="btn btn-success" style="text-align:end">

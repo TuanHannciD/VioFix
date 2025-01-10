@@ -12,15 +12,15 @@
         <form asp-action="AddChiTietSanPham">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
-                <label class="control-label">Màu sắc</label>
+                <label class="control-label">Phân loại</label>
                 <table id="tbmausac" style="width:450px">
                     <tbody class="table" id="tbbody">
                         <tr id="mau0">
-                            <td style="width:70%">
+                            <td style="width:41%">
                                 <input name="MauSacs[0].Ten" class="form-control" list="mauSac" id="tenMau0" onchange="changeTenMau(0)" autocomplete="off" />
                             </td>
-                            <td style="width:45.6px">
-                                <input name="MauSacs[0].Ma" type="color" class="form-control" value="#000000" id="maMau0" onchange="changeMaMau(0)" style="height:41.6px;width:100%"/>
+                            <td style="width:41%">
+                                <input name="MauSacs[0].Ma" class="form-control" list="vaiTro" id="maMau0" onchange="changeMaMau(0)" autocomplete="off" />
                             </td>
                             <td style="width:50px">
                                 <input type="button" class="form-control" value="-" hidden id="xoamau0" onclick="xoaMau(0)" />
@@ -32,7 +32,7 @@
                 <datalist id="mauSac"></datalist>
             </div>
             <div class="form-group" id="lstKichCo">
-                <label class="control-label">Kích cỡ</label>
+                <label class="control-label">Dung tích</label>
                 <div class="row" style='width:450px' id="size0">
                     <div class="col-lg-10" style='padding-right:0px'>
                         <input name="KichCos[0]" class="form-control" list="kichCo" id="tenkc0" autocomplete="off"/>
@@ -102,7 +102,12 @@
         element.remove();
     }
     function themMauSac() {
-        $("#tbbody").append("<tr id='mau" + countMauSac + "'><td style='width:70%'> <input name='MauSacs[" + countMauSac + "].Ten' class='form-control' list='mauSac' id='tenMau" + countMauSac + "' onchange='changeTenMau(" + countMauSac + ")' autocomplete=\"off\" /></td><td style='width: 45.6px'><input name='MauSacs[" + countMauSac + "].Ma' type='color' onchange='changeMaMau(" + countMauSac + ")' class='form-control' id='maMau" + countMauSac + "' style='height: 41.6px;width:100%'/></td><td style='width: 50px'><input type='button' class='form-control' value='-' hidden id = 'xoamau" + countMauSac + "' onclick='xoaMau(" + countMauSac + ")' /></td></tr > ");
+        $("#tbbody").append("<tr id='mau" + countMauSac + "'>" +
+            "<td style='width:41%'> <input name='MauSacs[" + countMauSac + "].Ten' class='form-control' list='mauSac' id='tenMau" + countMauSac + "' onchange='changeTenMau(" + countMauSac + ")' autocomplete='off' />" +
+            "</td>" +
+            "<td style='width: 45.6px'><input name='MauSacs[" + countMauSac + "].Ma' type='text' onchange='changeMaMau(" + countMauSac + ")' class='form-control' id='maMau" + countMauSac + "' style='height: 41.6px;width:100%' /></td>" +
+            "<td style='width: 50px'><input type='button' class='form-control' value='-' hidden id='xoamau" + countMauSac + "' onclick='xoaMau(" + countMauSac + ")' /></td>" +
+            "</tr>");
         document.getElementById("xoamau" + (countMauSac - 1)).hidden = false;
         countMauSac++;
     }

@@ -22,19 +22,19 @@
                 <span asp-validation-for="MoTa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Chất liệu</label>
+                <label class="control-label">Độ lưu hương</label>
                 <input asp-for="TenChatLieu" class="form-control" list="chatLieu" autocomplete="off" />
                 <datalist id="chatLieu"></datalist>
                 <span asp-validation-for="TenChatLieu" class="text-danger"></span>
             </div>
             <datalist id="kichCo"></datalist>
             <div class="form-group">
-                <label class="control-label">Loại sản phẩm cha</label>
+                <label class="control-label">Thương hiệu cha</label>
                 <input asp-for="TenLoaiSPCha" class="form-control" list="loaiSPCha" id="ipLoaiSPCha" autocomplete="off" />
                 <datalist id="loaiSPCha"></datalist>
             </div>
             <div class="form-group">
-                <label class="control-label">Loại sản phẩm con</label>
+                <label class="control-label">Thương hiệu con</label>
                 <input asp-for="TenLoaiSPCon" class="form-control" list="loaiSPCon" autocomplete="off"/>
                 <datalist id="loaiSPCon"></datalist>
                 <span asp-validation-for="TenLoaiSPCon" class="text-danger"></span>

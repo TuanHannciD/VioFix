@@ -11,13 +11,13 @@
         <thead>
             <tr>
                 <th>
-                    Tên màu sắc
+                    Phong cách
                 </th>
                 <th>
-                    Mã màu sắc
+                    Nhóm hương
                 </th>
                 <th>
-                    Kích cõ
+                    Dung tích
                 </th>
                 <th>
                     Số lượng
@@ -44,7 +44,7 @@
                         <input type="text" asp-for="ChiTietSanPhams[i].TenMauSac" style="border:none;background-color:white" readonly>
                     </td>
                     <td>
-                        <input type="color" value="@Model.ChiTietSanPhams[i].MaMau" style="border:none;width:27px;height:25px" readonly disabled>
+                        <input type="text" value="@Model.ChiTietSanPhams[i].MaMau" style="border:none;background-color:white" readonly>
                     </td>
                     <td>
                         <input type="text" asp-for="ChiTietSanPhams[i].TenKichCo" style="border:none;background-color:white" readonly>

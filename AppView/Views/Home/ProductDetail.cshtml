@@ -45,27 +45,40 @@
         cursor: pointer;
     }
 
-    #tronMau label {
-        left: -3px;
-        top: -3px;
-        height: 36px;
-        width: 36px;
-        border: 1px solid #e5e5e5;
-        content: "";
-        border-radius: 30%;
-        border: 2px solid black;
-        align-items: center;
-        justify-content: center;
-        display: flex;
+    #tronMau {
+        display: inline-flex; /* Hiển thị ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        gap: 5px; /* Khoảng cách giữa radio và label */
+        margin: 5px; /* Khoảng cách giữa các mục */
     }
 
-    #tronMau svg {
-        visibility: hidden
-    }
+        #tronMau label {
+            height: 40px;
+            width: auto; /* Tự động điều chỉnh theo nội dung */
+            min-width: 60px; /* Đảm bảo đủ rộng cho chữ */
+            border: 2px solid #ccc;
+            border-radius: 6px; /* Bo góc nhẹ */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px; /* Khoảng cách giữa viền và chữ */
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
 
-    #tronMau input[type="radio"]:checked ~ label svg {
-        visibility: visible
-    }
+        #tronMau input[type="radio"] {
+            display: none; /* Ẩn radio button mặc định */
+        }
+
+            #tronMau input[type="radio"]:checked ~ label {
+                background-color: #d1e7dd; /* Nền xanh nhạt khi được chọn */
+                border-color: #0f5132; /* Viền xanh đậm khi được chọn */
+            }
+
 
     #filter-color label span:hover, #filter-size label span:hover, #filter-material label span:hover, #LoaiSpFilter label span:hover, #sizes label span:hover {
         background: black;
@@ -217,7 +230,27 @@
 
                     </div>
 
+
                     <div class="mt-3">
+                        <span class="fw-bold">Phân loại</span>
+                        <div class="colors" id="filter-color">
+                            @foreach (var item in Model.MauSacs)
+                            {
+                                <div id="tronMau">
+                                    <input type="radio" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getMauSac(this)" />
+                                    <label for="btn-check-outlined_@item.GiaTri">
+                                        @item.GiaTri
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+
+
+
+                    @*  <div class="mt-3">
                         <span class="fw-bold">Màu Sắc</span>
                         <div class="colors" id="filter-color">
                             @foreach (var item in Model.MauSacs)
@@ -230,9 +263,9 @@
                             }
 
                         </div>
-                    </div>
+                    </div> *@
                     <div class="mt-3">
-                        <span class="fw-bold">Kích cỡ</span>
+                        <span class="fw-bold">Dung tích</span>
                         <div class="colors">
                             <ul id="sizes" style="height:35px">
                                 @foreach (var item in Model.KichCos)
@@ -746,18 +779,18 @@
                 if(response.data.length != 0){
                     $.each(response.data, function (i, item) {
                         if (item.sao === 1) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         } else if (item.sao === 2) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 3) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 4) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 5) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.chatLieu + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.mauSac + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.kichCo + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
 
                     });

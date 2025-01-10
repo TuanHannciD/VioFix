@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 }
 
-<h1>Thêm mới màu sắc</h1>
+<h1>Thêm mới loại</h1>
 
 <hr />
 <div class="row">
@@ -28,14 +28,14 @@
                 <span asp-validation-for="ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ten" class="control-label">Tên</label>
+                <label asp-for="Ten" class="control-label">Phong cách</label>
                 <input asp-for="Ten" class="form-control" autocomplete="off" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên màu sắc!</div>
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
             </div>
             <div class="form-group">
-                <label asp-for="Ma" class="control-label">Mã</label>
-                <input asp-for="Ma" type="color" class="form-control" />
-                <div id="maNameError" class="invalid-feedback d-none">Vui lòng chọn mã màu sắc!</div>
+                <label asp-for="Ma" class="control-label">Nhóm hương</label>
+                <input asp-for="Ma" class="form-control" autocomplete="off" />
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
             </div>
             <div class="form-group" hidden>
                 <label asp-for="TrangThai" class="control-label"></label>

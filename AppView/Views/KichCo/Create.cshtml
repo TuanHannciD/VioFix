@@ -10,7 +10,7 @@
     ViewData["Title"] = "Create";
     AppData.Models.AssignmentDBContext dBContext = new AppData.Models.AssignmentDBContext();
 }
-<h4>Thêm mới kích cỡ</h4>
+<h4>Thêm mới dung tích</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label asp-for="Ten" class="control-label">Tên</label>
                 <input asp-for="Ten" class="form-control" autocomplete="off" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên kích cỡ!</div>
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên dung tích!</div>
             </div>
             <input type="hidden" asp-for="TrangThai" value="1" />
             <div class="form-group">

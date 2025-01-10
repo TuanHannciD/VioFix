@@ -135,6 +135,7 @@ namespace AppView.Controllers
                 Console.WriteLine($"Error: {ex.Message}");
                 return Redirect("https://localhost:5001/");
             }
+            catch { return Redirect("https://localhost:5001/"); }
         }
 
 

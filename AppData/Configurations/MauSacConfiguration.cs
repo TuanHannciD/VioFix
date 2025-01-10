@@ -13,7 +13,7 @@ namespace AppData.Configurations
     {
         public void Configure(EntityTypeBuilder<MauSac> builder)
         {
-            builder.ToTable("MauSac");
+            builder.ToTable("PhanLoai");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ten).HasColumnType("nvarchar(10)").IsRequired();
             builder.Property(x => x.Ma).HasColumnType("varchar(10)");

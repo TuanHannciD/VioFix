@@ -38,7 +38,7 @@
                     @Html.DisplayFor(modelItem => item.TenMau)
                 </td>
                 <td>
-                    <input type="color" value="@item.MaMau" style="border:none;width:27px;height:25px" disabled />
+                    @Html.DisplayFor(modelItem => item.MaMau)
                 </td>
                 <td style="padding-right:2px;width:50px">
                     <label for="update_@item.ID" class="btn btn-success">Sửa</label><br/>

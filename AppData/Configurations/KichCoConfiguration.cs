@@ -13,7 +13,7 @@ namespace AppData.Configurations
     {
         public void Configure(EntityTypeBuilder<KichCo> builder)
         {
-            builder.ToTable("KichCo");
+            builder.ToTable("DungTich");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ten).HasColumnType("nvarchar(10)").IsRequired();
             builder.Property(x => x.TrangThai).HasColumnType("int").IsRequired();           

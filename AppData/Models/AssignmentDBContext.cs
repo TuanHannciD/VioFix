@@ -40,4 +40,7 @@ namespace AppData.Models
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
+
+
 }
+

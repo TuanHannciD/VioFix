@@ -12,9 +12,9 @@ namespace AppData.Models
         public int TrangThai { get; set; }
      
         public Guid IDLoaiSP { get; set; }
-        public Guid IDChatLieu { get; set; }
+        public Guid IDPhongCach { get; set; }
         public virtual LoaiSP? LoaiSP { get; set; }
-        public virtual ChatLieu ChatLieu { get; set; }
+        public virtual PhongCach PhongCach { get; set; }
         public virtual IEnumerable<ChiTietSanPham> ChiTietSanPhams { get; set; }
         public virtual IEnumerable<Anh> Anhs { get; set; }
     }

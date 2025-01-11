@@ -159,12 +159,12 @@ namespace AppView.Controllers
                 //Lọc màu
                 if (filter.lstIdMS != null)
                 {
-                    lstctsP = lstctsP.Where(c => filter.lstIdMS.Contains(c.idMauSac)).ToList();
+                    lstctsP = lstctsP.Where(c => filter.lstIdMS.Contains(c.idDungTich)).ToList();
                 }
                 //Lọc kích thước
                 if (filter.lstIdKC != null)
                 {
-                    lstctsP = lstctsP.Where(c => filter.lstIdKC.Contains(c.idKichCo)).ToList();
+                    lstctsP = lstctsP.Where(c => filter.lstIdKC.Contains(c.idNhomHuong)).ToList();
                 }
                 return Json(new { data = lstctsP });
             }

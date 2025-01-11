@@ -117,8 +117,8 @@ namespace AppAPI.Services
                                       //join b in context.LichSuTichDiems on a.ID equals b.IDHoaDon
                                       join d in context.DanhGias on c.ID equals d.ID
                                       join e in context.ChiTietSanPhams on c.IDCTSP equals e.ID
-                                      join f in context.KichCos on e.IDKichCo equals f.ID
-                                      join g in context.MauSacs on e.IDMauSac equals g.ID
+                                      join f in context.NhomHuongs on e.IDNhomHuong equals f.ID
+                                      join g in context.DungTichs on e.IDDungTich equals g.ID
                                       join i in context.SanPhams.Where(x => x.TrangThai == 1) on e.IDSanPham equals i.ID
                                       //join l in context.QuyDoiDiems on b.IDQuyDoiDiem equals l.ID
                                       select new DonMuaChiTietViewModel()
@@ -138,10 +138,10 @@ namespace AppAPI.Services
                                          IDCTHD = c.ID,
                                          DonGia = c.DonGia,
                                          SoLuong = c.SoLuong,
-                                         TenKichCo = f.Ten,
+                                         TenNhomHuong = f.Ten,
                                          TenMau = g.Ten,
                                          TenSanPham = i.Ten,
-                                         DuongDan = context.Anhs.First(x => x.IDMauSac == g.ID && x.IDSanPham == i.ID).DuongDan,
+                                         DuongDan = context.Anhs.First(x => x.IDDungTich == g.ID && x.IDSanPham == i.ID).DuongDan,
                                          HinhThucGiamGia = a.IDVoucher == null ? null : (context.Vouchers.First(x=>x.ID == a.IDVoucher)).HinhThucGiamGia,
                                          GiaTri = a.IDVoucher == null ? null : (context.Vouchers.First(x => x.ID == a.IDVoucher)).GiaTri,
                                          TrangThaiDanhGia = d.TrangThai,
@@ -164,8 +164,8 @@ namespace AppAPI.Services
             {
                 var getCTHDDanhGia = (from a in context.ChiTietHoaDons.Where(p=>p.ID == idcthd)
                                         join b in context.ChiTietSanPhams on a.IDCTSP equals b.ID
-                                        join c in context.KichCos on b.IDKichCo equals c.ID
-                                        join d in context.MauSacs on b.IDMauSac equals d.ID
+                                        join c in context.NhomHuongs on b.IDNhomHuong equals c.ID
+                                        join d in context.DungTichs on b.IDDungTich equals d.ID
                                         join e in context.SanPhams on b.IDSanPham equals e.ID
                                         join g in context.HoaDons on a.IDHoaDon equals g.ID
                                        
@@ -175,7 +175,7 @@ namespace AppAPI.Services
                                             TenSanPham = e.Ten,
                                             TenMau = d.Ten,
                                             TenKichThuoc = c.Ten,
-                                            DuongDan = context.Anhs.First(x => x.IDMauSac == b.IDMauSac && x.IDSanPham == e.ID).DuongDan,
+                                            DuongDan = context.Anhs.First(x => x.IDDungTich == b.IDDungTich && x.IDSanPham == e.ID).DuongDan,
                                             IDHoaDon = g.ID
                                             
                                         }).FirstOrDefault();

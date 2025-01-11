@@ -49,9 +49,9 @@ namespace AppAPI.IServices
         public Task<bool> AddChiTietSanPhamFromSanPham(ChiTietSanPhamUpdateRequest request);
         Task<bool> UndoChiTietSanPham(Guid id);
         #endregion
-        Task<List<MauSac>> GetAllMauSac();
-        Task<List<KichCo>> GetAllKichCo();
-        Task<List<ChatLieu>> GetAllChatLieu();
+        Task<List<DungTich>> GetAllDungTich();
+        Task<List<NhomHuong>> GetAllNhomHuong();
+        Task<List<PhongCach>> GetAllPhongCach();
         //Nhinh thêm
         #region SanPhamBanHang
         Task<List<HomeProductViewModel>> GetAllSanPhamTrangChu();

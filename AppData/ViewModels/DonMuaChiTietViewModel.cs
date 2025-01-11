@@ -24,7 +24,7 @@ namespace AppData.ViewModels
         public Guid IDCTHD { get; set; }
         public int DonGia { get; set; }
         public int SoLuong { get; set; }
-        public string TenKichCo { get; set; }
+        public string TenNhomHuong { get; set; }
         public string TenMau { get; set; }
         public string TenSanPham { get; set;}
         public string DuongDan { get; set; }

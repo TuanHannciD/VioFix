@@ -14,9 +14,9 @@ namespace AppData.ViewModels.SanPham
         public int TrangThai { get; set; }
         public int TrangThaiCTSP { get; set; }
         public string LoaiSP { get; set; }
-        public Guid? IDMauSac { get; set; }
-        public Guid? IDKichCo { get; set; }
-        public Guid? IDChatLieu { get; set; }
+        public Guid? IDDungTich { get; set; }
+        public Guid? IDNhomHuong { get; set; }
+        public Guid? IDPhongCach { get; set; }
         public DateTime? NgayTao { get; set; }
         public Guid? IdChiTietSanPham { get; set; } // Id của biến thể mặc định
         public int SoLuong { get; set; }

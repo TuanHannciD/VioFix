@@ -10,9 +10,9 @@ namespace AppData.ViewModels.SanPham
     {
         public Guid ID { get; set; }
         public string Ma { get; set; }
-        public string TenMauSac { get; set; }
-        public string MaMauSac { get; set; }
-        public string TenKichCo { get; set; }
+        public string TenDungTIch { get; set; }
+        public string MaDungTich { get; set; }
+        public string TenNhomHuong { get; set; }
         public int SoLuong { get; set; }
         public int GiaGoc { get; set; }
         public int GiaBan { get; set; }

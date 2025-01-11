@@ -25,6 +25,6 @@ namespace AppData.ViewModels
         public int GiaBan { get; set; }
         public Guid IDLoaiSP { get; set; }
         public Guid? IDLoaiSPCha { get; set; }  
-        public Guid IDChatLieu { get; set; }
+        public Guid IDPhongCach { get; set; }
     }
 }

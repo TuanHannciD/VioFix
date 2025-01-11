@@ -14,9 +14,9 @@ namespace AppData.ViewModels.SanPham
         public string Ten { get; set; }
         public string? MoTa { get; set; }
         [Required]
-        public string TenChatLieu { get; set; }
-        public List<MauSac> MauSacs { get; set; }
-        public List<string> KichCos {  get; set; }
+        public string TenPhongCach { get; set; }
+        public List<DungTich> DungTichs { get; set; }
+        public List<string> NhomHuongs {  get; set; }
         [Required]
         public string TenLoaiSPCha { get; set; }
         public string TenLoaiSPCon { get; set; }

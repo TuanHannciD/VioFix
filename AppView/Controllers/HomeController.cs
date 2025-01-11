@@ -215,11 +215,10 @@ namespace AppView.Controllers
 
                     List<SanPhamViewModel> lstcotam = new List<SanPhamViewModel>();
                     List<SanPhamViewModel> lstcotam1 = new List<SanPhamViewModel>();
-                    if (filter.kichCo != null && filter.kichCo.Count > 0)
+                    if (filter.nhomHuong != null && filter.nhomHuong.Count > 0)
                     {
-                        foreach (var x in filter.kichCo)
-                        {
-                            lstcotam = lstSanphamfn.Where(p => p.IDKichCo == x).ToList();
+                        foreach (var x in filter.nhomHuong){
+                            lstcotam = lstSanphamfn.Where(p => p.IDNhomHuong == x).ToList();
                             foreach (var item in lstcotam)
                             {
                                 if (lstcotam1.FirstOrDefault(p => p.ID == item.ID) == null)
@@ -309,20 +308,20 @@ namespace AppView.Controllers
             {
                 ViewData["listLoaiSP"] = JsonConvert.DeserializeObject<List<LoaiSP>>(responseLoaiSP.Content.ReadAsStringAsync().Result);
             }
-            HttpResponseMessage responseMauSac = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllMauSac").Result;
-            if (responseMauSac.IsSuccessStatusCode)
+            HttpResponseMessage responseDungTich = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllDungTich").Result;
+            if (responseDungTich.IsSuccessStatusCode)
             {
-                ViewData["listMauSac"] = JsonConvert.DeserializeObject<List<MauSac>>(responseMauSac.Content.ReadAsStringAsync().Result);
+                ViewData["listDungTich"] = JsonConvert.DeserializeObject<List<DungTich>>(responseDungTich.Content.ReadAsStringAsync().Result);
             }
-            HttpResponseMessage responseKichCo = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllKichCo").Result;
-            if (responseKichCo.IsSuccessStatusCode)
+            HttpResponseMessage responseNhomHuong = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllNhomHuong").Result;
+            if (responseNhomHuong.IsSuccessStatusCode)
             {
-                ViewData["listKichCo"] = JsonConvert.DeserializeObject<List<KichCo>>(responseKichCo.Content.ReadAsStringAsync().Result);
+                ViewData["listNhomHuong"] = JsonConvert.DeserializeObject<List<NhomHuong>>(responseNhomHuong.Content.ReadAsStringAsync().Result);
             }
-            HttpResponseMessage responseChatLieu = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllChatLieu").Result;
-            if (responseChatLieu.IsSuccessStatusCode)
+            HttpResponseMessage responsePhongCach = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllPhongCach").Result;
+            if (responsePhongCach.IsSuccessStatusCode)
             {
-                ViewData["listChatLieu"] = JsonConvert.DeserializeObject<List<ChatLieu>>(responseChatLieu.Content.ReadAsStringAsync().Result);
+                ViewData["listPhongCach"] = JsonConvert.DeserializeObject<List<PhongCach>>(responsePhongCach.Content.ReadAsStringAsync().Result);
             }
             return View();
         }

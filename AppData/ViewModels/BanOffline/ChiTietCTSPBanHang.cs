@@ -15,7 +15,7 @@ namespace AppData.ViewModels.BanOffline
         public int GiaGoc { get; set; }
         public int GiaBan { get; set; }
         public int SoLuong { get; set; }
-        public Guid idMauSac { get; set; }
-        public Guid idKichCo { get; set; }
+        public Guid idDungTich { get; set; }
+        public Guid idNhomHuong { get; set; }
     }
 }

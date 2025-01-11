@@ -48,7 +48,7 @@ namespace AppView.Controllers
         }
         [HttpGet]
         // Tim kiem theo Id khuyen mai, id loai sp, id chat lieu
-        public async Task<IActionResult> TimKiemSPByKM(Guid? idkhuyenmai,Guid? idloaisp,Guid? idchatlieu, int ProductPage = 1)
+        public async Task<IActionResult> TimKiemSPByKM(Guid? idkhuyenmai,Guid? idloaisp,Guid? idphongCach, int ProductPage = 1)
         {// list khuyen mai view
             string apiURL = $"https://localhost:7095/api/KhuyenMai";
             var response = await _httpClient.GetAsync(apiURL);
@@ -56,7 +56,7 @@ namespace AppView.Controllers
             var roles = JsonConvert.DeserializeObject<List<KhuyenMaiView>>(apiData);
             ViewBag.KhuyenMaiView = roles;
             // // list AllViewsp
-            string apiURL1 = $"https://localhost:7095/api/KhuyenMai/GetAllSPByKmLoaiSPChatLieu?idkm={idkhuyenmai}&idLoaiSP={idloaisp}&idChatLieu={idchatlieu}";
+            string apiURL1 = $"https://localhost:7095/api/KhuyenMai/GetAllSPByKmLoaiSPPhongCach?idkm={idkhuyenmai}&idLoaiSP={idloaisp}&idPhongCach={idphongCach}";
             var response1 = await _httpClient.GetAsync(apiURL1);
             var apiData1 = await response1.Content.ReadAsStringAsync();
             var qlsanphams = JsonConvert.DeserializeObject<List<AllViewSp>>(apiData1);
@@ -525,13 +525,13 @@ namespace AppView.Controllers
 
             });
         }
-        //https://localhost:7095/api/KhuyenMai/GetAllSPNoKMByLoaiSPChatLieu?id=a034b1a2-1f42-43f2-b87a-138f8722cdcb&idLoaiSP=49ed4761-81c4-4f7d-a5c6-b051ed1ecdb6&idChatLieu=276b52d1-ce55-4027-b185-f6d5db4017b3
+        //https://localhost:7095/api/KhuyenMai/GetAllSPNoKMByLoaiSPPhongCach?id=a034b1a2-1f42-43f2-b87a-138f8722cdcb&idLoaiSP=49ed4761-81c4-4f7d-a5c6-b051ed1ecdb6&idPhongCach=276b52d1-ce55-4027-b185-f6d5db4017b3
         [HttpGet]
-        public async Task<IActionResult> GetSPNoKMLoaiSPCL(Guid? idloaisp, Guid? idchatlieu, int ProductPage = 1)
+        public async Task<IActionResult> GetSPNoKMLoaiSPCL(Guid? idloaisp, Guid? idphongCach, int ProductPage = 1)
         {
             var idkhuyenmai = Guid.Parse(HttpContext.Session.GetString("IdKhuyenMai"));
             // // list AllViewsp
-            string apiURL1 = $"https://localhost:7095/api/KhuyenMai/GetAllSPNoKMByLoaiSPChatLieu?id={idkhuyenmai}&idLoaiSP={idloaisp}&idChatLieu={idchatlieu}";
+            string apiURL1 = $"https://localhost:7095/api/KhuyenMai/GetAllSPByKmLoaiSPPhongCach?idkm= {idkhuyenmai} &idLoaiSP= {idloaisp} &idPhongCach= {idphongCach}";
             var response1 = await _httpClient.GetAsync(apiURL1);
             var apiData1 = await response1.Content.ReadAsStringAsync();
             var qlsanphams = JsonConvert.DeserializeObject<List<AllViewSp>>(apiData1);

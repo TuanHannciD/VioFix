@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<AppData.ViewModels.SanPham.AnhRequest>
 
 @{
-    ViewData["Title"] = "AddAnhToMauSac";
+    ViewData["Title"] = "AddAnhToDungTich";
 }
 
-<h1>AddAnhToMauSac</h1>
+<h1>AddAnhToDungTich</h1>
 
-<form enctype="multipart/form-data" asp-action="AddAnhToMauSac">
+<form enctype="multipart/form-data" asp-action="AddAnhToDungTich">
     <table class="table">
         <thead>
             <tr>
@@ -14,10 +14,10 @@
                     Chọn ảnh
                 </th>
                 <th>
-@*                     @Html.DisplayNameFor(model => model.TenMauSac)
+@*                     @Html.DisplayNameFor(model => model.TenDungTich)
  *@                </th>
                 <th>
-@*                     @Html.DisplayNameFor(model => model.MaMauSac)
+@*                     @Html.DisplayNameFor(model => model.MaDungTich)
  *@                </th>
                 <th></th>
             </tr>
@@ -30,13 +30,13 @@
                         <input type="file" name="images" />
                     </td>
                     <td>
-@*                         @Html.DisplayFor(modelItem => item.TenMauSac)
+@*                         @Html.DisplayFor(modelItem => item.TenDungTich)
  *@                    </td>
                     <td>
-@*                         @Html.DisplayFor(modelItem => item.MaMauSac)
+@*                         @Html.DisplayFor(modelItem => item.MaDungTich)
  *@                    </td>
                     <td>
-@*                         <input type="text" name="idMauSacs" value="@item.IDMauSac"/>
+@*                         <input type="text" name="idDungTichs" value="@item.IDDungTich"/>
  *@                    </td>
 @*                     <td>
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

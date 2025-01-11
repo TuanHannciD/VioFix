@@ -13,14 +13,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
                 <label class="control-label">Phân loại</label>
-                <table id="tbmausac" style="width:450px">
+                <table id="tbdungtich" style="width:450px">
                     <tbody class="table" id="tbbody">
                         <tr id="mau0">
                             <td style="width:41%">
-                                <input name="MauSacs[0].Ten" class="form-control" list="mauSac" id="tenMau0" onchange="changeTenMau(0)" autocomplete="off" />
+                                <input name="DungTichs[0].Ten" class="form-control" list="dungTich" id="tenMau0" onchange="changeTenMau(0)" autocomplete="off" />
                             </td>
                             <td style="width:41%">
-                                <input name="MauSacs[0].Ma" class="form-control" list="vaiTro" id="maMau0" onchange="changeMaMau(0)" autocomplete="off" />
+                                <input name="DungTichs[0].Ma" class="form-control" list="vaiTro" id="maMau0" onchange="changeMaMau(0)" autocomplete="off" />
                             </td>
                             <td style="width:50px">
                                 <input type="button" class="form-control" value="-" hidden id="xoamau0" onclick="xoaMau(0)" />
@@ -28,22 +28,22 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" class="form-control" value="+" onclick="themMauSac(this)" />
-                <datalist id="mauSac"></datalist>
+                <input type="button" class="form-control" value="+" onclick="themDungTich(this)" />
+                <datalist id="dungTich"></datalist>
             </div>
-            <div class="form-group" id="lstKichCo">
+            <div class="form-group" id="lstNhomHuong">
                 <label class="control-label">Dung tích</label>
                 <div class="row" style='width:450px' id="size0">
                     <div class="col-lg-10" style='padding-right:0px'>
-                        <input name="KichCos[0]" class="form-control" list="kichCo" id="tenkc0" autocomplete="off"/>
+                        <input name="NhomHuongs[0]" class="form-control" list="nhomHuong" id="tenkc0" autocomplete="off"/>
                     </div>
                     <div class="col-lg-2" style='padding-left:0px'>
                         <input type="button" class="form-control" value="-" hidden id="xoasize0" onclick="xoaSize(0)" />
                     </div>
                 </div>
-                <input type="button" class="form-control" value="+" onclick="themKichCo(1,this)" />
+                <input type="button" class="form-control" value="+" onclick="themNhomHuong(1,this)" />
             </div>
-            <datalist id="kichCo"></datalist>
+            <datalist id="nhomHuong"></datalist>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -60,71 +60,71 @@
 }
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script>
-    var countMauSac = 1;
-    var lstMauSac = [];
+    var countDungTich = 1;
+    var lstDungTich = [];
     $(document).ready(function () {
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllMauSac",
+            url: "/Admin/GetAllDungTich",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     response[i].ma = response[i].ma.toLowerCase();
-                    lstMauSac.push(response[i]);
+                    lstDungTich.push(response[i]);
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#mauSac').append(rows);
+                    $('#dungTich').append(rows);
                 }
             }
         });
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllKichCo",
+            url: "/Admin/GetAllNhomHuong",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#kichCo').append(rows);
+                    $('#nhomHuong').append(rows);
                 }
             }
         });
     });
 
-    function themKichCo(count, element) {
-        $("#lstKichCo").append(`<div class="row" style='width:450px' id="size${count}">
+    function themNhomHuong(count, element) {
+        $("#lstNhomHuong").append(`<div class="row" style='width:450px' id="size${count}">
                 <div class="col-lg-10" style='padding-right:0px'>
-                    <input name="KichCos[${count}]" class="form-control" list="kichCo" id="tenkc${count}" autocomplete="off" />
+                    <input name="NhomHuongs[${count}]" class="form-control" list="nhomHuong" id="tenkc${count}" autocomplete="off" />
                 </div>
                 <div class="col-lg-2" style='padding-left:0px'>
                 <input type="button" class= "form-control" value="-" hidden id="xoasize${count}" onclick="xoaSize(${count})"/>
                 </div>
-                </div><input type='button' class='form-control' onclick='themKichCo(${count + 1},this)' value='+' / > `);
+                </div><input type='button' class='form-control' onclick='themNhomHuong(${count + 1},this)' value='+' / > `);
         document.getElementById("xoasize" + (count - 1)).hidden = false;
         element.remove();
     }
-    function themMauSac() {
-        $("#tbbody").append("<tr id='mau" + countMauSac + "'>" +
-            "<td style='width:41%'> <input name='MauSacs[" + countMauSac + "].Ten' class='form-control' list='mauSac' id='tenMau" + countMauSac + "' onchange='changeTenMau(" + countMauSac + ")' autocomplete='off' />" +
+    function themDungTich() {
+        $("#tbbody").append("<tr id='mau" + countDungTich + "'>" +
+            "<td style='width:41%'> <input name='DungTichs[" + countDungTich + "].Ten' class='form-control' list='dungTich' id='tenMau" + countDungTich + "' onchange='changeTenMau(" + countDungTich + ")' autocomplete='off' />" +
             "</td>" +
-            "<td style='width: 45.6px'><input name='MauSacs[" + countMauSac + "].Ma' type='text' onchange='changeMaMau(" + countMauSac + ")' class='form-control' id='maMau" + countMauSac + "' style='height: 41.6px;width:100%' /></td>" +
-            "<td style='width: 50px'><input type='button' class='form-control' value='-' hidden id='xoamau" + countMauSac + "' onclick='xoaMau(" + countMauSac + ")' /></td>" +
+            "<td style='width: 45.6px'><input name='DungTichs[" + countDungTich + "].Ma' type='text' onchange='changeMaMau(" + countDungTich + ")' class='form-control' id='maMau" + countDungTich + "' style='height: 41.6px;width:100%' /></td>" +
+            "<td style='width: 50px'><input type='button' class='form-control' value='-' hidden id='xoamau" + countDungTich + "' onclick='xoaMau(" + countDungTich + ")' /></td>" +
             "</tr>");
-        document.getElementById("xoamau" + (countMauSac - 1)).hidden = false;
-        countMauSac++;
+        document.getElementById("xoamau" + (countDungTich - 1)).hidden = false;
+        countDungTich++;
     }
     function changeTenMau(count) {
         var tenMau = $("#tenMau" + count).val();
-        var maMau = lstMauSac.find(x => x.ten == tenMau).ma;
+        var maMau = lstDungTich.find(x => x.ten == tenMau).ma;
         document.getElementById("maMau" + count).value = maMau;
     }
     function changeMaMau(count) {
         var maMau = $("#maMau" + count).val();
         var tenMau = "";
-        var mauSac = lstMauSac.find(x => x.ma == maMau);
-        if (mauSac == null) {
+        var dungTich = lstDungTich.find(x => x.ma == maMau);
+        if (dungTich == null) {
             tenMau = "";
         }
         else {
-            tenMau = mauSac.ten;
+            tenMau = dungTich.ten;
         }
         document.getElementById("tenMau" + count).value = tenMau;
     }

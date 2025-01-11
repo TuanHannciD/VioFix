@@ -203,23 +203,23 @@ namespace AppAPI.Controllers
         #endregion
 
         #region Other
-        [HttpGet("GetAllMauSac")]
-        public async Task<IActionResult> GetAllMauSac()
+        [HttpGet("GetAllDungTich")]
+        public async Task<IActionResult> GetAllDungTich()
         {
-            var lstMauSac = await _sanPhamServices.GetAllMauSac();
-            return Ok(lstMauSac);
+            var lstDungTich = await _sanPhamServices.GetAllDungTich();
+            return Ok(lstDungTich);
         }
-        [HttpGet("GetAllKichCo")]
-        public async Task<IActionResult> GetAllKichCo()
+        [HttpGet("GetAllNhomHuong")]
+        public async Task<IActionResult> GetAllNhomHuong()
         {
-            var lstKichCo = await _sanPhamServices.GetAllKichCo();
-            return Ok(lstKichCo);
+            var lstNhomHuong = await _sanPhamServices.GetAllNhomHuong();
+            return Ok(lstNhomHuong);
         }
-        [HttpGet("GetAllChatLieu")]
-        public async Task<IActionResult> GetAllChatLieu()
+        [HttpGet("GetAllPhongCach")]
+        public async Task<IActionResult> GetAllPhongCach()
         {
-            var lstChatLieu = await _sanPhamServices.GetAllChatLieu();
-            return Ok(lstChatLieu);
+            var lstPhongCach = await _sanPhamServices.GetAllPhongCach();
+            return Ok(lstPhongCach);
         }
         #endregion
 

@@ -11,9 +11,9 @@ namespace AppData.ViewModels
         public List<string>? priceRange { get; set; }
         public string? search { get; set; }
         public List<string>? loaiSP { get; set; }
-        public List<Guid> mauSac { get; set; }
-        public List<Guid>? kichCo { get; set; }
-        public List<Guid>? chatLieu { get; set; }
+        public List<Guid> dungTich { get; set; }
+        public List<Guid>? nhomHuong { get; set; }
+        public List<Guid>? phongCach { get; set; }
         public string? sortSP { get; set; }
         public int page { get; set; }
         public int pageSize { get; set; }

@@ -19,10 +19,10 @@ namespace AppData.Models
         // 0 - xóa
         public Guid IDSanPham { get; set; }
         public Guid? IDKhuyenMai { get; set; }
-        public Guid IDMauSac { get; set; }
-        public Guid IDKichCo { get; set; }
-        public virtual KichCo KichCo { get;set; }
-        public virtual MauSac MauSac { get;set; }
+        public Guid IDDungTich { get; set; }
+        public Guid IDNhomHuong { get; set; }
+        public virtual NhomHuong NhomHuong { get;set; }
+        public virtual DungTich DungTich { get;set; }
         public virtual KhuyenMai? KhuyenMai { get;set; }
         public virtual SanPham SanPham { get;set; }
         public virtual IEnumerable<ChiTietHoaDon> ChiTietHoaDons { get;set; }

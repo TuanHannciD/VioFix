@@ -69,10 +69,10 @@ namespace AppAPI.Services
             foreach (var item in request)
             {
                 chiTietSanPham = _iSanPhamService.GetChiTietSanPhamByID(item.IDChiTietSanPham);
-                item.DonGia = chiTietSanPham.GiaBan;
+                item.DonGia = chiTietSanPham.GiaBan  ;
                 item.Ten = chiTietSanPham.Ten;
-                item.MauSac = chiTietSanPham.MauSac;
-                item.KichCo = chiTietSanPham.KichCo;
+                item.DungTich = chiTietSanPham.DungTich;
+                item.NhomHuong = chiTietSanPham.NhomHuong;
                 item.Anh = chiTietSanPham.Anh;
                 item.HetHang = chiTietSanPham.SoLuong < item.SoLuong ? false : chiTietSanPham.TrangThai < 1 ? false : true;
                 tongTien += item.DonGia.Value * item.SoLuong;
@@ -91,7 +91,7 @@ namespace AppAPI.Services
             foreach (var item in lstChiTietGioHang)
             {
                 chiTietSanPham = _iSanPhamService.GetChiTietSanPhamByID(item.IDCTSP);
-                lst.Add(new GioHangRequest() { IDChiTietSanPham = chiTietSanPham.ID, SoLuong = item.SoLuong, DonGia = chiTietSanPham.GiaBan, Ten = chiTietSanPham.Ten, MauSac = chiTietSanPham.MauSac, KichCo = chiTietSanPham.KichCo, Anh = chiTietSanPham.Anh , HetHang = chiTietSanPham.SoLuong < item.SoLuong ? false : true});
+                lst.Add(new GioHangRequest() { IDChiTietSanPham = chiTietSanPham.ID, SoLuong = item.SoLuong, DonGia = chiTietSanPham.GiaBan, Ten = chiTietSanPham.Ten, DungTich = chiTietSanPham.DungTich, NhomHuong = chiTietSanPham.NhomHuong, Anh = chiTietSanPham.Anh , HetHang = chiTietSanPham.SoLuong < item.SoLuong ? false : true});
                 tongTien += chiTietSanPham.GiaBan * item.SoLuong;
             }
             response.GioHangs = lst;

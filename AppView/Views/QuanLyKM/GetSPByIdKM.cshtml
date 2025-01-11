@@ -81,7 +81,7 @@
                 </td>
                 <td>
                     @{
-                        var tencl = Dbcontext.ChatLieus.FirstOrDefault(x => x.ID == item.IDChatLieu);
+                        var tencl = Dbcontext.PhongCachs.FirstOrDefault(x => x.ID == item.IDPhongCach);
                         if (tencl != null)
                         {
                                         <div style="color:black">@tencl.Ten</div>

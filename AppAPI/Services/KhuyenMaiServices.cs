@@ -14,15 +14,15 @@ namespace AppAPI.Services
         private readonly IAllRepository<KhuyenMai> _repos;
         private readonly IAllRepository<ChiTietSanPham> _reposCTSP;
         private readonly IAllRepository<SanPham> _reposSP;
-        private readonly IAllRepository<MauSac> _reposMS;
-        private readonly IAllRepository<KichCo> _reposSize;
+        private readonly IAllRepository<DungTich> _reposMS;
+        private readonly IAllRepository<NhomHuong> _reposNH;
         AssignmentDBContext context = new AssignmentDBContext();
         public KhuyenMaiServices()
         {
             _repos = new AllRepository<KhuyenMai>(context, context.KhuyenMais);
             _reposCTSP = new AllRepository<ChiTietSanPham>(context, context.ChiTietSanPhams);
             _reposSP = new AllRepository<SanPham>(context, context.SanPhams);
-            _reposMS = new AllRepository<MauSac>(context, context.MauSacs);
+            _reposMS = new AllRepository<DungTich>(context, context.DungTichs);
         }
 
        

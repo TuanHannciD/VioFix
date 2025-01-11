@@ -12,8 +12,8 @@ namespace AppData.ViewModels.SanPham
         public int SoLuong { get; set; }
         public int? DonGia { get; set; }
         public string? Ten { get; set; }
-        public string? MauSac { get; set; }
-        public string? KichCo { get; set; }
+        public string? DungTich { get; set; }
+        public string? NhomHuong { get; set; }
         public string? Anh { get; set; }
         public bool? HetHang { get; set; }
     }

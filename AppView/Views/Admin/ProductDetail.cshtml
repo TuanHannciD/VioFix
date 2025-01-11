@@ -59,7 +59,7 @@
                 Phong cách
             </th>
             <th>
-                Nhóm hương
+                Loại sản phẩm
             </th>
             <th>
                 Dung tích
@@ -90,6 +90,7 @@
 </table>
 
 <div class="d-flex justify-content-end">
+    <a asp-action="QuanLyAnh" asp-route-idSanPham="@idSanPham" class="btn btn-success" style="margin-left:5px">Quản lý ảnh</a>
     <a asp-action="AddChiTietSanPham" asp-route-idSanPham="@idSanPham" class="btn btn-primary" style="margin-left:5px">Thêm chi tiết sản phẩm</a>
 </div>
 <div class="row">

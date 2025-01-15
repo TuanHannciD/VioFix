@@ -135,44 +135,44 @@ namespace AppView.Controllers
                 return Json(new List<LoaiSP>());
             }
         }
-        public JsonResult GetAllMauSac()
+        public JsonResult GetAllPhanLoai()
         {
             try
             {
-                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllMauSac").Result;
-                var mauSac = JsonConvert.DeserializeObject<List<MauSac>>(response.Content.ReadAsStringAsync().Result);
-                return Json(mauSac);
+                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllPhanLoai").Result;
+                var PhanLoai = JsonConvert.DeserializeObject<List<PhanLoai>>(response.Content.ReadAsStringAsync().Result);
+                return Json(PhanLoai);
             }
             catch
             {
-                return Json(new List<MauSac>());
+                return Json(new List<PhanLoai>());
             }
         }
-        public JsonResult GetAllKichCo()
+        public JsonResult GetAllDungTich()
         {
             try
             {
-                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllKichCo").Result;
-                var kichCo = JsonConvert.DeserializeObject<List<KichCo>>(response.Content.ReadAsStringAsync().Result);
-                return Json(kichCo);
+                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllDungTich").Result;
+                var DungTich = JsonConvert.DeserializeObject<List<DungTich>>(response.Content.ReadAsStringAsync().Result);
+                return Json(DungTich);
             }
             catch
             {
-                return Json(new List<KichCo>());
+                return Json(new List<DungTich>());
             }
 
         }
-        public JsonResult GetAllChatLieu()
+        public JsonResult GetAllLuuHuong()
         {
             try
             {
-                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllChatLieu").Result;
-                var chatLieu = JsonConvert.DeserializeObject<List<ChatLieu>>(response.Content.ReadAsStringAsync().Result);
-                return Json(chatLieu);
+                HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "SanPham/GetAllLuuHuong").Result;
+                var LuuHuong = JsonConvert.DeserializeObject<List<LuuHuong>>(response.Content.ReadAsStringAsync().Result);
+                return Json(LuuHuong);
             }
             catch
             {
-                return Json(new List<ChatLieu>());
+                return Json(new List<LuuHuong>());
             }
         }
         public JsonResult GetLoaiSPCon(string tenLoaiSPCha)
@@ -203,9 +203,9 @@ namespace AppView.Controllers
             try
             {
                 //Xóa màu deleted           
-                sanPhamRequest.MauSacs.RemoveAll(XoaMau);
+                sanPhamRequest.PhanLoais.RemoveAll(XoaMau);
                 //Xoá size deleted
-                sanPhamRequest.KichCos.RemoveAll(XoaSize);
+                sanPhamRequest.DungTichs.RemoveAll(XoaSize);
                 //Gọi API
                 HttpResponseMessage response = _httpClient.PostAsJsonAsync(_httpClient.BaseAddress + "SanPham/AddSanPham", sanPhamRequest).Result;
                 if (response.IsSuccessStatusCode)
@@ -217,14 +217,14 @@ namespace AppView.Controllers
                         return RedirectToAction("ProductManager");
                     }
                     TempData["UpdateChiTietSanPham"] = temp;
-                    TempData["MauSac"] = JsonConvert.SerializeObject(sanPhamRequest.MauSacs);
+                    TempData["PhanLoai"] = JsonConvert.SerializeObject(sanPhamRequest.PhanLoais);
                     return RedirectToAction("UpdateChiTietSanPham");
                 }
                 else return BadRequest();
             }
             catch { return RedirectToAction("ProductManager"); }
         }
-        private static bool XoaMau(MauSac mau)
+        private static bool XoaMau(PhanLoai mau)
         {
             return mau.Ten == "Deleted" || String.IsNullOrEmpty(mau.Ten);
         }
@@ -398,8 +398,8 @@ namespace AppView.Controllers
         {
             try
             {
-                request.MauSacs.RemoveAll(XoaMau);
-                request.KichCos.RemoveAll(XoaSize);
+                request.PhanLoais.RemoveAll(XoaMau);
+                request.DungTichs.RemoveAll(XoaSize);
                 string idSanPham = TempData.Peek("IDSanPham").ToString();
                 request.IDSanPham = new Guid(idSanPham);
                 var response = await _httpClient.PostAsJsonAsync(_httpClient.BaseAddress + "SanPham/AddChiTietSanPham", request);
@@ -422,11 +422,11 @@ namespace AppView.Controllers
             }
         }
         [HttpGet]
-        public IActionResult AddAnhToMauSac()
+        public IActionResult AddAnhToPhanLoai()
         {
             try
             {
-                var lstAnhRequest = JsonConvert.DeserializeObject<List<AnhRequest>>(TempData["MauSacs"].ToString());
+                var lstAnhRequest = JsonConvert.DeserializeObject<List<AnhRequest>>(TempData["PhanLoais"].ToString());
                 return View(lstAnhRequest);
             }
             catch
@@ -504,9 +504,9 @@ namespace AppView.Controllers
                 var request = JsonConvert.DeserializeObject<ChiTietSanPhamUpdateRequest>(TempData.Peek("UpdateChiTietSanPham").ToString());
                 TempData["SanPham"] = request.IDSanPham.ToString();
                 TempData["MaSP"] = request.Ma;
-                if (request.MauSacs != null)
+                if (request.PhanLoais != null)
                 {
-                    TempData["MauSac"] = JsonConvert.SerializeObject(request.MauSacs);
+                    TempData["PhanLoai"] = JsonConvert.SerializeObject(request.PhanLoais);
                 }
                 TempData["Location"] = request.Location.ToString();
                 return View(request);
@@ -541,20 +541,20 @@ namespace AppView.Controllers
         {
             try
             {
-                var str = TempData["MauSac"] as string;
+                var str = TempData["PhanLoai"] as string;
                 if(str == null)
                 {
-                    return View(new List<MauSac>());
+                    return View(new List<PhanLoai>());
                 }
                 else
                 {
-                    var lst = JsonConvert.DeserializeObject<List<MauSac>>(str);
+                    var lst = JsonConvert.DeserializeObject<List<PhanLoai>>(str);
                     return View(lst);
                 }               
             }
             catch
             {
-                return View(new List<MauSac>());
+                return View(new List<PhanLoai>());
             }
         }
         [HttpPost]

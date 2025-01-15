@@ -9,41 +9,41 @@ namespace AppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ChatLieuController : ControllerBase
+    public class LuuHuongController : ControllerBase
     {
         private readonly IQlThuocTinhService service;
         private readonly AssignmentDBContext _dbContext;
-        public ChatLieuController()
+        public LuuHuongController()
         {
             service = new QlThuocTinhService();
             _dbContext = new AssignmentDBContext();
         }
-        #region KichCo
-        [HttpGet("GetAllChatLieu")]
-        public async Task<IActionResult> GetAllChatLieu()
+        #region LuuHuong
+        [HttpGet("GetAllLuuHuong")]
+        public async Task<IActionResult> GetAllLuuHuong()
         {
-            var cl = await service.GetAllChatLieu();
+            var cl = await service.GetAllLuuHuong();
             return Ok(cl);
         }
-        [Route("TimKiemChatLieu")]
+        [Route("TimKiemLuuHuong")]
         [HttpGet]
-        public List<ChatLieu> GetAllChatLieu(string? name)
+        public List<LuuHuong> GetAllLuuHuong(string? name)
         {
-            return _dbContext.ChatLieus.Where(v => v.Ten.Contains(name)).ToList();
+            return _dbContext.LuuHuongs.Where(v => v.Ten.Contains(name)).ToList();
         }
-        [Route("GetChatLieuById")]
+        [Route("GetLuuHuongById")]
         [HttpGet]
-        public async Task<IActionResult> GetChatLieuById(Guid id)
+        public async Task<IActionResult> GetLuuHuongById(Guid id)
         {
-            var cl = await service.GetChatLieuById(id);
+            var cl = await service.GetLuuHuongById(id);
             if (cl == null) return BadRequest();
             return Ok(cl);
         }
-        [HttpPost("ThemChatLieu")]
+        [HttpPost("ThemLuuHuong")]
         public async Task<IActionResult> Add(string ten, int trangthai)
         {
 
-            var nv = await service.AddChatLieu(ten, trangthai);
+            var nv = await service.AddLuuHuong(ten, trangthai);
             if (nv == null)
             {
                 return BadRequest();
@@ -55,7 +55,7 @@ namespace AppAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, string ten, int trangthai)
         {
-            var bv = await service.UpdateChatLieu(id, ten, trangthai);
+            var bv = await service.UpdateLuuHuong(id, ten, trangthai);
             if (bv == null)
             {
                 return BadRequest(); // Trả về BadRequest nếu tên trùng
@@ -65,9 +65,9 @@ namespace AppAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChatLieu(Guid id)
+        public async Task<IActionResult> DeleteLuuHuong(Guid id)
         {
-            var loaiSP = await service.DeleteChatLieu(id);
+            var loaiSP = await service.DeleteLuuHuong(id);
             return Ok(loaiSP);
         }
         #endregion

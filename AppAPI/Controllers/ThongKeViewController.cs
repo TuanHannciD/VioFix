@@ -24,18 +24,18 @@ namespace AppAPI.Controllers
             var result = _dbContext.ChiTietHoaDons
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
-                .Join(_dbContext.MauSacs, cthd_cts_sp => cthd_cts_sp.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.IDMauSac, ms => ms.ID, (cthd_cts_sp, ms) => new { ChiTietHoaDon_ChiTietSanPham_SanPham = cthd_cts_sp, MauSac = ms })
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd })
+                .Join(_dbContext.PhanLoais, cthd_cts_sp => cthd_cts_sp.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.IDPhanLoai, ms => ms.ID, (cthd_cts_sp, ms) => new { ChiTietHoaDon_ChiTietSanPham_SanPham = cthd_cts_sp, PhanLoai = ms })
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd })
                
-                .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.ID)
+                .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.ID)
                 .Select(group => new ThongKeMSSanPhamTheoSoLuong
                 {
-                    idSanPham = group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.ID,
-                    TenSP = group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.Ten.Trim().ToString(),
+                    idSanPham = group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.ID,
+                    TenSP = group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.SanPham.Ten.Trim().ToString(),
                     
-                    SoLuong = group.Sum(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong),
-                    Gia= group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.GiaBan,
-                    DoanhThu= group.Sum(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong) * group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.GiaBan,
+                    SoLuong = group.Sum(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong),
+                    Gia= group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.GiaBan,
+                    DoanhThu= group.Sum(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong) * group.FirstOrDefault().ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham_SanPham.ChiTietHoaDon_ChiTietSanPham.ChiTietSanPham.GiaBan,
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 
@@ -142,15 +142,15 @@ namespace AppAPI.Controllers
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
 
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd }).
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd }).
                 Where(x=>x.HoaDon.NgayThanhToan.HasValue&&x.HoaDon.LoaiHD!=1)
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.HoaDon.NgayThanhToan.Value.Month)
                 .Select(group => new ThongKeDoanhThu
                 {
                    
                     SoHoaDon = group.Sum(x => x.HoaDon.ID != null ? 1 : 0),
-                    //DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip-x.HoaDon.ThueVAT.Value),
-                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
+                    //DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip-x.HoaDon.ThueVAT.Value),
+                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 
@@ -165,15 +165,15 @@ namespace AppAPI.Controllers
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
 
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd }).
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd }).
                 Where(x => x.HoaDon.NgayThanhToan.HasValue && x.HoaDon.LoaiHD == 1)
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.HoaDon.NgayThanhToan.Value.Month)
                 .Select(group => new ThongKeDoanhThu
                 {
 
                     SoHoaDon = group.Sum(x => x.HoaDon.ID != null ? 1 : 0),
-                    //DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip - x.HoaDon.ThueVAT.Value),
-                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
+                    //DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip - x.HoaDon.ThueVAT.Value),
+                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 
@@ -192,14 +192,14 @@ namespace AppAPI.Controllers
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
 
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd })
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd })
                 .Where(x => x.HoaDon.NgayThanhToan.HasValue)
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.HoaDon.NgayThanhToan.Value.Month)
                 .Select(group => new ThongKeDoanhThu
                 {
                     
                     SoHoaDon = group.Sum(x => x.HoaDon.ID != null ? 1 : 0),
-                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
+                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 
@@ -214,14 +214,14 @@ namespace AppAPI.Controllers
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
 
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd })
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd })
                 .Where(x => x.HoaDon.NgayThanhToan.HasValue)
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.HoaDon.NgayThanhToan.Value.Year)
                 .Select(group => new ThongKeDoanhThu
                 {
                     
                     SoHoaDon = group.Sum(x => x.HoaDon.ID != null ? 1 : 0),
-                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
+                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 
@@ -241,14 +241,14 @@ namespace AppAPI.Controllers
                 .Join(_dbContext.ChiTietSanPhams, cthd => cthd.IDCTSP, cts => cts.ID, (cthd, cts) => new { ChiTietHoaDon = cthd, ChiTietSanPham = cts })
                 .Join(_dbContext.SanPhams, cthd_cts => cthd_cts.ChiTietSanPham.IDSanPham, sp => sp.ID, (cthd_cts, sp) => new { ChiTietHoaDon_ChiTietSanPham = cthd_cts, SanPham = sp })
 
-                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac = cthd_cts_sp_ms, HoaDon = hd })
+                .Join(_dbContext.HoaDons, cthd_cts_sp_ms => cthd_cts_sp_ms.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.IDHoaDon, hd => hd.ID, (cthd_cts_sp_ms, hd) => new { ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai = cthd_cts_sp_ms, HoaDon = hd })
                 .Where(x => x.HoaDon.NgayThanhToan.HasValue)
                 .GroupBy(cthd_cts_sp_ms_hd => cthd_cts_sp_ms_hd.HoaDon.NgayThanhToan.Value.Year)
                 .Select(group => new ThongKeDoanhThu
                 {
                    
                     SoHoaDon = group.Sum(x => x.HoaDon.ID != null ? 1 : 0),
-                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_MauSac.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
+                    DoanhThu = group.Sum(x => x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.DonGia * x.ChiTietHoaDon_ChiTietSanPham_SanPham_PhanLoai.ChiTietHoaDon_ChiTietSanPham.ChiTietHoaDon.SoLuong + x.HoaDon.TienShip),
                     Ngay = group.FirstOrDefault().HoaDon.NgayThanhToan.Value
                 })
 

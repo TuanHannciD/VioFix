@@ -11,7 +11,7 @@ namespace AppData.ViewModels.BanOffline
     {
         public Guid Id { get; set; }
         public string Ten { get; set; }
-        public List<MauSac> lstMau { get; set; }
-        public List<KichCo> lstKC { get; set; }
+        public List<PhanLoai> lstMau { get; set; }
+        public List<DungTich> lstKC { get; set; }
     }
 }

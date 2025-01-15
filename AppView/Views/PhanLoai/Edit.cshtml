@@ -1,4 +1,4 @@
-﻿@model AppData.Models.KichCo
+﻿@model AppData.Models.PhanLoai
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 }
 
-<h1>Chỉnh sửa dung tích</h1>
+<h1>Chỉnh sửa phân loại</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,22 +23,30 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden>
                 <label asp-for="ID" class="control-label"></label>
-                <input type="hidden" asp-for="ID" class="form-control" autocomplete="off" />
+                <input asp-for="ID" class="form-control" />
                 <span asp-validation-for="ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ten" class="control-label">Tên</label>
-                <input asp-for="Ten" class="form-control" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên dung tích!</div>
+                <label asp-for="Ten" class="control-label">Phong cách</label>
+                <input asp-for="Ten" class="form-control" autocomplete="off" />
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên màu sắc!</div>
             </div>
-            <input type="hidden" asp-for="TrangThai" value="1" />
+            <div class="form-group">
+                <label asp-for="Ma" class="control-label">Loại sản phẩm</label>
+                <input asp-for="Ma" class="form-control" autocomplete="off" />
+                <div id="maNameError" class="invalid-feedback d-none">Vui lòng chọn Loại sản phẩm!</div>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="TrangThai" class="control-label"></label>
+                <input asp-for="TrangThai" class="form-control" value="1"/>
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Lưu" class="btn btn-primary" style="margin-top: 10px" />
             </div>
         </form>
     </div>
 </div>
-
 <script>
     $("input[name='Ten']").on("input", function () {
         $(this).removeClass("is-invalid");
@@ -56,7 +64,5 @@
     });
 </script>
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -22,20 +22,20 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Độ lưu hương</label>
-                <input asp-for="TenChatLieu" class="form-control" list="chatLieu" autocomplete="off"/>
-                <datalist id="chatLieu"></datalist>
+                <input asp-for="TenLuuHuong" class="form-control" list="luuHuong" autocomplete="off"/>
+                <datalist id="luuHuong"></datalist>
                 
             </div>
             <div class="form-group">
                 <label class="control-label">Phân loại</label>
-                <table id="tbmausac" style="width:450px">
+                <table id="tbphanloai" style="width:450px">
                     <tbody class="table" id="tbbody">
                         <tr id="mau0">
                             <td style="width:41%">
-                                <input name="MauSacs[0].Ten" class="form-control" list="mauSac" id="tenMau0" onchange="changeTenMau(0)" autocomplete="off" />
+                                <input name="PhanLoais[0].Ten" class="form-control" list="phanLoai" id="tenMau0" onchange="changeTenMau(0)" autocomplete="off" />
                             </td>
                             <td style="width:41%">
-                                <input name="MauSacs[0].Ma" class="form-control" list="vaiTro" id="maMau0" onchange="changeMaMau(0)" autocomplete="off" />
+                                <input name="PhanLoais[0].Ma" class="form-control" list="vaiTro" id="maMau0" onchange="changeMaMau(0)" autocomplete="off" />
                             </td>
 
                             <td style="width:50px">
@@ -44,22 +44,22 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" class="form-control" value="+" onclick="themMauSac(this)" />
-                <datalist id="mauSac"></datalist>
+                <input type="button" class="form-control" value="+" onclick="themPhanLoai(this)" />
+                <datalist id="phanLoai"></datalist>
             </div>
-            <div class="form-group" id="lstKichCo">
+            <div class="form-group" id="lstDungTich">
                 <label class="control-label">Dung tích</label>
                 <div class="row" style='width:450px' id="size0">
                     <div class="col-lg-10" style='padding-right:0px'>
-                        <input name="KichCos[0]" class="form-control" list="kichCo" id="tenkc0" autocomplete="off" />
+                        <input name="DungTichs[0]" class="form-control" list="dungTich" id="tenkc0" autocomplete="off" />
                     </div>
                     <div class="col-lg-2" style='padding-left:0px'>
                         <input type="button" class="form-control" value="-" hidden id="xoasize0" onclick="xoaSize(0)"/>
                     </div>
                 </div>
-                <input type="button" class="form-control" value="+" onclick="themKichCo(1,this)" />
+                <input type="button" class="form-control" value="+" onclick="themDungTich(1,this)" />
             </div>
-            <datalist id="kichCo"></datalist>
+            <datalist id="dungTich"></datalist>
             <div class="form-group">
                 <label class="control-label">Thương hiệu cha</label>
                 <input asp-for="TenLoaiSPCha" class="form-control" list="loaiSPCha" id="ipLoaiSPCha" autocomplete="off"/>
@@ -80,8 +80,8 @@
 
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script>
-    var countMauSac = 1;
-    var lstMauSac = [];
+    var countPhanLoai = 1;
+    var lstPhanLoai = [];
     $(document).ready(function () {
         $.ajax({
             type: "GET",
@@ -97,35 +97,35 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllMauSac",
+            url: "/Admin/GetAllPhanLoai",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     response[i].ma = response[i].ma.toLowerCase();
-                    lstMauSac.push(response[i]);
+                    lstPhanLoai.push(response[i]);
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#mauSac').append(rows);
+                    $('#phanLoai').append(rows);
                 }
             }
         });
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllChatLieu",
+            url: "/Admin/GetAllLuuHuong",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#chatLieu').append(rows);
+                    $('#luuHuong').append(rows);
                 }
             }
         });
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllKichCo",
+            url: "/Admin/GetAllDungTich",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#kichCo').append(rows);
+                    $('#dungTich').append(rows);
                 }
             }
         });
@@ -150,42 +150,42 @@
     });
     function changeTenMau(count) {
         var tenMau = $("#tenMau" + count).val();
-        var maMau = lstMauSac.find(x => x.ten == tenMau).ma;
+        var maMau = lstPhanLoai.find(x => x.ten == tenMau).ma;
         document.getElementById("maMau" + count).value = maMau;
     }
     function changeMaMau(count) {
         var maMau = $("#maMau" + count).val();
         var tenMau = "";
-        var mauSac = lstMauSac.find(x => x.ma == maMau);
-        if (mauSac == null) {
+        var phanLoai = lstPhanLoai.find(x => x.ma == maMau);
+        if (phanLoai == null) {
             tenMau = "";
         }
         else {
-            tenMau = mauSac.ten;
+            tenMau = phanLoai.ten;
         }
         document.getElementById("tenMau" + count).value = tenMau;
     }
-    function themKichCo(count, element) {
-        $("#lstKichCo").append(`<div class="row" style='width:450px' id="size${count}">
+    function themDungTich(count, element) {
+        $("#lstDungTich").append(`<div class="row" style='width:450px' id="size${count}">
             <div class="col-lg-10" style='padding-right:0px'>
-            <input name="KichCos[${count}]" class="form-control" list="kichCo" id="tenkc${count}" autocomplete="off" />
+            <input name="DungTichs[${count}]" class="form-control" list="dungTich" id="tenkc${count}" autocomplete="off" />
             </div>
             <div class="col-lg-2" style='padding-left:0px'>
             <input type="button" class= "form-control" value="-" hidden id="xoasize${count}" onclick="xoaSize(${count})"/>
             </div>
-            </div><input type='button' class='form-control' onclick='themKichCo(${count + 1},this)' value='+' / > `);
+            </div><input type='button' class='form-control' onclick='themDungTich(${count + 1},this)' value='+' / > `);
         document.getElementById("xoasize" + (count - 1)).hidden = false;
         element.remove();
     }
-    function themMauSac() {
-        $("#tbbody").append("<tr id='mau" + countMauSac + "'>" +
-            "<td style='width:41%'> <input name='MauSacs[" + countMauSac + "].Ten' class='form-control' list='mauSac' id='tenMau" + countMauSac + "' onchange='changeTenMau(" + countMauSac + ")' autocomplete='off' />" +
+    function themPhanLoai() {
+        $("#tbbody").append("<tr id='mau" + countPhanLoai + "'>" +
+            "<td style='width:41%'> <input name='PhanLoais[" + countPhanLoai + "].Ten' class='form-control' list='phanLoai' id='tenMau" + countPhanLoai + "' onchange='changeTenMau(" + countPhanLoai + ")' autocomplete='off' />" +
             "</td>" +
-            "<td style='width: 45.6px'><input name='MauSacs[" + countMauSac + "].Ma' type='text' onchange='changeMaMau(" + countMauSac + ")' class='form-control' id='maMau" + countMauSac + "' style='height: 41.6px;width:100%' /></td>" +
-            "<td style='width: 50px'><input type='button' class='form-control' value='-' hidden id='xoamau" + countMauSac + "' onclick='xoaMau(" + countMauSac + ")' /></td>" +
+            "<td style='width: 45.6px'><input name='PhanLoais[" + countPhanLoai + "].Ma' type='text' onchange='changeMaMau(" + countPhanLoai + ")' class='form-control' id='maMau" + countPhanLoai + "' style='height: 41.6px;width:100%' /></td>" +
+            "<td style='width: 50px'><input type='button' class='form-control' value='-' hidden id='xoamau" + countPhanLoai + "' onclick='xoaMau(" + countPhanLoai + ")' /></td>" +
             "</tr>");
-        document.getElementById("xoamau" + (countMauSac - 1)).hidden = false;
-        countMauSac++;
+        document.getElementById("xoamau" + (countPhanLoai - 1)).hidden = false;
+        countPhanLoai++;
     }
     function xoaMau(count) {
         document.getElementById("mau"+count).hidden = true;

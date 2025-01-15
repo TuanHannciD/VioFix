@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppData.Models
 {
-    public class MauSac
+    public class PhanLoai
     {
         public Guid? ID { get; set; }
         [StringLength(20, ErrorMessage = "Tên màu sắc không được vượt quá 20 kí tự ")]

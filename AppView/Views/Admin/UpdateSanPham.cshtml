@@ -23,11 +23,11 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Độ lưu hương</label>
-                <input asp-for="TenChatLieu" class="form-control" list="chatLieu" autocomplete="off" />
-                <datalist id="chatLieu"></datalist>
-                <span asp-validation-for="TenChatLieu" class="text-danger"></span>
+                <input asp-for="TenLuuHuong" class="form-control" list="luuHuong" autocomplete="off" />
+                <datalist id="luuHuong"></datalist>
+                <span asp-validation-for="TenLuuHuong" class="text-danger"></span>
             </div>
-            <datalist id="kichCo"></datalist>
+            <datalist id="dungTich"></datalist>
             <div class="form-group">
                 <label class="control-label">Thương hiệu cha</label>
                 <input asp-for="TenLoaiSPCha" class="form-control" list="loaiSPCha" id="ipLoaiSPCha" autocomplete="off" />
@@ -48,8 +48,8 @@
 
 <script src="~/js/jquery-3.3.1.min.js"></script>
 <script>
-    var countMauSac = 1;
-    var lstMauSac = [];
+    var countPhanLoai = 1;
+    var lstPhanLoai = [];
     $(document).ready(function () {
         $.ajax({
             type: "GET",
@@ -65,11 +65,11 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/Admin/GetAllChatLieu",
+            url: "/Admin/GetAllLuuHuong",
             success: function (response) {
                 for (var i = 0; i < response.length; i++) {
                     var rows = "<option value='" + response[i].ten + "'>" + response[i].ten + "</option>";
-                    $('#chatLieu').append(rows);
+                    $('#luuHuong').append(rows);
                 }
             }
         });

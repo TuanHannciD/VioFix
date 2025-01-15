@@ -12,23 +12,23 @@ namespace AppAPI.Services
         {
             _dbContext = new AssignmentDBContext();
         }
-        #region KichCo
-        public async Task<KichCo> AddKichCo(string ten, int trangthai)
+        #region DungTich
+        public async Task<DungTich> AddDungTich(string ten, int trangthai)
         {
             try
             {
-                var existingColor = await _dbContext.KichCos.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                var existingColor = await _dbContext.DungTichs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                 if (existingColor != null)
                 {
                     return null;
                 }
-                KichCo kc = new KichCo()
+                DungTich kc = new DungTich()
                 {
                     ID = Guid.NewGuid(),
                     Ten = ten,
                     TrangThai = 1
                 };
-                _dbContext.KichCos.Add(kc);
+                _dbContext.DungTichs.Add(kc);
                 _dbContext.SaveChanges();
                 return kc;
             }
@@ -38,14 +38,14 @@ namespace AppAPI.Services
                 throw;
             }
         }
-        public async Task<bool> DeleteKichCo(Guid id)
+        public async Task<bool> DeleteDungTich(Guid id)
         {
             try
             {
-                var nv = await _dbContext.KichCos.FirstOrDefaultAsync(nv => nv.ID == id);
+                var nv = await _dbContext.DungTichs.FirstOrDefaultAsync(nv => nv.ID == id);
                 if (nv != null)
                 {
-                    _dbContext.KichCos.Remove(nv);
+                    _dbContext.DungTichs.Remove(nv);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -53,21 +53,21 @@ namespace AppAPI.Services
             }
             catch (Exception) { throw; }
         }
-        public async Task<KichCo> UpdateKichCo(Guid id, string ten, int trangthai)
+        public async Task<DungTich> UpdateDungTich(Guid id, string ten, int trangthai)
         {
             try
             {
-                var nv = await _dbContext.KichCos.FirstOrDefaultAsync(x => x.ID == id);
+                var nv = await _dbContext.DungTichs.FirstOrDefaultAsync(x => x.ID == id);
                 if (nv != null)
                 {
-                    var existingColor = await _dbContext.KichCos.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                    var existingColor = await _dbContext.DungTichs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                     if (existingColor != null)
                     {
                         return null; // Trả về null để báo hiệu tên trùng
                     }
                     nv.Ten = ten;
                     nv.TrangThai = 1;
-                    _dbContext.KichCos.Update(nv);
+                    _dbContext.DungTichs.Update(nv);
                     _dbContext.SaveChanges();
                     return nv;
                 }
@@ -80,39 +80,39 @@ namespace AppAPI.Services
                 throw;
             }
         }
-        public async Task<List<KichCo>> GetAllKichCo()
+        public async Task<List<DungTich>> GetAllDungTich()
         {
             try
             {
-                return await _dbContext.KichCos.OrderByDescending(x => x.TrangThai).ToListAsync();
+                return await _dbContext.DungTichs.OrderByDescending(x => x.TrangThai).ToListAsync();
             }
             catch (Exception) { throw; }
         }
-        public async Task<KichCo> GetKickCoById(Guid id)
+        public async Task<DungTich> GetDungTichById(Guid id)
         {
-            var nv = await _dbContext.KichCos.FirstOrDefaultAsync(nv => nv.ID == id);
+            var nv = await _dbContext.DungTichs.FirstOrDefaultAsync(nv => nv.ID == id);
             return nv;
         }
 
-        #endregion MauSac
-        public async Task<MauSac> AddMauSac(string ten, string ma, int trangthai)
+        #endregion PhanLoai
+        public async Task<PhanLoai> AddPhanLoai(string ten, string ma, int trangthai)
         {
             try
             {
-                var existingColor = await _dbContext.MauSacs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                var existingColor = await _dbContext.PhanLoais.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                 if (existingColor != null)
                 {
                     return null;
                 }
                 
-                MauSac kc = new MauSac()
+                PhanLoai kc = new PhanLoai()
                 {
                     ID = Guid.NewGuid(),
                     Ten = ten,
                     Ma = ma,
                     TrangThai = 1
                 };
-                _dbContext.MauSacs.Add(kc);
+                _dbContext.PhanLoais.Add(kc);
                 _dbContext.SaveChanges();
                 return kc;
             }
@@ -121,14 +121,14 @@ namespace AppAPI.Services
                 throw;
             }
         }
-        public async Task<bool> DeleteMauSac(Guid id)
+        public async Task<bool> DeletePhanLoai(Guid id)
         {
             try
             {
-                var nv = await _dbContext.MauSacs.FirstOrDefaultAsync(nv => nv.ID == id);
+                var nv = await _dbContext.PhanLoais.FirstOrDefaultAsync(nv => nv.ID == id);
                 if (nv != null)
                 {
-                    _dbContext.MauSacs.Remove(nv);
+                    _dbContext.PhanLoais.Remove(nv);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -142,11 +142,11 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<List<MauSac>> GetAllMauSac()
+        public async Task<List<PhanLoai>> GetAllPhanLoai()
         {
             try
             {
-                return await _dbContext.MauSacs.OrderByDescending(x => x.TrangThai).ToListAsync();
+                return await _dbContext.PhanLoais.OrderByDescending(x => x.TrangThai).ToListAsync();
             }
             catch (Exception)
             {
@@ -155,24 +155,24 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<MauSac> GetMauSacById(Guid id)
+        public async Task<PhanLoai> GetPhanLoaiById(Guid id)
         {
             try
             {
-                var nv = await _dbContext.MauSacs.FirstOrDefaultAsync(nv => nv.ID == id);
+                var nv = await _dbContext.PhanLoais.FirstOrDefaultAsync(nv => nv.ID == id);
                 return nv;
             }
             catch (Exception) { throw; }
         }
 
-        public async Task<MauSac> UpdateMauSac(Guid id, string ten, string ma, int trangthai)
+        public async Task<PhanLoai> UpdatePhanLoai(Guid id, string ten, string ma, int trangthai)
         {
             try
             {
-                var nv = await _dbContext.MauSacs.FirstOrDefaultAsync(x => x.ID == id);
+                var nv = await _dbContext.PhanLoais.FirstOrDefaultAsync(x => x.ID == id);
                 if (nv != null)
                 {
-                    var existingColor = await _dbContext.MauSacs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                    var existingColor = await _dbContext.PhanLoais.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                     if (existingColor != null)
                     {
                         return null;
@@ -181,7 +181,7 @@ namespace AppAPI.Services
                     nv.Ten = ten;
                     nv.Ma = isHasHash ? ma : $"#{Uri.EscapeDataString(ma)}";
                     nv.TrangThai = 1;
-                    _dbContext.MauSacs.Update(nv);
+                    _dbContext.PhanLoais.Update(nv);
                     _dbContext.SaveChanges();
                     return nv;
                 }
@@ -195,23 +195,23 @@ namespace AppAPI.Services
                 throw;
             }
         }
-        #region chat lieu
-        public async Task<ChatLieu> AddChatLieu(string ten, int trangthai)
+        #region LuuHuong
+        public async Task<LuuHuong> AddLuuHuong(string ten, int trangthai)
         {
             try
             {
-                var existingColor = await _dbContext.ChatLieus.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                var existingColor = await _dbContext.LuuHuongs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                 if (existingColor != null)
                 {
                     return null;
                 }
-                ChatLieu kc = new ChatLieu()
+                LuuHuong kc = new LuuHuong()
                 {
                     ID = Guid.NewGuid(),
                     Ten = ten,
                     TrangThai = 1
                 };
-                _dbContext.ChatLieus.Add(kc);
+                _dbContext.LuuHuongs.Add(kc);
                 _dbContext.SaveChanges();
                 return kc;
 
@@ -224,11 +224,11 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<ChatLieu> GetChatLieuById(Guid id)
+        public async Task<LuuHuong> GetLuuHuongById(Guid id)
         {
             try
             {
-                var nv = await _dbContext.ChatLieus.FirstOrDefaultAsync(nv => nv.ID == id);
+                var nv = await _dbContext.LuuHuongs.FirstOrDefaultAsync(nv => nv.ID == id);
                 return nv;
             }
             catch (Exception)
@@ -238,15 +238,15 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<bool> DeleteChatLieu(Guid id)
+        public async Task<bool> DeleteLuuHuong(Guid id)
         {
 
             try
             {
-                var nv = await _dbContext.ChatLieus.FirstOrDefaultAsync(nv => nv.ID == id);
+                var nv = await _dbContext.LuuHuongs.FirstOrDefaultAsync(nv => nv.ID == id);
                 if (nv != null)
                 {
-                    _dbContext.ChatLieus.Remove(nv);
+                    _dbContext.LuuHuongs.Remove(nv);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -259,22 +259,22 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<ChatLieu> UpdateChatLieu(Guid id, string ten, int trangthai)
+        public async Task<LuuHuong> UpdateLuuHuong(Guid id, string ten, int trangthai)
         {
 
             try
             {
-                var nv = await _dbContext.ChatLieus.FirstOrDefaultAsync(x => x.ID == id);
+                var nv = await _dbContext.LuuHuongs.FirstOrDefaultAsync(x => x.ID == id);
                 if (nv != null)
                 {
-                    var existingColor = await _dbContext.ChatLieus.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
+                    var existingColor = await _dbContext.LuuHuongs.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
                     if (existingColor != null)
                     {
                         return null; // Trả về null để báo hiệu tên trùng
                     }
                     nv.Ten = ten;
                     nv.TrangThai = 1;
-                    _dbContext.ChatLieus.Update(nv);
+                    _dbContext.LuuHuongs.Update(nv);
                     _dbContext.SaveChanges();
                     return nv;
                 }
@@ -288,11 +288,11 @@ namespace AppAPI.Services
             }
         }
 
-        public async Task<List<ChatLieu>> GetAllChatLieu()
+        public async Task<List<LuuHuong>> GetAllLuuHuong()
         {
             try
             {
-                return await _dbContext.ChatLieus.OrderByDescending(x => x.TrangThai).ToListAsync();
+                return await _dbContext.LuuHuongs.OrderByDescending(x => x.TrangThai).ToListAsync();
             }
             catch (Exception)
             {

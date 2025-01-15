@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppData.Configurations
 {
-    internal class ChatLieuConfiguration : IEntityTypeConfiguration<ChatLieu>
+    internal class LuuHuongConfiguration : IEntityTypeConfiguration<LuuHuong>
     {
-        public void Configure(EntityTypeBuilder<ChatLieu> builder)
+        public void Configure(EntityTypeBuilder<LuuHuong> builder)
         {
             builder.ToTable("LuuHuong");
             builder.HasKey(x => x.ID);

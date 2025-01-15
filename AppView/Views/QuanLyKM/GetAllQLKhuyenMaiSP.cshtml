@@ -35,12 +35,12 @@
             
         </select>  
 
-        <select name="idchatlieu" class="form-control" style="width:600px;height:40px">
-            if (idchatlieu == null)
+        <select name="idluuhuong" class="form-control" style="width:600px;height:40px">
+            if (idluuhuong == null)
                         {
                         <option value="">Chọn Tên Chất Liệu</option>
                         }
-            @foreach (var loaisp in Dbcontext.ChatLieus.ToList())
+            @foreach (var loaisp in Dbcontext.LuuHuongs.ToList())
             {
                 <option value="@loaisp.ID">@loaisp.Ten</option>
             }
@@ -133,7 +133,7 @@
             </td>
             <td>
                     @{
-                        var tencl = Dbcontext.ChatLieus.FirstOrDefault(x => x.ID == item.IDChatLieu);
+                        var tencl = Dbcontext.LuuHuongs.FirstOrDefault(x => x.ID == item.IDLuuHuong);
                         if (tencl != null)
                         {
                             <strong style="color:black">@tencl.Ten</strong>

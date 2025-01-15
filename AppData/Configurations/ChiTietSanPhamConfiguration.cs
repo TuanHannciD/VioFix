@@ -20,8 +20,8 @@ namespace AppData.Configurations
             builder.Property(x => x.GiaBan).HasColumnType("int");
             builder.Property(x => x.NgayTao).HasColumnType("datetime");
             builder.Property(x => x.TrangThai).HasColumnType("int");
-            builder.HasOne(x => x.MauSac).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDMauSac);
-            builder.HasOne(x => x.KichCo).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDKichCo);
+            builder.HasOne(x => x.PhanLoai).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDPhanLoai);
+            builder.HasOne(x => x.DungTich).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDDungTich);
             builder.HasOne(x => x.SanPham).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDSanPham);
             builder.HasOne(x => x.KhuyenMai).WithMany(x => x.ChiTietSanPhams).HasForeignKey(x => x.IDKhuyenMai);
         }

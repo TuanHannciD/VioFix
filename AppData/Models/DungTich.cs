@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppData.Models
 {
-    public class KichCo
+    public class DungTich
     {
         public Guid ID { get; set; }
         [StringLength(10, ErrorMessage = "Tên kích cỡ không được vượt quá 10 kí tự ")]

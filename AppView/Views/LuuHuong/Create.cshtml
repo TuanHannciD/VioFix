@@ -1,4 +1,4 @@
-﻿@model AppData.Models.KichCo
+﻿@model AppData.Models.LuuHuong
 
 @{
     Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
@@ -10,7 +10,7 @@
     ViewData["Title"] = "Create";
     AppData.Models.AssignmentDBContext dBContext = new AppData.Models.AssignmentDBContext();
 }
-<h4>Thêm mới dung tích</h4>
+<h4>Thêm mới độ lưu hương</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,9 +23,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Ten" class="control-label">Tên</label>
+                <label asp-for="Ten" class="control-label">Độ lưu hương</label>
                 <input asp-for="Ten" class="form-control" autocomplete="off" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên dung tích!</div>
+                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập tên độ lưu hương!</div>
             </div>
             <input type="hidden" asp-for="TrangThai" value="1" />
             <div class="form-group">
@@ -34,7 +34,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $("input[name='Ten']").on("input", function () {
         $(this).removeClass("is-invalid");
@@ -51,6 +50,7 @@
         return true;
     });
 </script>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

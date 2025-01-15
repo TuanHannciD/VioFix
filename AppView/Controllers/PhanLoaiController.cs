@@ -1,35 +1,39 @@
 ﻿using AppData.Models;
+using AppData.ViewModels;
+using AppData.ViewModels.SanPham;
 using AppView.PhanTrang;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 
 namespace AppView.Controllers
 {
-    public class KichCoController : Controller
+    public class PhanLoaiController : Controller
     {
         private readonly HttpClient _httpClient;
         private readonly AssignmentDBContext dBContext;
-        // GET: KickCoController
-        public int PageSize = 8;
-        public KichCoController()
+        public PhanLoaiController()
         {
             _httpClient = new HttpClient();
-            dBContext = new AssignmentDBContext();
             _httpClient.BaseAddress = new Uri("https://localhost:7095/api/");
+            dBContext = new AssignmentDBContext();
         }
+        public int PageSize = 8;
 
         public async Task<IActionResult> Show(int ProductPage = 1)
         {
             try
             {
-                string apiUrl = $"https://localhost:7095/api/KichCo/GetAllKichCo";
+                string apiUrl = $"https://localhost:7095/api/PhanLoai/GetAllPhanLoai";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<KichCo>>(apiData);
-                return View(new PhanTrangKichCo
+                var users = JsonConvert.DeserializeObject<List<PhanLoai>>(apiData);
+                return View(new PhanTrangPhanLoai
                 {
                     listNv = users
                             .Skip((ProductPage - 1) * PageSize).Take(PageSize),
@@ -43,7 +47,6 @@ namespace AppView.Controllers
             }
             catch { return Redirect("https://localhost:5001/"); }
         }
-
         [HttpGet]
         public async Task<IActionResult> SearchTheoTen(string? Ten, int ProductPage = 1)
         {
@@ -54,15 +57,15 @@ namespace AppView.Controllers
                     ViewData["SearchError"] = "Vui lòng nhập tên để tìm kiếm";
                     return RedirectToAction("Show");
                 }
-                string apiUrl = $"https://localhost:7095/api/KichCo/TimKiemKichCo?name={Ten}";
+                string apiUrl = $"https://localhost:7095/api/PhanLoai/TimKiemPhanLoai?name={Ten}";
                 var response = await _httpClient.GetAsync(apiUrl);
                 string apiData = await response.Content.ReadAsStringAsync();
-                var users = JsonConvert.DeserializeObject<List<KichCo>>(apiData);
+                var users = JsonConvert.DeserializeObject<List<PhanLoai>>(apiData);
                 if (users.Count == 0)
                 {
                     ViewData["SearchError"] = "Không tìm thấy kết quả phù hợp";
                 }
-                return View("Show", new PhanTrangKichCo
+                return View("Show", new PhanTrangPhanLoai
                 {
                     listNv = users
                              .Skip((ProductPage - 1) * PageSize).Take(PageSize),
@@ -84,37 +87,68 @@ namespace AppView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(KichCo kc)
+        public async Task<IActionResult> Create(PhanLoai ms)
         {
             try
             {
-                kc.TrangThai = 1;
-                string apiUrl = $"https://localhost:7095/api/KichCo/ThemKichCo?ten={kc.Ten}";
-                var reponsen = await _httpClient.PostAsync(apiUrl, null);
-                if (reponsen.IsSuccessStatusCode)
+                ms.TrangThai = 1;
+
+                // Kiểm tra tên và mã
+                if (string.IsNullOrEmpty(ms.Ten))
+                {
+                    ViewBag.ErrorMessage = "Vui lòng nhập tên phân loại!";
+                    return View();
+                }
+
+                if (string.IsNullOrWhiteSpace(ms.Ma))
+                {
+                    ViewBag.ErrorMessage = "Mã không được để trống!";
+                    return View();
+                }
+
+                // Loại bỏ khoảng trắng dư thừa
+                ms.Ma = ms.Ma.Trim();
+
+                // Tạo URL không mã hóa
+                string apiUrl = $"https://localhost:7095/api/PhanLoai/ThemPhanLoai?ten={ms.Ten}&ma={ms.Ma}&trangthai={ms.TrangThai}";
+
+                // Gửi request
+                var response = await _httpClient.PostAsync(apiUrl, null);
+
+                if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Show");
                 }
-                else if (reponsen.StatusCode == HttpStatusCode.BadRequest)
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    ViewBag.ErrorMessage = "Kích cỡ này đã có trong danh sách";
+                    ViewBag.ErrorMessage = "Dữ liệu đã có trong danh sách.";
                     return View();
                 }
-                return View(kc);
+                else
+                {
+                    ViewBag.ErrorMessage = "Đã xảy ra lỗi không xác định. Vui lòng thử lại!";
+                    return View();
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
                 return Redirect("https://localhost:5001/");
             }
+            catch { return Redirect("https://localhost:5001/"); }
         }
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            string apiUrl = $"https://localhost:7095/api/KichCo/GetKichCoById?id={id}";
+            string apiUrl = $"https://localhost:7095/api/PhanLoai/GetPhanLoaiById?id={id}";
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<KichCo>(apiData);
+
+            var user = JsonConvert.DeserializeObject<PhanLoai>(apiData);
             return View(user);
         }
         [HttpGet]
@@ -122,10 +156,10 @@ namespace AppView.Controllers
         {
             try
             {
-                string apiUrl = $"https://localhost:7095/api/KichCo/GetKichCoById?id={id}";
+                string apiUrl = $"https://localhost:7095/api/PhanLoai/GetPhanLoaiById?id={id}";
                 var response = _httpClient.GetAsync(apiUrl).Result;
                 var apiData = response.Content.ReadAsStringAsync().Result;
-                var user = JsonConvert.DeserializeObject<KichCo>(apiData);
+                var user = JsonConvert.DeserializeObject<PhanLoai>(apiData);
                 return View(user);
             }
             catch
@@ -134,33 +168,37 @@ namespace AppView.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Guid id, KichCo nv)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Guid id, PhanLoai ms)
         {
+
             try
             {
-                nv.TrangThai = 1;
-                string apiUrl = $"https://localhost:7095/api/KichCo/{id}?ten={nv.Ten}";
-                var content = new StringContent(JsonConvert.SerializeObject(nv), Encoding.UTF8, "application/json");
-                var reponsen = await _httpClient.PutAsync(apiUrl, content);
-                if (reponsen.IsSuccessStatusCode)
+                ms.TrangThai = 1;
+
+                if (string.IsNullOrEmpty(ms.Ten))
                 {
-                    return RedirectToAction("Show");
-                }
-                else if (reponsen.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    ViewBag.ErrorMessage = "Kích cỡ này đã có trong danh sách";
+                    ViewBag.ErrorMessage = "Vui lòng nhập tên phân loại!";
                     return View();
                 }
-                return View(nv);
+                else
+                {
+                    string encodedPhanLoai = Uri.EscapeDataString(ms.Ma);
+                    string apiUrl = $"https://localhost:7095/api/PhanLoai/{id}?ten={ms.Ten}&ma={encodedPhanLoai}&trangthai={ms.TrangThai}";
+                    var reponsen = await _httpClient.PutAsync(apiUrl, null);
+                    if (reponsen.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Show");
+                    }
+                    ViewBag.ErrorMessage = "Đã có trong danh sách";
+                    return View();
+                }
             }
-            catch
-            {
-                return Redirect("https://localhost:5001/");
-            }
+            catch { return Redirect("https://localhost:5001/"); }
         }
         public async Task<IActionResult> Delete(Guid id)
         {
-            string apiUrl = $"https://localhost:7095/api/KichCo/{id}";
+            string apiUrl = $"https://localhost:7095/api/PhanLoai/{id}";
             var reposen = await _httpClient.DeleteAsync(apiUrl);
             if (reposen.IsSuccessStatusCode)
             {
@@ -172,11 +210,11 @@ namespace AppView.Controllers
         {
             try
             {
-                var timkiem = dBContext.KichCos.FirstOrDefault(x => x.ID == id);
+                var timkiem = dBContext.PhanLoais.FirstOrDefault(x => x.ID == id);
                 if (timkiem != null)
                 {
                     timkiem.TrangThai = timkiem.TrangThai == 0 ? 1 : 0;
-                    dBContext.KichCos.Update(timkiem);
+                    dBContext.PhanLoais.Update(timkiem);
                     dBContext.SaveChanges();
                     return RedirectToAction("Show");
                 }
@@ -185,11 +223,9 @@ namespace AppView.Controllers
                     return View();
                 }
             }
-            catch
-            {
-                return Redirect("https://localhost:5001/");
-            }
+            catch { return Redirect("https://localhost:5001/"); }
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Next(int ProductPage = 1)

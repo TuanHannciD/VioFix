@@ -2,9 +2,9 @@
 
 namespace AppView.PhanTrang
 {
-    public class PhanTrangMauSac
+    public class PhanTrangPhanLoai
     {
-        public IEnumerable<MauSac> listNv { get; set; } = new List<MauSac>();
+        public IEnumerable<PhanLoai> listNv { get; set; } = new List<PhanLoai>();
         public PagingInfo PagingInfo { get; set; } = new PagingInfo();
     }
 }

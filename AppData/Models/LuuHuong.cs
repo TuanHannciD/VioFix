@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppData.Models
 {
-    public class ChatLieu
+    public class LuuHuong
     {
         public Guid ID { get; set; }
         [StringLength(20, ErrorMessage = "Tên chất liệu không được vượt quá 20 kí tự ")]

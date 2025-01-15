@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace AppData.Configurations
 {
-    internal class KichCoConfiguration : IEntityTypeConfiguration<KichCo>
+    internal class DungTichConfiguration : IEntityTypeConfiguration<DungTich>
     {
-        public void Configure(EntityTypeBuilder<KichCo> builder)
+        public void Configure(EntityTypeBuilder<DungTich> builder)
         {
             builder.ToTable("DungTich");
             builder.HasKey(x => x.ID);

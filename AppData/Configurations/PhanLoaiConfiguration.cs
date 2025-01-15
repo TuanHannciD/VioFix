@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppData.Configurations
 {
-    internal class MauSacConfiguration : IEntityTypeConfiguration<MauSac>
+    internal class PhanLoaiConfiguration : IEntityTypeConfiguration<PhanLoai>
     {
-        public void Configure(EntityTypeBuilder<MauSac> builder)
+        public void Configure(EntityTypeBuilder<PhanLoai> builder)
         {
             builder.ToTable("PhanLoai");
             builder.HasKey(x => x.ID);

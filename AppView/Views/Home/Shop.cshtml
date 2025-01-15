@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "Privacy Policy";
     var listLoaiSP = ViewData["listLoaiSP"] as List<LoaiSP>;
-    var listMauSac = ViewData["listMauSac"] as List<MauSac>;
-    var listKichCo = ViewData["listKichCo"] as List<KichCo>;
-    var listChatLieu = ViewData["listChatLieu"] as List<ChatLieu>;
+    var listPhanLoai = ViewData["listPhanLoai"] as List<PhanLoai>;
+    var listDungTich = ViewData["listDungTich"] as List<DungTich>;
+    var listLuuHuong = ViewData["listLuuHuong"] as List<LuuHuong>;
     Layout = "_Layout";
 }
 <style>
@@ -183,7 +183,7 @@
                                 <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div @*class="shop__sidebar__size"*@ id="filter-size" onchange="LocSort()">
-                                            @foreach (var item in listKichCo)
+                                            @foreach (var item in listDungTich)
                                             {
                                                 <label>
                                                     <input type="checkbox" class="btn-check" id="btn-check-outlined_@item.Ten" autocomplete="off" val="@item.ID">
@@ -277,11 +277,11 @@
         var PriceRange = Filter();
         var searchfilter = Search();
         var idloaiSp = filterLoaiSP();
-        var idMauSac = filterMauSac();
-        var idKichCo = filterKichCo();
-        var idChatLieu = filterChatLieu();
+        var idPhanLoai = filterPhanLoai();
+        var idDungTich = filterDungTich();
+        var idLuuHuong = filterLuuHuong();
         var idsortSP = Sort();
-        var request = { page: pageIndex, pageSize: pagesize, priceRange: PriceRange, search: searchfilter, loaiSP: idloaiSp, mauSac: idMauSac, kichCo: idKichCo, chatLieu: idChatLieu, sortSP: idsortSP };
+        var request = { page: pageIndex, pageSize: pagesize, priceRange: PriceRange, search: searchfilter, loaiSP: idloaiSp, phanLoai: idPhanLoai, dungTich: idDungTich, luuHuong: idLuuHuong, sortSP: idsortSP };
         $.ajax({
             url: "/Home/ShowProduct",
             type: "POST",
@@ -390,7 +390,7 @@
         })
         return value
     }
-    function filterMauSac() {
+    function filterPhanLoai() {
         var checkboxes = $('#filter-color input[type="checkbox"]:checked')
         var value = []
         checkboxes.each(function () {
@@ -398,7 +398,7 @@
         })
         return value
     }
-    function filterKichCo() {
+    function filterDungTich() {
         var checkboxes = $('#filter-size input[type="checkbox"]:checked')
         var value = []
         checkboxes.each(function () {
@@ -406,7 +406,7 @@
         })
         return value
     }
-    function filterChatLieu() {
+    function filterLuuHuong() {
         var checkboxes = $('#filter-material input[type="checkbox"]:checked')
         var value = []
         checkboxes.each(function () {
@@ -450,17 +450,17 @@
     //    var PriceRange = Filter("filter-price");
     //    var searchfilter = Search();
     //    var idloaiSp = filterLoaiSP();
-    //    var idMauSac = filterMauSac();
-    //    var idKichCo = filterKichCo();
-    //    var idChatLieu = filterChatLieu();
+    //    var idPhanLoai = filterPhanLoai();
+    //    var idDungTich = filterDungTich();
+    //    var idLuuHuong = filterLuuHuong();
     //    var idsortSP = Sort();
     //    var data = {
     //        priceRange: PriceRange,
     //        search: searchfilter,
     //        loaiSP: idloaiSp,
-    //        mauSac: idMauSac,
-    //        kichCo: idKichCo,
-    //        chatLieu: idChatLieu,
+    //        phanLoai: idPhanLoai,
+    //        dungTich: idDungTich,
+    //        luuHuong: idLuuHuong,
     //        sortSP: idsortSP
     //    }
     //    fetch("/Home/GetFilteredProducts", {

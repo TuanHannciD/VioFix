@@ -26,9 +26,9 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeMSSanPhamTheoSoLuong>>(apiData);
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeMSSanPhamTheoSoLuong>>(apiData);
 
-            return View(ChatLieus);
+            return View(LuuHuongs);
         }
         [HttpGet]
         public async Task<IActionResult> ThongKeSPTheoThang(DateTime? ngay, DateTime? thang, DateTime? nam)
@@ -37,20 +37,20 @@ namespace AppView.Controllers
             string apiUrl = $"https://localhost:7095/api/ThongKeView/ThongKeMSSanPhamBan";
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeMSSanPhamTheoSoLuong>>(apiData);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeMSSanPhamTheoSoLuong>>(apiData);
+            var timkiem = LuuHuongs.ToList();
 
             if (ngay.HasValue)
             {
-                timkiem = ChatLieus.Where(x => x.Ngay.Date == ngay.Value.Date && x.Ngay.Month == ngay.Value.Month && x.Ngay.Year == ngay.Value.Year).ToList();
+                timkiem = LuuHuongs.Where(x => x.Ngay.Date == ngay.Value.Date && x.Ngay.Month == ngay.Value.Month && x.Ngay.Year == ngay.Value.Year).ToList();
             }
             if (thang.HasValue)
             {
-                timkiem = ChatLieus.Where(x => x.Ngay.Month == thang.Value.Month && x.Ngay.Year == thang.Value.Year).ToList();
+                timkiem = LuuHuongs.Where(x => x.Ngay.Month == thang.Value.Month && x.Ngay.Year == thang.Value.Year).ToList();
             }
             if (nam.HasValue)
             {
-                timkiem = ChatLieus.Where(x => x.Ngay.Year == nam.Value.Year).ToList();
+                timkiem = LuuHuongs.Where(x => x.Ngay.Year == nam.Value.Year).ToList();
             }
 
             return View("ThongKeSP", timkiem);
@@ -66,17 +66,17 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData);
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData);
 
             return View(new PhanTrangThongKeKH
             {
-                listkhs = ChatLieus
+                listkhs = LuuHuongs
                         .Skip((ProductPage - 1) * PageSize).Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
                     ItemsPerPage = PageSize,
                     CurrentPage = ProductPage,
-                    TotalItems = ChatLieus.Count()
+                    TotalItems = LuuHuongs.Count()
                 }
 
             }
@@ -89,8 +89,8 @@ namespace AppView.Controllers
             string apiUrl = $"https://localhost:7095/api/ThongKeView/ThongKeKHTheoSoLuongHoaDon";
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData);
+            var timkiem = LuuHuongs.ToList();
 
             timkiem = timkiem.Where(x => x.Ngay.Month >= ThangStart.Month && x.Ngay.Month <= ThangEnd.Month).ToList();
 
@@ -140,9 +140,9 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
 
-            return View(ChatLieus);
+            return View(LuuHuongs);
         }
         [HttpGet]
         public async Task<IActionResult> LocThongKeDoanhThuTheoNgay(DateTime NgayStart,DateTime NgayEnd)
@@ -151,8 +151,8 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var timkiem = LuuHuongs.ToList();
             timkiem=timkiem.Where(x=>x.Ngay.Date>=NgayStart.Date&&x.Ngay.Date<=NgayEnd.Date).ToList();
             return View("ThongKeDoanhThuTheoNgay", timkiem);
         }
@@ -163,9 +163,9 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
 
-            return View(ChatLieus);
+            return View(LuuHuongs);
         }
         [HttpGet]
         public async Task<IActionResult> LocThongKeDoanhThuTheoThang(DateTime NgayStart, DateTime NgayEnd)
@@ -174,8 +174,8 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var timkiem = LuuHuongs.ToList();
             timkiem = timkiem.Where(x => x.Ngay.Month >= NgayStart.Month && x.Ngay.Month<= NgayEnd.Month).ToList();
 
             return View("ThongKeDoanhThuTheoThang", timkiem);
@@ -187,9 +187,9 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
 
-            return View(ChatLieus);
+            return View(LuuHuongs);
         }
         [HttpGet]
         public async Task<IActionResult> LocThongKeDoanhThuTheoNam(DateTime NgayStart, DateTime NgayEnd)
@@ -198,8 +198,8 @@ namespace AppView.Controllers
 
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeDoanhThu>>(apiData);
+            var timkiem = LuuHuongs.ToList();
             timkiem = timkiem.Where(x => x.Ngay.Year >= NgayStart.Year && x.Ngay.Year <= NgayEnd.Year).ToList();
             return View("ThongKeDoanhThuTheoNam", timkiem);
         }
@@ -279,8 +279,8 @@ namespace AppView.Controllers
             string apiUrl4 = $"https://localhost:7095/api/ThongKeView/ThongKeKHTheoSoLuongHoaDon";
             var response4 = await _httpClient.GetAsync(apiUrl4);
             string apiData4 = await response4.Content.ReadAsStringAsync();
-            var ChatLieus = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData4);
-            var timkiem = ChatLieus.ToList();
+            var LuuHuongs = JsonConvert.DeserializeObject<List<ThongKeKHMuaNhieu>>(apiData4);
+            var timkiem = LuuHuongs.ToList();
 
             timkiem = timkiem.Where(x => x.Ngay.Month == DateTime.Now.Month).Take(7).ToList();
             ViewBag.ThongKeKHMuaNhieu = timkiem;

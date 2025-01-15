@@ -10,10 +10,10 @@ namespace AppData.ViewModels.SanPham
     public class ChiTietSanPhamRequest
     {
         public Guid IDChiTietSanPham { get; set; }
-        public Guid? IDMauSac { get; set; }
-        public Guid? IDKichCo { get; set; }
-        public string? TenKichCo { get; set; }
-        public string? TenMauSac { get; set; }
+        public Guid? IDPhanLoai { get; set; }
+        public Guid? IDDungTich { get; set; }
+        public string? TenDungTich { get; set; }
+        public string? TenPhanLoai { get; set; }
         public string? MaMau { get; set; }
         [Range(0, int.MaxValue, ErrorMessage = "Số lượng không được âm")]
         public int? SoLuong { get; set; }

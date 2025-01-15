@@ -10,42 +10,42 @@ namespace AppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KichCoController : ControllerBase
+    public class DungTichController : ControllerBase
     {
         private readonly IQlThuocTinhService service;
         private readonly AssignmentDBContext _dbContext;
-        public KichCoController()
+        public DungTichController()
         {
             service = new QlThuocTinhService();
             _dbContext = new AssignmentDBContext();
         }
-        #region KichCo
-        [HttpGet("GetAllKichCo")]
-        public async Task<IActionResult> GetAllKichCo()
+        #region DungTich
+        [HttpGet("GetAllDungTich")]
+        public async Task<IActionResult> GetAllDungTich()
         {
-            var rn = await service.GetAllKichCo();
+            var rn = await service.GetAllDungTich();
             return Ok(rn);
         }
-        [Route("TimKiemKichCo")]
+        [Route("TimKiemDungTich")]
         [HttpGet]
-        public async Task<IActionResult> GetAllKichCo(string? name)
+        public async Task<IActionResult> GetAllDungTich(string? name)
         {
-            var tr = _dbContext.KichCos.Where(v => v.Ten.Contains(name)).ToList();
+            var tr = _dbContext.DungTichs.Where(v => v.Ten.Contains(name)).ToList();
             return Ok(tr);
         }
-        [Route("GetKichCoById")]
+        [Route("GetDungTichById")]
         [HttpGet]
-        public async Task<IActionResult> GetKichCoById(Guid id)
+        public async Task<IActionResult> GetDungTichById(Guid id)
         {
-            var tr = await service.GetKickCoById(id);
+            var tr = await service.GetDungTichById(id);
             if (tr == null) return BadRequest();
             return Ok(tr);
         }
-        [HttpPost("ThemKichCo")]
+        [HttpPost("ThemDungTich")]
         public async Task<IActionResult> Add(string ten, int trangthai)
         {
 
-            var nv = await service.AddKichCo(ten, trangthai);
+            var nv = await service.AddDungTich(ten, trangthai);
             if (nv == null)
             {
                 return BadRequest();
@@ -56,7 +56,7 @@ namespace AppAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, string ten, int trangthai)
         {
-            var bv = await service.UpdateKichCo(id, ten, trangthai);
+            var bv = await service.UpdateDungTich(id, ten, trangthai);
             if (bv == null)
             {
                 return BadRequest(); // Trả về BadRequest nếu tên trùng
@@ -66,9 +66,9 @@ namespace AppAPI.Controllers
 
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteKichCo(Guid id)
+        public async Task<IActionResult> DeleteDungTich(Guid id)
         {
-            var loaiSP = await service.DeleteKichCo(id);
+            var loaiSP = await service.DeleteDungTich(id);
             return Ok(loaiSP);
         }
         #endregion

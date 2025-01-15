@@ -104,8 +104,8 @@ namespace AppAPI.Services
         {
             List<HoaDonChiTietViewModel> lsthdct = await (from cthd in _context.ChiTietHoaDons
                                                           join ctsp in _context.ChiTietSanPhams on cthd.IDCTSP equals ctsp.ID
-                                                          join ms in _context.MauSacs on ctsp.IDMauSac equals ms.ID
-                                                          join kc in _context.KichCos on ctsp.IDKichCo equals kc.ID
+                                                          join ms in _context.PhanLoais on ctsp.IDPhanLoai equals ms.ID
+                                                          join kc in _context.DungTichs on ctsp.IDDungTich equals kc.ID
                                                           join sp in _context.SanPhams on ctsp.IDSanPham equals sp.ID
                                                           join km in _context.KhuyenMais.Where(c => c.NgayKetThuc > DateTime.Now && c.TrangThai != 2) on ctsp.IDKhuyenMai equals km.ID
                                                           into kmGroup

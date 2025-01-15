@@ -64,16 +64,16 @@ namespace AppAPI.Services
                                                             SoLuong = g.Sum(x => x.SoLuong),
                                                         }).OrderByDescending(x => x.SoLuong).Take(10).ToList();
                 ChiTietSanPham chiTietSanPham;
-                MauSac mauSac;
-                KichCo kichCo;
+                PhanLoai PhanLoai;
+                DungTich DungTich;
                 SanPham sanPham;
                 foreach (var item in thongKeCot)
                 {
                     chiTietSanPham = context.ChiTietSanPhams.First(x => x.ID == new Guid(item.TenSP));
-                    mauSac = context.MauSacs.First(x => x.ID == chiTietSanPham.IDMauSac);
-                    kichCo = context.KichCos.First(x => x.ID == chiTietSanPham.IDKichCo);
+                    PhanLoai = context.PhanLoais.First(x => x.ID == chiTietSanPham.IDPhanLoai);
+                    DungTich = context.DungTichs.First(x => x.ID == chiTietSanPham.IDDungTich);
                     sanPham = context.SanPhams.First(x => x.ID == chiTietSanPham.IDSanPham);
-                    item.TenSP = sanPham.Ten + "_" + mauSac.Ten + "_" + kichCo.Ten;
+                    item.TenSP = sanPham.Ten + "_" + PhanLoai.Ten + "_" + DungTich.Ten;
                 }
                 //Lấy biểu đồ đường
                 List<ThongKeDuongViewModel> thongKeDuong = new List<ThongKeDuongViewModel>();
@@ -116,16 +116,16 @@ namespace AppAPI.Services
                                                            DoanhThu = g.Sum(x => x.SoLuong * x.DonGia),
                                                        }).OrderByDescending(x => x.SoLuong).Take(10).ToList();
                 ChiTietSanPham chiTietSanPham;
-                MauSac mauSac;
-                KichCo kichCo;
+                PhanLoai phanLoai;
+                DungTich dungTich;
                 SanPham sanPham;
                 foreach (var item in thongKeSanPham)
                 {
                     chiTietSanPham = context.ChiTietSanPhams.First(x => x.ID == new Guid(item.TenSP));
-                    mauSac = context.MauSacs.First(x => x.ID == chiTietSanPham.IDMauSac);
-                    kichCo = context.KichCos.First(x => x.ID == chiTietSanPham.IDKichCo);
+                    phanLoai = context.PhanLoais.First(x => x.ID == chiTietSanPham.IDPhanLoai);
+                    dungTich = context.DungTichs.First(x => x.ID == chiTietSanPham.IDDungTich);
                     sanPham = context.SanPhams.First(x => x.ID == chiTietSanPham.IDSanPham);
-                    item.TenSP = sanPham.Ten + "_" + mauSac.Ten + "_" + kichCo.Ten;
+                    item.TenSP = sanPham.Ten + "_" + phanLoai.Ten + "_" + dungTich.Ten;
                 }
                 return thongKeSanPham;
             }

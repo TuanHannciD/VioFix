@@ -36,11 +36,11 @@
         var PriceRange = Filter();
         var searchfilter = Search();
         var idloaiSp = filterLoaiSP();
-        var idMauSac = filterMauSac();
-        var idKichCo = filterKichCo();
-        var idChatLieu = filterChatLieu();
+        var idPhanLoai = filterPhanLoai();
+        var idDungTich = filterDungTich();
+        var idLuuHuong = filterLuuHuong();
         var idsortSP = Sort();
-        var request = { page: pageIndex, pageSize: pagesize, priceRange: PriceRange, search: searchfilter, loaiSP: idloaiSp, mauSac: idMauSac, kichCo: idKichCo, chatLieu: idChatLieu, sortSP: idsortSP };
+        var request = { page: pageIndex, pageSize: pagesize, priceRange: PriceRange, search: searchfilter, loaiSP: idloaiSp, phanLoai: idPhanLoai, dungTich: idDungTich, luuHuong: idLuuHuong, sortSP: idsortSP };
         $.ajax({
             url: "/Home/ShowProduct",
             type: "POST",

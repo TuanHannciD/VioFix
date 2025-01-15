@@ -24,18 +24,14 @@
     <div id="searchErrorMessage" class="alert alert-warning" role="alert" style="display: @(ViewData["SearchError"] != null ? "block" : "none") ; margin-top: 10px; margin-left: 11px">@ViewData["SearchError"]</div>
 </div>
 
-<table class="table" style="margin-left: 20px">
-    <thead style=" background-color: darkslategray">
+<table class="table table-bordered border-primary" style="margin-left: 20px" >
+    <thead class="table-night">
         <tr>
-            <th style=" background-color: darkslategray;
-    color: white;">STT</th>
-            <th style=" background-color: darkslategray;
-    color: white;">Phong cách</th>
-            <th style=" background-color: darkslategray;
-    color: white;">Loại sản phẩm</th>
-            <th style=" background-color: darkslategray;
-    color: white;">Trạng thái</th>
-            <th style=" background-color: darkslategray"></th>
+            <th>STT</th>
+            <th>Phong cách</th>
+            <th>Loại sản phẩm</th>
+            <th>Trạng thái</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

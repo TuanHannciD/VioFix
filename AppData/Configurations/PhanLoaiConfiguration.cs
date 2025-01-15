@@ -16,7 +16,7 @@ namespace AppData.Configurations
             builder.ToTable("PhanLoai");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ten).HasColumnType("nvarchar(10)").IsRequired();
-            builder.Property(x => x.Ma).HasColumnType("varchar(10)");
+            builder.Property(x => x.Ma).HasColumnType("nvarchar(10)");
             builder.Property(x => x.TrangThai).HasColumnType("int").IsRequired();
         }
     }

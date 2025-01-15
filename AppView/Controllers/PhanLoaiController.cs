@@ -183,14 +183,14 @@ namespace AppView.Controllers
                 }
                 else
                 {
-                    string encodedPhanLoai = Uri.EscapeDataString(ms.Ma);
-                    string apiUrl = $"https://localhost:7095/api/PhanLoai/{id}?ten={ms.Ten}&ma={encodedPhanLoai}&trangthai={ms.TrangThai}";
+                    
+                    string apiUrl = $"https://localhost:7095/api/PhanLoai/{id}?ten={ms.Ten}&ma={ms.Ma}&trangthai={ms.TrangThai}";
                     var reponsen = await _httpClient.PutAsync(apiUrl, null);
                     if (reponsen.IsSuccessStatusCode)
                     {
                         return RedirectToAction("Show");
                     }
-                    ViewBag.ErrorMessage = "Đã có trong danh sách";
+                    ViewBag.ErrorMessage = "Đã thay đổi và có trong danh sách";
                     return View();
                 }
             }

@@ -173,13 +173,12 @@ namespace AppAPI.Services
                 if (nv != null)
                 {
                     var existingColor = await _dbContext.PhanLoais.FirstOrDefaultAsync(x => x.Ten.Trim().ToUpper() == ten.Trim().ToUpper());
-                    if (existingColor != null)
+                    if (existingColor == null)
                     {
                         return null;
                     }
-                    bool isHasHash = ma.StartsWith("#");
                     nv.Ten = ten;
-                    nv.Ma = isHasHash ? ma : $"#{Uri.EscapeDataString(ma)}";
+                    nv.Ma = ma;
                     nv.TrangThai = 1;
                     _dbContext.PhanLoais.Update(nv);
                     _dbContext.SaveChanges();

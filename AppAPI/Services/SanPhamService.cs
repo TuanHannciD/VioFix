@@ -576,14 +576,7 @@ namespace AppAPI.Services
                     var tempTrangThai = new Guid(request.TrangThai);
                     foreach (var x in request.ChiTietSanPhams)
                     {
-                        // Kiểm tra các thuộc tính cần thiết
-                        if (x?.IDPhanLoai == null || x?.IDDungTich == null)
-                        {
-                            // Thêm thông báo lỗi nếu IDPhanLoai hoặc IDDungTich là null
-                            throw new Exception("IDPhanLoai hoặc IDDungTich không được phép null.");
-                        }
-
-                        if (x.SoLuong.HasValue && x.GiaBan.HasValue)
+                        if (x?.IDPhanLoai != null && x?.IDDungTich != null)
                         {
                             _context.ChiTietSanPhams.Add(new ChiTietSanPham()
                             {
@@ -616,14 +609,7 @@ namespace AppAPI.Services
                 {
                     foreach (var x in request.ChiTietSanPhams)
                     {
-                        // Kiểm tra các thuộc tính cần thiết
-                        if (x?.IDPhanLoai == null || x?.IDDungTich == null)
-                        {
-                            // Thêm thông báo lỗi nếu IDPhanLoai hoặc IDDungTich là null
-                            throw new Exception("IDPhanLoai hoặc IDDungTich không được phép null.");
-                        }
-
-                        if (x.SoLuong.HasValue && x.GiaBan.HasValue)
+                        if (x?.IDPhanLoai != null && x?.IDDungTich != null)
                         {
                             _context.ChiTietSanPhams.Add(new ChiTietSanPham()
                             {

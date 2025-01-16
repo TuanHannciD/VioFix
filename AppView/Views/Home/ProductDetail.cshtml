@@ -231,39 +231,40 @@
                     </div>
 
 
-                    <div class="mt-3">
-                        <span class="fw-bold">Phân loại</span>
-                        <div class="colors" id="filter-color">
-                            @foreach (var item in Model.PhanLoais)
-                            {
-                                <div id="tronMau">
-                                    <input type="radio" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getPhanLoai(this)" />
-                                    <label for="btn-check-outlined_@item.GiaTri">
-                                        @item.GiaTri
-                                    </label>
-                                </div>
-                            }
-                        </div>
-                    </div>
+                    @* <div class="mt-3"> *@
+                    @*     <span class="fw-bold">Phân loại</span> *@
+                    @*     <div class="colors" id="filter-color"> *@
+                    @*         @foreach (var item in Model.PhanLoais) *@
+                    @*         { *@
+                    @*             <div id="tronMau"> *@
+                    @*                 <input type="radio" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getPhanLoai(this)" /> *@
+                    @*                 <label for="btn-check-outlined_@item.GiaTri"> *@
+                    @*                     @item.GiaTri *@
+                    @*                 </label> *@
+                    @*             </div> *@
+                    @*         } *@
+                    @*     </div> *@
+                    @* </div> *@
 
 
 
 
 
-                    @*  <div class="mt-3">
+                     <div class="mt-3">
                         <span class="fw-bold">Màu Sắc</span>
                         <div class="colors" id="filter-color">
                             @foreach (var item in Model.PhanLoais)
                             {
                                 <label id="tronMau">
-                                    <input type="radio" class="btn-check" id="btn-check-outlined_@item.GiaTri" autocomplete="off" value="@item.ID" name="color" onclick="getPhanLoai(this)" />
-                                    <label for="btn-check-outlined_@item.GiaTri" style="background-color:@item.GiaTri;border:gray 1px solid;cursor:pointer" id="label_@item.ID">
+                                    <input type="radio" class="btn-check" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getPhanLoai(this)" />
+                                    <label for="btn-check-outlined_@item.GiaTri"  id="label_@item.ID">
+                                        @t
                                     </label>
                                 </label>
                             }
 
                         </div>
-                    </div> *@
+                    </div>
                     <div class="mt-3">
                         <span class="fw-bold">Dung tích</span>
                         <div class="colors">
@@ -274,7 +275,7 @@
                                         <input type="radio" value="@item.GiaTri" name="dungtich" class="btn btn-light" style="border:1px solid gray!important;width:100%;height:100%" id="@item.GiaTri" onclick="getPhanLoai(this)" />
                                         </li>*@
                                     <label>
-                                        <input type="radio" class="btn-check" value="@item.GiaTri" id="rd_@item.GiaTri" autocomplete="off" name="dungtich" onclick="getPhanLoai(this)" />
+                                        <input type="radio" class="btn-check" value="@item.GiaTri" id="rd_@item.GiaTri" autocomplete="off" name="dungtich" onclick="getDungTich(this)" />
                                         <span class="btn btn-outline-primary" for="rd_@item.GiaTri" id="label_@item.GiaTri">@item.GiaTri</span>
                                     </label>
                                 }
@@ -497,8 +498,8 @@
     }
     function getPhanLoai(element) {
         color = element.value;
-        //console.log(dungTichs);
-        //console.log(chiTietSanPhams);
+        console.log(dungTichs);
+        console.log(chiTietSanPhams);
         for(let i = 0; i< dungTichs.length; i++){
             var chiTietSP = chiTietSanPhams.find(x => x.phanLoai == element.value && x.dungTich == dungTichs[i].id);
             console.log(chiTietSP);
@@ -578,10 +579,13 @@
             document.getElementById("giaTKM").style.display = "none";
             document.getElementById("giaGoc").style.display = "none";
         }
+        if (chiTietSP) {
+            document.getElementById("giaCTSP").innerHTML = Intl.NumberFormat().format(chiTietSP.giaBan) + " " + "VNĐ";
+        }
     }
     function getDungTich(element) {
-        size = dungTichs.find(x=>x.giaTri==element.value).id;
-        var chiTietSP = chiTietSanPhams.find(x => x.dungTich == size && x.phanLoai==color);
+        size = dungTichs.find(x => x.giaTri == element.value).id;
+        var chiTietSP = chiTietSanPhams.find(x => x.dungTich == size && x.phanLoai == color);
         //if (document.getElementById("rd_" + size).checked = true) {
         //    document.getElementById("label_" + size).style.color = "white";
         //}
@@ -613,6 +617,9 @@
         else {
             document.getElementById("giaTKM").style.display = "none";
             document.getElementById("giaGoc").style.display = "none";
+        }
+        if (chiTietSP) {
+            document.getElementById("giaCTSP").innerHTML = Intl.NumberFormat().format(chiTietSP.giaBan) + " " + "VNĐ";
         }
     }
     function DungTich() {

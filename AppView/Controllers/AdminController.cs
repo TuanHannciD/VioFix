@@ -537,8 +537,7 @@ namespace AppView.Controllers
 
                 TempData["SanPham"] = request.IDSanPham.ToString();
                 TempData["MaSP"] = request.Ma;
-                TempData["MaPL"] = request.IDPhanLoai.ToString();
-                TempData["MaDT"] = request.IDDungTich.ToString();
+               
 
 
                 if (request.PhanLoais != null)
@@ -567,6 +566,7 @@ namespace AppView.Controllers
                     request.IDSanPham = new Guid(idSanPham);
                     request.Ma = TempData["MaSP"] as string;
                     request.Location = Convert.ToInt32(TempData["Location"] as string);
+                    
                    
                 }
                 else

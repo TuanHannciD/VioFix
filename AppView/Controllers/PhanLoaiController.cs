@@ -47,6 +47,7 @@ namespace AppView.Controllers
             }
             catch { return Redirect("https://localhost:5001/"); }
         }
+
         [HttpGet]
         public async Task<IActionResult> SearchTheoTen(string? Ten, int ProductPage = 1)
         {

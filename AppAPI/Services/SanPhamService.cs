@@ -343,29 +343,55 @@ namespace AppAPI.Services
         {
             try
             {
-                var lstChiTietSanPham = await _context.ChiTietSanPhams.Where(x => x.IDSanPham == request.IDSanPham).ToListAsync();
                 List<ChiTietSanPhamRequest> lst = new List<ChiTietSanPhamRequest>();
-                List<PhanLoai> phanLoai = new List<PhanLoai>();
+                    List<PhanLoai> phanLoai = new List<PhanLoai>();
                 ChiTietSanPhamRequest? chiTietSanPham;
+
                 foreach (var x in request.PhanLoais)
                 {
+                    if (x == null) continue;
+
                     foreach (var y in request.DungTichs)
                     {
-                        chiTietSanPham = CreateChiTietSanPhamFromSanPham(x, y, lstChiTietSanPham).Result;
+                        if (y == null) continue;
+
+                        // Tạo chi tiết sản phẩm mới từ phân loại và dung tích
+                        chiTietSanPham = await CreateChiTietSanPhamFromSanPham(x, y, null);  // Không cần truyền lstChiTietSanPham nữa
                         if (chiTietSanPham != null)
                         {
                             lst.Add(chiTietSanPham);
                         }
                     }
-                    if (_context.Anhs.FirstOrDefault(item => item.IDSanPham == request.IDSanPham && item.IDPhanLoai == _context.PhanLoais.First(z => z.Ma == x.Ma).ID) == null)
+
+                    // Kiểm tra xem phân loại này có ảnh liên quan chưa, nếu chưa thì thêm vào danh sách phân loại cần cập nhật
+                    var phanLoaiId = _context.PhanLoais.FirstOrDefault(z => z.Ma == x.Ma)?.ID;
+                    if (phanLoaiId.HasValue && _context.Anhs.FirstOrDefault(item => item.IDSanPham == request.IDSanPham && item.IDPhanLoai == phanLoaiId.Value) == null)
                     {
                         phanLoai.Add(x);
                     }
                 }
-                return new ChiTietSanPhamUpdateRequest() { IDSanPham = request.IDSanPham, ChiTietSanPhams = lst.GroupBy(x => new { PhanLoai = x.IDPhanLoai, DungTich = x.IDDungTich }).Select(y => y.First()).ToList(), Location = 1, PhanLoais = phanLoai, Ma = _context.SanPhams.First(x => x.ID == request.IDSanPham).Ma };
+
+                // Trả về kết quả bao gồm các chi tiết sản phẩm mới và phân loại cần thêm ảnh
+                return new ChiTietSanPhamUpdateRequest()
+                {
+                    IDSanPham = request.IDSanPham,
+                    ChiTietSanPhams = lst.GroupBy(x => new { PhanLoai = x.IDPhanLoai, DungTich = x.IDDungTich })
+                                          .Select(y => y.First())  // Chỉ lấy một chi tiết sản phẩm cho mỗi nhóm phân loại và dung tích
+                                          .ToList(),
+                    Location = 1,  // Mặc định là 1, có thể điều chỉnh nếu cần
+                    PhanLoais = phanLoai,  // Các phân loại cần thêm ảnh
+                    Ma = _context.SanPhams.FirstOrDefault(x => x.ID == request.IDSanPham)?.Ma
+                };
             }
-            catch { return new ChiTietSanPhamUpdateRequest(); }
+            catch (Exception ex)
+            {
+                // Log lỗi và trả về phản hồi lỗi
+                return new ChiTietSanPhamUpdateRequest();  // Trả về giá trị mặc định khi có lỗi
+            }
         }
+
+
+
         public ChiTietSanPhamViewModel? GetChiTietSanPhamByID(Guid id)
         {
             try
@@ -550,8 +576,35 @@ namespace AppAPI.Services
                     var tempTrangThai = new Guid(request.TrangThai);
                     foreach (var x in request.ChiTietSanPhams)
                     {
-                        _context.ChiTietSanPhams.Add(new ChiTietSanPham() { ID = x.IDChiTietSanPham, SoLuong = x.SoLuong.Value, GiaBan = x.GiaBan.Value, NgayTao = DateTime.Now, TrangThai = x.IDChiTietSanPham == tempTrangThai ? 1 : 2, IDSanPham = request.IDSanPham, IDPhanLoai = x.IDPhanLoai.Value, IDDungTich = x.IDDungTich.Value, Ma = RemoveUnicode(request.Ma + x.TenPhanLoai.Trim().ToUpper() + x.TenDungTich.ToUpper()) });
+                        // Kiểm tra các thuộc tính cần thiết
+                        if (x?.IDPhanLoai == null || x?.IDDungTich == null)
+                        {
+                            // Thêm thông báo lỗi nếu IDPhanLoai hoặc IDDungTich là null
+                            throw new Exception("IDPhanLoai hoặc IDDungTich không được phép null.");
+                        }
+
+                        if (x.SoLuong.HasValue && x.GiaBan.HasValue)
+                        {
+                            _context.ChiTietSanPhams.Add(new ChiTietSanPham()
+                            {
+                                ID = x.IDChiTietSanPham,
+                                SoLuong = x.SoLuong.Value,
+                                GiaBan = x.GiaBan.Value,
+                                NgayTao = DateTime.Now,
+                                TrangThai = x.IDChiTietSanPham == tempTrangThai ? 1 : 2,
+                                IDSanPham = request.IDSanPham,
+                                IDPhanLoai = x.IDPhanLoai.Value,
+                                IDDungTich = x.IDDungTich.Value,
+                                Ma = request.Ma + x.TenPhanLoai.Trim().ToUpper() + x.TenDungTich.ToUpper()
+                            });
+                        }
+                        else
+                        {
+                            // Xử lý khi thiếu thông tin cần thiết
+                            return false;
+                        }
                     }
+
                     var chiTietSanPhamMacDinh = _context.ChiTietSanPhams.FirstOrDefault(x => x.IDSanPham == request.IDSanPham && x.TrangThai == 1);
                     if (chiTietSanPhamMacDinh != null)
                     {
@@ -563,17 +616,47 @@ namespace AppAPI.Services
                 {
                     foreach (var x in request.ChiTietSanPhams)
                     {
-                        _context.ChiTietSanPhams.Add(new ChiTietSanPham() { ID = x.IDChiTietSanPham, SoLuong = x.SoLuong.Value, GiaBan = x.GiaBan.Value, NgayTao = DateTime.Now, TrangThai = 2, IDSanPham = request.IDSanPham, IDPhanLoai = x.IDPhanLoai.Value, IDDungTich = x.IDDungTich.Value, Ma = RemoveUnicode(request.Ma + x.TenPhanLoai.Replace(" ", "").ToUpper() + x.TenDungTich.ToUpper()) });
+                        // Kiểm tra các thuộc tính cần thiết
+                        if (x?.IDPhanLoai == null || x?.IDDungTich == null)
+                        {
+                            // Thêm thông báo lỗi nếu IDPhanLoai hoặc IDDungTich là null
+                            throw new Exception("IDPhanLoai hoặc IDDungTich không được phép null.");
+                        }
+
+                        if (x.SoLuong.HasValue && x.GiaBan.HasValue)
+                        {
+                            _context.ChiTietSanPhams.Add(new ChiTietSanPham()
+                            {
+                                ID = x.IDChiTietSanPham,
+                                SoLuong = x.SoLuong.Value,
+                                GiaBan = x.GiaBan.Value,
+                                NgayTao = DateTime.Now,
+                                TrangThai = 2,
+                                IDSanPham = request.IDSanPham,
+                                IDPhanLoai = x.IDPhanLoai.Value,
+                                IDDungTich = x.IDDungTich.Value,
+                                Ma = RemoveUnicode(request.Ma + x.TenPhanLoai.Replace(" ", "").ToUpper() + x.TenDungTich.ToUpper())
+                            });
+                        }
+                        else
+                        {
+                            // Xử lý khi thiếu thông tin cần thiết
+                            return false;
+                        }
                     }
                 }
-                _context.SaveChanges();
+
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
+                // Log lỗi và trả về false khi có lỗi
                 return false;
             }
         }
+
+
         public async Task<bool> UpdateSoluongChiTietSanPham(Guid id, int soLuong)
         {
             try

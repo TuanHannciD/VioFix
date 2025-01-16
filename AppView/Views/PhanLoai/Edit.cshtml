@@ -4,41 +4,54 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class=" justify-content-center align-items-center vh-90">
-    <div class="form-container">
-        <h1 class="text-center">Thêm mới loại</h1>
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="alert alert-danger">
-                @ViewBag.ErrorMessage
+<!-- Modal Trigger Button -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+    Thêm mới loại
+</button>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Thêm mới loại</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        }
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="ID" class="form-label"></label>
-                <input asp-for="ID" class="form-control" />
-                <span asp-validation-for="ID" class="text-danger"></span>
+            <div class="modal-body">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group" hidden>
+                        <label asp-for="ID" class="form-label"></label>
+                        <input asp-for="ID" class="form-control" />
+                        <span asp-validation-for="ID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Ten" class="form-label">Phong cách</label>
+                        <input asp-for="Ten" class="form-control" autocomplete="off" />
+                        <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Ma" class="form-label">Loại sản phẩm</label>
+                        <input asp-for="Ma" class="form-control" autocomplete="off" />
+                        <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="TrangThai" class="form-label"></label>
+                        <input asp-for="TrangThai" class="form-control" />
+                        <span asp-validation-for="TrangThai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary w-100" style="margin-top: 10px" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group mb-3">
-                <label asp-for="Ten" class="form-label">Phong cách</label>
-                <input asp-for="Ten" class="form-control" autocomplete="off" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="Ma" class="form-label">Loại sản phẩm</label>
-                <input asp-for="Ma" class="form-control" autocomplete="off" />
-                <div id="emptyNameError" class="invalid-feedback d-none">Vui lòng nhập phong cách!</div>
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="TrangThai" class="form-label"></label>
-                <input asp-for="TrangThai" class="form-control" />
-                <span asp-validation-for="TrangThai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary w-100" style="margin-top: 10px" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -59,5 +72,7 @@
     });
 </script>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

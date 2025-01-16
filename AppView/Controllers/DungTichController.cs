@@ -80,7 +80,7 @@ namespace AppView.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return PartialView("_Create");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -126,7 +126,7 @@ namespace AppView.Controllers
                 var response = _httpClient.GetAsync(apiUrl).Result;
                 var apiData = response.Content.ReadAsStringAsync().Result;
                 var user = JsonConvert.DeserializeObject<DungTich>(apiData);
-                return View(user);
+                return PartialView("_Edit",user);
             }
             catch
             {
@@ -149,9 +149,9 @@ namespace AppView.Controllers
                 else if (reponsen.StatusCode == HttpStatusCode.BadRequest)
                 {
                     ViewBag.ErrorMessage = "Kích cỡ này đã có trong danh sách";
-                    return View();
+                    return RedirectToAction("Show");
                 }
-                return View(nv);
+                return RedirectToAction("Show");
             }
             catch
             {

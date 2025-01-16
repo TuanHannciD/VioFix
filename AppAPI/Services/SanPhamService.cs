@@ -103,7 +103,7 @@ namespace AppAPI.Services
                                       LoaiSPCha = _context.LoaiSPs.First(x => x.ID == e.IDLoaiSPCha).Ten,
                                       LoaiSPCon = e.Ten,
                                       Anh = sp == null ? "" : _context.Anhs.First(x => x.IDPhanLoai == sp.IDPhanLoai && x.IDSanPham == a.ID).DuongDan,
-                                      LuuHuong = _context.DungTichs.First(x => x.ID == a.IDLuuHuong).Ten,
+                                      LuuHuong = _context.LuuHuongs.First(x => x.ID == a.IDLuuHuong).Ten,
                                       GiaGoc = sp == null ? -999 : sp.GiaBan,
                                       SoLuong = sp == null ? -999 : sp.SoLuong,
                                       IDKhuyenMai = sp == null ? null : sp.IDKhuyenMai,
@@ -222,6 +222,7 @@ namespace AppAPI.Services
                 List<ChiTietSanPhamRequest> lst = new List<ChiTietSanPhamRequest>();
                 LoaiSP? loaiSPCon = _context.LoaiSPs.Where(x => x.IDLoaiSPCha != null).FirstOrDefault(x => x.Ten.ToUpper() == request.TenLoaiSPCon.Trim().ToUpper());
                 LuuHuong? LuuHuong = _context.LuuHuongs.FirstOrDefault(x => x.Ten.ToUpper() == request.TenLuuHuong.Trim().ToUpper());
+                
                 if (loaiSPCon == null)
                 {
                     LoaiSP? loaiSPCha = _context.LoaiSPs.Where(x => x.IDLoaiSPCha == null).FirstOrDefault(x => x.Ten.ToUpper() == request.TenLoaiSPCha.Trim().ToUpper());
@@ -235,15 +236,41 @@ namespace AppAPI.Services
                 }
                 if (LuuHuong == null)
                 {
-                    LuuHuong = new LuuHuong() { ID = Guid.NewGuid(), Ten = request.TenLuuHuong.Trim(), TrangThai = 1 };
-                    await _context.AddAsync(LuuHuong);
+                    // Nếu không tìm thấy, tạo mới LuuHuong và thêm vào cơ sở dữ liệu
+                    LuuHuong = new LuuHuong
+                    {
+                        ID = Guid.NewGuid(), // Tạo ID mới
+                        Ten = request.TenLuuHuong.Trim(), // Sử dụng TenLuuHuong từ request
+                        TrangThai = 1 // Giả sử TrangThai là 1 (hoạt động)
+                    };
                 }
+
+                foreach (var phanLoai in request.PhanLoais)
+                {
+                    // Kiểm tra xem PhanLoai đã tồn tại chưa
+                    var existingPhanLoai = _context.PhanLoais
+                        .FirstOrDefault(x => x.Ma.ToUpper() == phanLoai.Ma.ToUpper());
+
+                    // Nếu không tồn tại, thêm mới PhanLoai vào cơ sở dữ liệu
+                    if (existingPhanLoai == null)
+                    {
+                        var newPhanLoai = new PhanLoai
+                        {
+                            ID = Guid.NewGuid(), // Tạo ID mới
+                            Ten = phanLoai.Ten,
+                            Ma = phanLoai.Ma,
+                            TrangThai = 1 // Hoặc giá trị mặc định khác
+                        };
+                        _context.PhanLoais.Add(newPhanLoai);
+                    }
+                }
+
                 var max = 0;
                 if (_context.SanPhams.Any())
                 {
                     max = _context.SanPhams.Max(x => Convert.ToInt32(x.Ma.Substring(2)));
                 }
-                SanPham sanPham = new SanPham() { ID = Guid.NewGuid(), Ten = request.Ten, Ma = "SP" + (max + 1), MoTa = request.MoTa, TrangThai = 1, IDLoaiSP = loaiSPCon.ID, IDLuuHuong = LuuHuong.ID };
+                SanPham sanPham = new SanPham() { ID = Guid.NewGuid(), Ten = request.Ten, Ma = "SP" + (max + 1), MoTa = request.MoTa, TrangThai = 1, IDLoaiSP = loaiSPCon.ID ,IDLuuHuong = LuuHuong.ID };
                 await _context.SanPhams.AddAsync(sanPham);
                 await _context.SaveChangesAsync();
                 foreach (var x in request.PhanLoais)

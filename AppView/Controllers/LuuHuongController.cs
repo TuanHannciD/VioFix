@@ -81,9 +81,9 @@ namespace AppView.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateModal ()
         {
-            return View();
+            return PartialView("_CreateModal");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -124,20 +124,38 @@ namespace AppView.Controllers
             return View(user);
         }
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public IActionResult EditModal(Guid id)
         {
             string apiUrl = $"https://localhost:7095/api/LuuHuong/GetLuuHuongById?id={id}";
             var response = _httpClient.GetAsync(apiUrl).Result;
+
+            // Kiểm tra phản hồi từ API
+            if (!response.IsSuccessStatusCode)
+            {
+                return NotFound(); // Trả về 404 nếu không tìm thấy dữ liệu
+            }
+
             var apiData = response.Content.ReadAsStringAsync().Result;
-            var user = JsonConvert.DeserializeObject<LuuHuong>(apiData);
-            return View(user);
+
+            // Xử lý lỗi khi deserialization
+            LuuHuong user;
+            try
+            {
+                user = JsonConvert.DeserializeObject<LuuHuong>(apiData);
+            }
+            catch (JsonException)
+            {
+                return BadRequest("Dữ liệu không hợp lệ."); // Trả về 400 nếu dữ liệu không hợp lệ
+            }
+
+            return PartialView("_EditModal", user);
         }
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, LuuHuong nv)
         {
             try
             {
-                nv.TrangThai = 1;
+                nv.TrangThai = 1; // Đảm bảo trạng thái là 1
                 string apiUrl = $"https://localhost:7095/api/LuuHuong/{id}?ten={nv.Ten}";
                 var content = new StringContent(JsonConvert.SerializeObject(nv), Encoding.UTF8, "application/json");
                 var reponsen = await _httpClient.PutAsync(apiUrl, content);
@@ -149,12 +167,14 @@ namespace AppView.Controllers
                 else if (reponsen.StatusCode == HttpStatusCode.BadRequest)
                 {
                     ViewBag.ErrorMessage = "Độ Lưu Hương này đã có trong danh sách";
-                    return View();
+                    return RedirectToAction("Show");
                 }
-                return View(nv);
+                return RedirectToAction("Show");
             }
-            catch { return Redirect("https://localhost:5001/"); }
-
+            catch
+            {
+                return Redirect("https://localhost:5001/"); // Xử lý lỗi
+            }
         }
         public async Task<IActionResult> Delete(Guid id)
         {

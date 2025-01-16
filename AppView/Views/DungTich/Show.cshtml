@@ -15,7 +15,7 @@
 </h1>
 <div class="row" style=" margin: 5px">
     <div class="col-7">
-        <a class="btn btn-primary" asp-action="Create">Thêm mới</a>
+        <a class="btn btn-primary" onclick="openCreateModal()">Thêm mới</a>
     </div>
     <div class="col-5">
         <form asp-action="SearchTheoTen" asp-controller="DungTich" method="get" enctype="multipart/form-data" style="margin-left: 30px;text-align:end">
@@ -58,9 +58,7 @@
                     <button type="button" class="btn btn-success" onclick="return confirm('Bạn có muốn đổi trạng thái dung tích @item.Ten sang trạng thái @(item.TrangThai == 1 ? "Không hoạt động" : "Hoạt động") không?');">
                         @Html.ActionLink("Đổi", "Sua", new { id = item.ID }, new { @style = "color:white;" })
                     </button>
-                    <button class="btn btn-success" style="text-align:end">
-                        @Html.ActionLink("Sửa", "Edit", new { id= item.ID }, new { @style = "color:white;"})
-                    </button>
+                    <button class="btn btn-warning" onclick="openEditModal('@item.ID')">Sửa</button>
                 </td>
                 @{
                     stt++;
@@ -128,4 +126,20 @@
         }
     });
 
+    function openCreateModal(){
+        $.get('/DungTich/Create',function(data){
+            $('#modalContainer').html(data);
+            $('#modalContainer').modal('show');
+        });
+    }
+
+    function openEditModal(id){
+        $.get('/DungTich/Edit?id=' + id,function(data){
+            $('#modalContainer').html(data);
+            $('#modalContainer').modal('show');
+        });
+    }
+
 </script>
+
+<div id="modalContainer" class="modal fade" tabindex="-1" role="dialog"></div>

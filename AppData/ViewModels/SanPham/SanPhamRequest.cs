@@ -21,4 +21,5 @@ namespace AppData.ViewModels.SanPham
         public string TenLoaiSPCha { get; set; }
         public string TenLoaiSPCon { get; set; }
     }
+
 }

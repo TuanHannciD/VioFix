@@ -290,6 +290,7 @@ namespace AppAPI.Services
                 hoaDon1.TrangThaiGiaoHang = 1;
                 hoaDon1.LoaiHD = 1;
                 hoaDon1.MaHD = "HD" + (hoaDon1.ID).ToString().Substring(0, 8).ToUpper();
+                hoaDon1.NgayNhanHang = DateTime.UtcNow;
                 if (reposHoaDon.Add(hoaDon1))
                 {
                     return true;

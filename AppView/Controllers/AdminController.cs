@@ -212,7 +212,7 @@ namespace AppView.Controllers
                 {
                     var temp = response.Content.ReadAsStringAsync().Result;
                     var chiTietSanPham = JsonConvert.DeserializeObject<ChiTietSanPhamUpdateRequest>(temp);
-                    if(!chiTietSanPham.ChiTietSanPhams.Any() || chiTietSanPham.ChiTietSanPhams == null)
+                    if (!chiTietSanPham.ChiTietSanPhams.Any() || chiTietSanPham.ChiTietSanPhams == null)
                     {
                         return RedirectToAction("ProductManager");
                     }
@@ -390,64 +390,37 @@ namespace AppView.Controllers
         [HttpGet]
         public IActionResult AddChiTietSanPham(string idSanPham)
         {
-            try
-            {
-                // Lưu trữ ID sản phẩm vào TempData
-                TempData["IDSanPham"] = idSanPham;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                // Log lỗi (nếu cần) và trả về phản hồi lỗi
-                return StatusCode(500, "Lỗi hệ thống: " + ex.Message);
-            }
+            TempData["IDSanPham"] = idSanPham;
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> AddChiTietSanPham(ChiTietSanPhamAddRequest request)
         {
             try
             {
-                // Loại bỏ các phần tử không cần thiết trong danh sách
                 request.PhanLoais.RemoveAll(XoaMau);
                 request.DungTichs.RemoveAll(XoaSize);
-
-                // Kiểm tra và gán ID sản phẩm từ TempData
-                if (TempData.Peek("IDSanPham").ToString() is string idSanPham)
-                {
-                    request.IDSanPham = new Guid(idSanPham);
-                }
-                else
-                {
-                    return BadRequest("ID sản phẩm không hợp lệ.");
-                }
-
-                // Gửi yêu cầu POST đến API để thêm chi tiết sản phẩm
+                string idSanPham = TempData.Peek("IDSanPham").ToString();
+                request.IDSanPham = new Guid(idSanPham);
                 var response = await _httpClient.PostAsJsonAsync(_httpClient.BaseAddress + "SanPham/AddChiTietSanPham", request);
-
                 if (response.IsSuccessStatusCode)
                 {
-                    // Đọc nội dung từ response nếu yêu cầu thành công
-                    var temp = await response.Content.ReadAsStringAsync();
-
-                    // Lưu thông tin phản hồi vào TempData để có thể sử dụng trong Action kế tiếp
+                    var temp = response.Content.ReadAsStringAsync().Result;
+                    var chiTietSanPham = JsonConvert.DeserializeObject<ChiTietSanPhamUpdateRequest>(temp);
+                    if (!chiTietSanPham.ChiTietSanPhams.Any() || chiTietSanPham.ChiTietSanPhams == null)
+                    {
+                        return RedirectToAction("ProductDetail", new { idSanPham = idSanPham });
+                    }
                     TempData["UpdateChiTietSanPham"] = temp;
-                    // Xử lý khi yêu cầu thành công
                     return RedirectToAction("UpdateChiTietSanPham");
                 }
-                else
-                {
-                    // Xử lý khi yêu cầu thất bại
-                    return BadRequest("Có lỗi xảy ra khi thêm chi tiết sản phẩm.");
-                }
+                else return BadRequest();
             }
-            catch (Exception ex)
+            catch
             {
-                // Log lỗi (nếu cần) và trả về phản hồi lỗi
-                return StatusCode(500, "Lỗi hệ thống: " + ex.Message);
+                return BadRequest();
             }
         }
-
-
         [HttpGet]
         public IActionResult AddAnhToPhanLoai()
         {
@@ -523,82 +496,53 @@ namespace AppView.Controllers
                 return Json(new { TrangThai = false });
             }
         }
-        
         [HttpGet]
         public IActionResult UpdateChiTietSanPham()
         {
             try
             {
-                var request = JsonConvert.DeserializeObject<ChiTietSanPhamUpdateRequest>(TempData.Peek("UpdateChiTietSanPham")?.ToString());
-                if (request == null)
-                {
-                    return View(new ChiTietSanPhamUpdateRequest());
-                }
-
+                var request = JsonConvert.DeserializeObject<ChiTietSanPhamUpdateRequest>(TempData.Peek("UpdateChiTietSanPham").ToString());
                 TempData["SanPham"] = request.IDSanPham.ToString();
                 TempData["MaSP"] = request.Ma;
-               
-
-
                 if (request.PhanLoais != null)
                 {
                     TempData["PhanLoai"] = JsonConvert.SerializeObject(request.PhanLoais);
                 }
-
                 TempData["Location"] = request.Location.ToString();
                 return View(request);
             }
-            catch (Exception ex)
+            catch
             {
-                // Log lỗi (nếu cần) và trả về phản hồi lỗi
-                return StatusCode(500, "Lỗi hệ thống: " + ex.Message);
+                return View(new ChiTietSanPhamUpdateRequest());
             }
-            }
-
-
+        }
         [HttpPost]
-        public async Task<IActionResult> UpdateChiTietSanPham(ChiTietSanPhamUpdateRequest request)
+        public IActionResult UpdateChiTietSanPham(ChiTietSanPhamUpdateRequest request)
         {
             try
             {
-                if (TempData.Peek("SanPham").ToString() is string idSanPham )
-                {
-                    request.IDSanPham = new Guid(idSanPham);
-                    request.Ma = TempData["MaSP"] as string;
-                    request.Location = Convert.ToInt32(TempData["Location"] as string);
-                    
-                   
-                }
-                else
-                {
-                    return BadRequest("ID sản phẩm không hợp lệ.");
-                }
-
-                var response = await _httpClient.PostAsJsonAsync(_httpClient.BaseAddress + "SanPham/AddChiTietSanPhamFromSanPham", request);
-
+                request.IDSanPham = new Guid(TempData.Peek("SanPham").ToString());
+                request.Ma = TempData["MaSP"] as string;
+                request.Location = Convert.ToInt32(TempData["Location"] as string);
+                var response = _httpClient.PostAsJsonAsync(_httpClient.BaseAddress + "SanPham/AddChiTietSanPhamFromSanPham", request).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AddAnhToSanPham");
                 }
-                else
-                {
-                    return BadRequest("Có lỗi xảy ra khi cập nhật chi tiết sản phẩm.");
-                }
+                else return BadRequest();
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "Lỗi hệ thống: " + ex.Message);
+                return BadRequest();
             }
         }
-
-
         [HttpGet]
         public IActionResult AddAnhToSanPham()
         {
             try
             {
                 var str = TempData["PhanLoai"] as string;
-                if(str == null)
+                if (str == null)
                 {
                     return View(new List<PhanLoai>());
                 }
@@ -606,7 +550,7 @@ namespace AppView.Controllers
                 {
                     var lst = JsonConvert.DeserializeObject<List<PhanLoai>>(str);
                     return View(lst);
-                }               
+                }
             }
             catch
             {

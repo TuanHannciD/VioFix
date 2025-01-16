@@ -1,0 +1,19 @@
+﻿@model AppData.Models.LuuHuong
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Thêm mới độ lưu hương</h5>
+           
+        </div>
+        <div class="modal-body">
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label for="Ten">Tên độ lưu hương</label>
+                    <input type="text" class="form-control" id="Ten" name="Ten" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+    </div>
+</div>

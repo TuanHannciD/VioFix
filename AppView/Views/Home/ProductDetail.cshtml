@@ -45,40 +45,27 @@
         cursor: pointer;
     }
 
-    #tronMau {
-        display: inline-flex; /* Hiển thị ngang */
-        align-items: center; /* Căn giữa theo chiều dọc */
-        gap: 5px; /* Khoảng cách giữa radio và label */
-        margin: 5px; /* Khoảng cách giữa các mục */
+    #tronMau label {
+        left: -3px;
+        top: -3px;
+        height: 36px;
+        width: 36px;
+        border: 1px solid #e5e5e5;
+        content: "";
+        border-radius: 30%;
+        border: 2px solid black;
+        align-items: center;
+        justify-content: center;
+        display: flex;
     }
 
-        #tronMau label {
-            height: 40px;
-            width: auto; /* Tự động điều chỉnh theo nội dung */
-            min-width: 60px; /* Đảm bảo đủ rộng cho chữ */
-            border: 2px solid #ccc;
-            border-radius: 6px; /* Bo góc nhẹ */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px 10px; /* Khoảng cách giữa viền và chữ */
-            text-align: center;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
+    #tronMau svg {
+        visibility: hidden
+    }
 
-        #tronMau input[type="radio"] {
-            display: none; /* Ẩn radio button mặc định */
-        }
-
-            #tronMau input[type="radio"]:checked ~ label {
-                background-color: #d1e7dd; /* Nền xanh nhạt khi được chọn */
-                border-color: #0f5132; /* Viền xanh đậm khi được chọn */
-            }
-
+    #tronMau input[type="radio"]:checked ~ label svg {
+        visibility: visible
+    }
 
     #filter-color label span:hover, #filter-size label span:hover, #filter-material label span:hover, #LoaiSpFilter label span:hover, #sizes label span:hover {
         background: black;
@@ -209,7 +196,7 @@
                     </div>
                     <div class="row my-2">
                         <div class="col-6">
-                            Mã sản phẩm: <strong id="maSP">@Model.ChiTietSanPhams.First(x=>x.TrangThai==1).MaCTSP</strong>
+                            Mã sản phẩm: <strong id="maSP">@Model.ChiTietSanPhams.First(x => x.TrangThai == 1).MaCTSP</strong>
                         </div>
                         <div class="col-6">
                             <span>Tình trạng: <strong id="trangthai"></strong></span>
@@ -218,7 +205,7 @@
                     <div class="d-flex flex-column justify-content-start mt-2">
                         <div class="d-flex flex-row">
                             <div class="fw-bold">
-                                <span style="font-size:24px; font-weight:bold" id="giaCTSP">@Model.ChiTietSanPhams.First(x=>x.TrangThai==1).GiaBan.ToString("n0") VNĐ</span>
+                                <span style="font-size:24px; font-weight:bold" id="giaCTSP">@Model.ChiTietSanPhams.First(x => x.TrangThai == 1).GiaBan.ToString("n0") VNĐ</span>
                             </div>
                             <div class="ms-auto p-2">
                                 <span id="giaTKM">@*- @Model.ChiTietSanPhams.First(x=>x.TrangThai==1).GiaTriKM*@</span>
@@ -230,49 +217,27 @@
 
                     </div>
 
-
-                    @* <div class="mt-3"> *@
-                    @*     <span class="fw-bold">Phân loại</span> *@
-                    @*     <div class="colors" id="filter-color"> *@
-                    @*         @foreach (var item in Model.PhanLoais) *@
-                    @*         { *@
-                    @*             <div id="tronMau"> *@
-                    @*                 <input type="radio" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getPhanLoai(this)" /> *@
-                    @*                 <label for="btn-check-outlined_@item.GiaTri"> *@
-                    @*                     @item.GiaTri *@
-                    @*                 </label> *@
-                    @*             </div> *@
-                    @*         } *@
-                    @*     </div> *@
-                    @* </div> *@
-
-
-
-
-
-                     <div class="mt-3">
-                        <span class="fw-bold">Màu Sắc</span>
+                    <div class="mt-3">
+                        <span class="fw-bold">Phân Loại</span>
                         <div class="colors" id="filter-color">
                             @foreach (var item in Model.PhanLoais)
                             {
                                 <label id="tronMau">
-                                    <input type="radio" class="btn-check" id="btn-check-outlined_@item.GiaTri" value="@item.ID" name="color" onclick="getPhanLoai(this)" />
-                                    <label for="btn-check-outlined_@item.GiaTri"  id="label_@item.ID">
-                                        @t
-                                    </label>
+                                    <input type="radio" class="btn-check" id="btn-check-outlined_@item.GiaTri" autocomplete="off" value="@item.ID" name="color" onclick="getPhanLoai(this)" />
+                                    <span class="btn btn-outline-primary" for="rd_@item.GiaTri" id="label_@item.GiaTri">@item.GiaTri</span>
                                 </label>
                             }
 
                         </div>
                     </div>
                     <div class="mt-3">
-                        <span class="fw-bold">Dung tích</span>
+                        <span class="fw-bold">Kích cỡ</span>
                         <div class="colors">
                             <ul id="sizes" style="height:35px">
                                 @foreach (var item in Model.DungTichs)
                                 {
                                     @*<li style="width:70px;height:100%">
-                                        <input type="radio" value="@item.GiaTri" name="dungtich" class="btn btn-light" style="border:1px solid gray!important;width:100%;height:100%" id="@item.GiaTri" onclick="getPhanLoai(this)" />
+                                        <input type="radio" value="@item.GiaTri" name="dungtich" class="btn btn-light" style="border:1px solid gray!important;width:100%;height:100%" id="@item.GiaTri" onclick="getDungTich(this)" />
                                         </li>*@
                                     <label>
                                         <input type="radio" class="btn-check" value="@item.GiaTri" id="rd_@item.GiaTri" autocomplete="off" name="dungtich" onclick="getDungTich(this)" />
@@ -289,7 +254,7 @@
                                 <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
-                                            <input  id="sl" style="width: 50px; border: none; text-align: center;" type="number" value="1">
+                                            <input id="sl" style="width: 50px; border: none; text-align: center;" type="number" value="1">
                                         </div>
                                     </div>
                                 </td>
@@ -344,7 +309,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <b><span id="average_rating">@Math.Round(Model.SoSao,1)</span> / 5</b>
+                                                    <b><span id="average_rating">@Math.Round(Model.SoSao, 1)</span> / 5</b>
                                                 }
 
                                             </h3>
@@ -388,7 +353,7 @@
                                 <span style="color:gray">Màu sắc: </span>PhanLoai
                                 </div>
                                 <div style="margin-top:6px;">
-                                <span style="color:gray">Kích cỡ: </span>PhanLoai
+                                <span style="color:gray">Kích cỡ: </span>DungTich
                                 </div>
                                 <div style="margin-top:6px;">
                                 <span>BinhLuan</span>
@@ -442,7 +407,7 @@
 <script>
     var anhs = @Html.Raw(Json.Serialize(Model.Anhs));
     var chiTietSanPhams = @Html.Raw(Json.Serialize(Model.ChiTietSanPhams));
-    var dungTichs = @Html.Raw(Json.Serialize(Model.PhanLoais));
+    var dungTichs = @Html.Raw(Json.Serialize(Model.DungTichs));
     var color = "";
     var size = "";
     $(document).ready(function () {
@@ -498,22 +463,22 @@
     }
     function getPhanLoai(element) {
         color = element.value;
-        console.log(dungTichs);
-        console.log(chiTietSanPhams);
+        //console.log(dungTichs);
+        //console.log(chiTietSanPhams);
         for(let i = 0; i< dungTichs.length; i++){
             var chiTietSP = chiTietSanPhams.find(x => x.phanLoai == element.value && x.dungTich == dungTichs[i].id);
             console.log(chiTietSP);
             if (typeof (chiTietSP) != "undefined") {
                 if (chiTietSP.soLuong > 0) {
                     if (chiTietSP.trangThai > 0) {
-                        var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungtich).giaTri;
+                        var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungTich).giaTri;
                         document.getElementById("rd_" + giatridungtich).disabled = false;
                         document.getElementById("rd_" + giatridungtich).checked = false;
                         document.getElementById("trangthai").innerHTML = "Còn hàng"
                         document.getElementById("label_" + giatridungtich).style.opacity = "1";
                         document.getElementById("label_" + giatridungtich).style.cursor = "pointer";
                     }else{
-                        var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungtich).giaTri;
+                        var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungTich).giaTri;
                         console.log(giatridungtich);
                         document.getElementById("rd_" + giatridungtich).disabled = true;
                         document.getElementById("rd_" + giatridungtich).checked = false;
@@ -522,7 +487,7 @@
                         document.getElementById("trangthai").innerHTML = "Hết hàng";
                     }
                 } else {
-                    var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungtich).giaTri;
+                    var giatridungtich = dungTichs.find(x => x.id == chiTietSP.dungTich).giaTri;
                     console.log(giatridungtich);
                     document.getElementById("rd_" + giatridungtich).disabled = true;
                     document.getElementById("rd_" + giatridungtich).checked = false;
@@ -579,13 +544,10 @@
             document.getElementById("giaTKM").style.display = "none";
             document.getElementById("giaGoc").style.display = "none";
         }
-        if (chiTietSP) {
-            document.getElementById("giaCTSP").innerHTML = Intl.NumberFormat().format(chiTietSP.giaBan) + " " + "VNĐ";
-        }
     }
     function getDungTich(element) {
-        size = dungTichs.find(x => x.giaTri == element.value).id;
-        var chiTietSP = chiTietSanPhams.find(x => x.dungTich == size && x.phanLoai == color);
+        size = dungTichs.find(x=>x.giaTri==element.value).id;
+        var chiTietSP = chiTietSanPhams.find(x => x.dungTich == size && x.phanLoai==color);
         //if (document.getElementById("rd_" + size).checked = true) {
         //    document.getElementById("label_" + size).style.color = "white";
         //}
@@ -618,9 +580,6 @@
             document.getElementById("giaTKM").style.display = "none";
             document.getElementById("giaGoc").style.display = "none";
         }
-        if (chiTietSP) {
-            document.getElementById("giaCTSP").innerHTML = Intl.NumberFormat().format(chiTietSP.giaBan) + " " + "VNĐ";
-        }
     }
     function DungTich() {
         var checkboxes = $('#sizes input[type="radio"]:checked')
@@ -647,7 +606,7 @@
         if(phanloai.length != 0 && dungtich.length!=0){
             if (ctsp.soLuong < soLuong) {
                 toastr.error('Số lượng không đủ vui lòng giảm số lượng', 'Error Alert', { timeOut: 1000 });
-            } else if (soLuong <= 0 || isNaN(soLuong) == true) {
+            } else if (soLuong == 0 || isNaN(soLuong) == true) {
                 toastr.error('Vui lòng chọn lại số lượng', 'Error Alert', { timeOut: 1000 });
             }else{
                 $.ajax({
@@ -786,18 +745,18 @@
                 if(response.data.length != 0){
                     $.each(response.data, function (i, item) {
                         if (item.sao === 1) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.phanloai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.phanLoai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         } else if (item.sao === 2) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.phanloai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.phanLoai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 3) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.phanloai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i><i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.phanLoai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 4) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.phanloai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star star-light mr-1 main_star'></i></div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.phanLoai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
                         else if (item.sao === 5) {
-                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Độ lưu hương: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Phân loại: </span>" + item.phanloai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Dung tích: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
+                            $("#danhgia").append("<div class='container' style='border-top: 1px solid #dee2e6;padding-top: 15px;'> <div class='row' style='border-bottom:1px solid #dee2e6; padding-bottom: 20px; padding-top: 20px;'> <div class='col-2'> <h4 style='text-align: center; width: 60px; height: 60px; vertical-align: middle; background-color: gray; border-radius: 50%; display: table-cell;'>" + item.tenKH.substring(0, 1).toUpperCase() + "</h4> </div> <div class='col-10'> <div> <span>" + item.tenKH + "</span> </div><div><i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> <i class='fas fa-star text-warning'></i> </div> <div style='margin-top: 6px;' > <span style='color:gray'> " + new Date(item.ngayDanhGia).toLocaleString("en-GB") + " </span> </div > <div style='margin-top: 6px; ' > <span style='color:gray' > Chất liệu: </span>" + item.luuHuong + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Màu sắc: </span>" + item.phanLoai + " </div > <div style='margin-top: 6px;' > <span style='color:gray' > Kích cỡ: </span>" + item.dungTich + " </div > <div style='margin-top: 6px; ' > <span>" + item.binhLuan + " </span> </div > </div> </div > </div>");
                         }
 
                     });
@@ -828,3 +787,6 @@
     }
 </script>
 <script src="https://kit.fontawesome.com/a75b73df5d.js" crossorigin="anonymous"></script>
+
+
+        

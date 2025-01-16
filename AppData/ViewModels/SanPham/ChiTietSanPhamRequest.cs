@@ -12,6 +12,7 @@ namespace AppData.ViewModels.SanPham
         public Guid IDChiTietSanPham { get; set; }
         public Guid? IDPhanLoai { get; set; }
         public Guid? IDDungTich { get; set; }
+        public Guid? IDLuuHuong { get; set; }
         public string? TenDungTich { get; set; }
         public string? TenPhanLoai { get; set; }
         public string? MaMau { get; set; }
